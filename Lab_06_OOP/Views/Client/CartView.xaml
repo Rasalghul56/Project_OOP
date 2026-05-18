@@ -1,0 +1,174 @@
+<UserControl x:Class="Confectionery.Views.Client.CartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="{StaticResource PrimaryFont}">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Cart_Title}"
+                   Style="{StaticResource SectionHeader}"/>
+
+        <!-- Пустая корзина -->
+        <StackPanel DockPanel.Dock="Top"
+                    Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibilityConverter}}"
+                    HorizontalAlignment="Center" Margin="0,60,0,0">
+            <TextBlock Text="🍃" FontSize="52" HorizontalAlignment="Center"/>
+            <TextBlock Text="{DynamicResource Cart_Empty}" FontSize="16"
+                       Foreground="{DynamicResource TextLightBrush}"
+                       HorizontalAlignment="Center" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <!-- Содержимое -->
+        <Grid Visibility="{Binding IsEmpty, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Список -->
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource Card}" Margin="0,0,0,10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Product.Name}"
+                                                   FontWeight="SemiBold" FontSize="14"
+                                                   Foreground="{DynamicResource TextDarkBrush}"/>
+                                        <TextBlock Text="{Binding Product.Price, Converter={StaticResource PriceFormatConverter}}"
+                                                   FontSize="12"
+                                                   Foreground="{DynamicResource TextMediumBrush}"
+                                                   Margin="0,2,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                                VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button Content="−" Width="28" Height="28"
+                                                Style="{StaticResource SecondaryButton}" Padding="0"
+                                                Command="{Binding DataContext.DecreaseCommand,
+                                                    RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                CommandParameter="{Binding}"/>
+                                        <TextBlock Text="{Binding Quantity}"
+                                                   Width="32" TextAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontWeight="Bold" FontSize="14"
+                                                   Foreground="{DynamicResource TextDarkBrush}"/>
+                                        <Button Content="+" Width="28" Height="28"
+                                                Style="{StaticResource PrimaryButton}" Padding="0"
+                                                Command="{Binding DataContext.IncreaseCommand,
+                                                    RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="2"
+                                               Text="{Binding Subtotal, Converter={StaticResource PriceFormatConverter}}"
+                                               FontWeight="Bold" FontSize="14"
+                                               Foreground="{StaticResource AccentBrush}"
+                                               VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                    <Button Grid.Column="3" Content="✕"
+                                            Style="{StaticResource DangerButton}"
+                                            Width="28" Height="28" Padding="0" FontSize="12"
+                                            Command="{Binding DataContext.RemoveCommand,
+                                                RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!-- Форма оформления -->
+            <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Top">
+                <StackPanel>
+                    <TextBlock Text="{DynamicResource Cart_OrderForm}" FontSize="16" FontWeight="Bold"
+                               Foreground="{DynamicResource TextDarkBrush}" Margin="0,0,0,16"/>
+
+                    <TextBlock Text="{DynamicResource Cart_Receive}" Style="{StaticResource LabelText}"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                        <RadioButton Content="{DynamicResource Delivery_Pickup}"
+                                     IsChecked="{Binding IsPickup}"
+                                     FontSize="13" Margin="0,0,16,0"
+                                     Foreground="{DynamicResource TextDarkBrush}"/>
+                        <RadioButton Content="{DynamicResource Delivery_Courier}"
+                                     IsChecked="{Binding IsDelivery}"
+                                     FontSize="13"
+                                     Foreground="{DynamicResource TextDarkBrush}"/>
+                    </StackPanel>
+
+                    <!-- Самовывоз -->
+                    <StackPanel Visibility="{Binding IsPickup, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="{DynamicResource Cart_PickupPoint}" Style="{StaticResource LabelText}"/>
+                        <ComboBox ItemsSource="{Binding PickupLocations}"
+                                  SelectedItem="{Binding SelectedPickupLocation}"
+                                  Margin="0,0,0,12"/>
+                    </StackPanel>
+
+                    <!-- Доставка -->
+                    <StackPanel Visibility="{Binding IsDelivery, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="{DynamicResource Cart_DeliveryAddr}" Style="{StaticResource LabelText}"/>
+                        <TextBox Style="{StaticResource ModernTextBox}"
+                                 Text="{Binding DeliveryAddress, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,0,0,10"/>
+                        <TextBlock Text="{DynamicResource Cart_DeliveryPhone}" Style="{StaticResource LabelText}"/>
+                        <TextBox Style="{StaticResource ModernTextBox}"
+                                 Text="{Binding DeliveryPhone, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,0,0,10"/>
+                        <TextBlock Text="{DynamicResource Cart_Payment}" Style="{StaticResource LabelText}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                            <RadioButton Content="{DynamicResource Pay_Cash}"
+                                         IsChecked="{Binding IsCashPayment}"
+                                         FontSize="13" Margin="0,0,14,0"
+                                         Foreground="{DynamicResource TextDarkBrush}"/>
+                            <RadioButton Content="{DynamicResource Pay_Card}"
+                                         IsChecked="{Binding IsCardPayment}"
+                                         FontSize="13"
+                                         Foreground="{DynamicResource TextDarkBrush}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <TextBlock Text="{DynamicResource Cart_Comment}" Style="{StaticResource LabelText}"/>
+                    <TextBox Style="{StaticResource ModernTextBox}"
+                             Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}"
+                             Height="60" TextWrapping="Wrap"
+                             VerticalContentAlignment="Top"
+                             Padding="10,8" Margin="0,0,0,14"/>
+
+                    <Separator Margin="0,0,0,12"/>
+
+                    <Grid Margin="0,0,0,16">
+                        <TextBlock Text="{DynamicResource Cart_Total}" FontSize="14"
+                                   Foreground="{DynamicResource TextMediumBrush}"/>
+                        <TextBlock Text="{Binding Total, Converter={StaticResource PriceFormatConverter}}"
+                                   HorizontalAlignment="Right"
+                                   FontSize="18" FontWeight="Bold"
+                                   Foreground="{StaticResource AccentBrush}"/>
+                    </Grid>
+
+                    <TextBlock Text="{Binding ValidationError}"
+                               Style="{StaticResource ErrorText}"
+                               Visibility="{Binding ValidationError, Converter={StaticResource NullToVisibilityConverter}}"
+                               Margin="0,0,0,8"/>
+                    <TextBlock Text="{Binding StatusMessage}"
+                               Style="{StaticResource SuccessText}"
+                               Visibility="{Binding StatusMessage, Converter={StaticResource NullToVisibilityConverter}}"
+                               Margin="0,0,0,8"/>
+
+                    <Button Content="{DynamicResource Btn_PlaceOrder}"
+                            Style="{StaticResource PrimaryButton}"
+                            Height="44"
+                            Command="{Binding PlaceOrderCommand}"/>
+                    <Button Content="{DynamicResource Cart_Clear}"
+                            Margin="0,8,0,0"
+                            Style="{StaticResource DangerButton}"
+                            Height="36" FontSize="12"
+                            Command="{Binding ClearCartCommand}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </DockPanel>
+</UserControl>

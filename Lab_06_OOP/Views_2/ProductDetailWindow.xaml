@@ -1,0 +1,80 @@
+<Window x:Class="ConfectioneryShop.Views.ProductDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Lab_06_OOP"
+        Title="{DynamicResource S_TitleProductCard}"
+        Height="979"
+        Width="480"
+        MinWidth="320"
+        MinHeight="360"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize"
+        Icon="pack://application:,,,/Resources/app.ico">
+
+    <Window.Resources>
+        <local:ProductImageConverter x:Key="ProductImageConverter"/>
+    </Window.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="16" Height="937">
+            <Image Source="{Binding Product, Converter={StaticResource ProductImageConverter}}" Width="140" Height="140" Stretch="Uniform" HorizontalAlignment="Left" Margin="0,0,0,12"/>
+
+            <TextBlock Text="{DynamicResource S_F_ShortName}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.ShortName, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_FullName}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.FullName, Mode=OneWay}" TextWrapping="Wrap" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_Description}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Description, Mode=OneWay}" TextWrapping="Wrap" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_Category}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Category, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_Price}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Price, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_Discount}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Discount, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_Rating}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Rating, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_D_QtyStock}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Quantity, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_Color}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Color, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_Size}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Size, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_Country}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Country, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_F_Manufacturer}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Manufacturer, Mode=OneWay}" TextWrapping="Wrap" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_D_PhotoPath}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.ImagePath, Mode=OneWay}" TextWrapping="Wrap" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_D_OutOfStock}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.IsOutOfStock, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_D_Sold}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.SoldCount, Mode=OneWay}" Margin="0,2,0,10"/>
+
+            <TextBlock Text="{DynamicResource S_D_Id}" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Product.Id, Mode=OneWay}" Margin="0,2,0,16"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="{DynamicResource S_BtnEdit}" Width="120" Margin="6" Padding="8,5"
+                        Command="{Binding EditCommand}" Background="#FFFFD700" FontWeight="Bold"/>
+                <Button Content="{DynamicResource S_BtnDelete}" Width="100" Margin="6" Padding="8,5"
+                        Command="{Binding DeleteCommand}" Background="#FFFFB6C1" FontWeight="Bold"/>
+                <Button Content="{DynamicResource S_BtnClose}" Width="100" Margin="6" Padding="8,5"
+                        Command="{Binding CloseCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

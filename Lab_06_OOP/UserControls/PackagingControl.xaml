@@ -1,0 +1,17 @@
+<UserControl x:Class="Lab_06_OOP.UserControls.PackagingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <Border Padding="10" Margin="0,8,0,0" BorderBrush="#FFD7D7D7" BorderThickness="1" CornerRadius="8">
+        <StackPanel>
+            <TextBlock Text="Упаковка заказа" FontWeight="Bold"/>
+            <TextBlock Margin="0,6,0,2" Text="Количество коробок:"/>
+            <TextBox Text="{Binding BoxCount, ElementName=Root}" />
+            <TextBlock Margin="0,6,0,2" Text="Доступно на складе:"/>
+            <TextBox Text="{Binding AvailableBoxes, ElementName=Root}" />
+            <TextBlock Margin="0,6,0,2" Text="Подарочных лент:"/>
+            <TextBox Text="{Binding RibbonCount, ElementName=Root}" />
+            <Button Margin="0,8,0,0" Content="Bubble" Click="ConfirmPackagingButton_Click"/>
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,121 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ─── Client nav ─── -->
+    <sys:String x:Key="Nav_Showcase">🏠 Showcase</sys:String>
+    <sys:String x:Key="Nav_Catalog">🛍 Catalog</sys:String>
+    <sys:String x:Key="Nav_Cart">🛒 Cart</sys:String>
+    <sys:String x:Key="Nav_Orders">📦 My Orders</sys:String>
+    <sys:String x:Key="Nav_Profile">👤 Profile</sys:String>
+
+    <!-- ─── Admin nav ─── -->
+    <sys:String x:Key="Admin_Dashboard">📊 Dashboard</sys:String>
+    <sys:String x:Key="Admin_Products">🍰 Products</sys:String>
+    <sys:String x:Key="Admin_Orders">📦 Orders</sys:String>
+    <sys:String x:Key="Admin_Reviews">💬 Reviews</sys:String>
+
+    <!-- ─── Catalog ─── -->
+    <sys:String x:Key="Sort_NameAZ">Name A–Z</sys:String>
+    <sys:String x:Key="Sort_NameZA">Name Z–A</sys:String>
+    <sys:String x:Key="Sort_PriceAsc">Price ↑</sys:String>
+    <sys:String x:Key="Sort_PriceDesc">Price ↓</sys:String>
+    <sys:String x:Key="Sort_Rating">Rating ↓</sys:String>
+    <sys:String x:Key="Cat_All">All categories</sys:String>
+    <sys:String x:Key="Catalog_Search">🔍 Search products...</sys:String>
+
+    <!-- ─── Catalog buttons ─── -->
+    <sys:String x:Key="Btn_Theme">☀️ Theme</sys:String>
+    <sys:String x:Key="Btn_Lang">🌐 RU</sys:String>
+    <sys:String x:Key="Btn_AddToCart">Add to cart</sys:String>
+    <sys:String x:Key="Btn_Detail">Details</sys:String>
+
+    <!-- ─── Cart ─── -->
+    <sys:String x:Key="Cart_Title">🛒 Cart</sys:String>
+    <sys:String x:Key="Cart_Empty">Cart is empty</sys:String>
+    <sys:String x:Key="Cart_OrderForm">Checkout</sys:String>
+    <sys:String x:Key="Cart_Receive">Delivery method</sys:String>
+    <sys:String x:Key="Cart_PickupPoint">Pickup point</sys:String>
+    <sys:String x:Key="Cart_DeliveryAddr">Delivery address *</sys:String>
+    <sys:String x:Key="Cart_DeliveryPhone">Phone *</sys:String>
+    <sys:String x:Key="Cart_Payment">Payment</sys:String>
+    <sys:String x:Key="Cart_Comment">Comment</sys:String>
+    <sys:String x:Key="Cart_Total">Total:</sys:String>
+    <sys:String x:Key="Cart_Clear">Clear cart</sys:String>
+    <sys:String x:Key="Delivery_Pickup">Pickup</sys:String>
+    <sys:String x:Key="Delivery_Courier">Delivery</sys:String>
+    <sys:String x:Key="Pay_Cash">Cash</sys:String>
+    <sys:String x:Key="Pay_Card">Card</sys:String>
+    <sys:String x:Key="Btn_PlaceOrder">Place order</sys:String>
+
+    <!-- ─── My orders ─── -->
+    <sys:String x:Key="Orders_Title">📦 My Orders</sys:String>
+    <sys:String x:Key="Orders_Composition">Order contents</sys:String>
+    <sys:String x:Key="Orders_Total">Total:</sys:String>
+    <sys:String x:Key="Btn_Repeat">Repeat order</sys:String>
+
+    <!-- ─── Profile ─── -->
+    <sys:String x:Key="Profile_Title">👤 Profile</sys:String>
+    <sys:String x:Key="Profile_Email">Email</sys:String>
+    <sys:String x:Key="Profile_Name">Name</sys:String>
+    <sys:String x:Key="Profile_Phone">Phone</sys:String>
+    <sys:String x:Key="Profile_Save">Save profile</sys:String>
+    <sys:String x:Key="Profile_ChangePass">Change password</sys:String>
+    <sys:String x:Key="Profile_OldPass">Current password</sys:String>
+    <sys:String x:Key="Profile_NewPass">New password</sys:String>
+    <sys:String x:Key="Profile_ConfirmPass">Confirm new password</sys:String>
+    <sys:String x:Key="Profile_ChangePassBtn">Update password</sys:String>
+
+    <!-- ─── Dashboard ─── -->
+    <sys:String x:Key="Dash_TotalOrders">Total orders</sys:String>
+    <sys:String x:Key="Dash_Revenue">Revenue</sys:String>
+    <sys:String x:Key="Dash_Products">Products</sys:String>
+    <sys:String x:Key="Dash_Clients">Clients</sys:String>
+    <sys:String x:Key="Dash_StatusTitle">Orders by status</sys:String>
+    <sys:String x:Key="Dash_TopProducts">Top-5 products</sys:String>
+    <sys:String x:Key="Dash_ColProduct">Product</sys:String>
+    <sys:String x:Key="Dash_ColCount">Orders (pcs.)</sys:String>
+    <sys:String x:Key="Dash_ColRevenue">Revenue</sys:String>
+    <sys:String x:Key="Status_Accepted">Accepted</sys:String>
+    <sys:String x:Key="Status_Preparing">Preparing</sys:String>
+    <sys:String x:Key="Status_Ready">Ready</sys:String>
+    <sys:String x:Key="Status_Completed">Delivered</sys:String>
+
+    <!-- ─── Products (admin) ─── -->
+    <sys:String x:Key="Prod_AddBtn">＋ Add product</sys:String>
+    <sys:String x:Key="Prod_FormTitle">Product form</sys:String>
+    <sys:String x:Key="Prod_Name">Name *</sys:String>
+    <sys:String x:Key="Prod_Category">Category *</sys:String>
+    <sys:String x:Key="Prod_Price">Price *</sys:String>
+    <sys:String x:Key="Prod_Weight">Weight (g)</sys:String>
+    <sys:String x:Key="Prod_Desc">Description</sys:String>
+    <sys:String x:Key="Prod_Comp">Composition</sys:String>
+    <sys:String x:Key="Prod_Available">In stock</sys:String>
+    <sys:String x:Key="Prod_Save">💾 Save</sys:String>
+    <sys:String x:Key="Prod_Cancel">Cancel</sys:String>
+    <sys:String x:Key="Prod_Edit">✏️ Edit</sys:String>
+    <sys:String x:Key="Prod_Delete">🗑 Delete</sys:String>
+
+    <!-- ─── Orders (admin) ─── -->
+    <sys:String x:Key="AdminOrder_Title">📦 Orders</sys:String>
+    <sys:String x:Key="AdminOrder_Status">Status:</sys:String>
+    <sys:String x:Key="AdminOrder_DateFrom">From:</sys:String>
+    <sys:String x:Key="AdminOrder_DateTo">to:</sys:String>
+    <sys:String x:Key="AdminOrder_Reset">Reset</sys:String>
+    <sys:String x:Key="AdminOrder_Manage">Order management</sys:String>
+    <sys:String x:Key="AdminOrder_Client">Client</sys:String>
+    <sys:String x:Key="AdminOrder_Delivery">Delivery type</sys:String>
+    <sys:String x:Key="AdminOrder_Address">Delivery address</sys:String>
+    <sys:String x:Key="AdminOrder_Phone">Phone</sys:String>
+    <sys:String x:Key="AdminOrder_ChangeStatus">Change status</sys:String>
+    <sys:String x:Key="AdminOrder_SaveStatus">Save status</sys:String>
+    <sys:String x:Key="AdminOrder_Composition">Order contents</sys:String>
+
+    <!-- ─── Reviews (admin) ─── -->
+    <sys:String x:Key="Reviews_Title">💬 Reviews</sys:String>
+    <sys:String x:Key="Reviews_ReplyTitle">Reply to review</sys:String>
+    <sys:String x:Key="Reviews_ReviewText">Review</sys:String>
+    <sys:String x:Key="Reviews_YourReply">Your reply</sys:String>
+    <sys:String x:Key="Reviews_SendReply">💬 Send reply</sys:String>
+    <sys:String x:Key="Reviews_AdminReply">Admin reply:</sys:String>
+</ResourceDictionary>

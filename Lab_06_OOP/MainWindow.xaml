@@ -1,0 +1,382 @@
+<Window x:Class="ConfectioneryShop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:Lab_06_OOP.UserControls"
+        xmlns:controlsCommands="clr-namespace:Lab_06_OOP.Commands"
+        xmlns:local="clr-namespace:Lab_06_OOP"
+        Title="{DynamicResource S_AppTitle}"
+        Height="620"
+        Width="1040"
+        MinWidth="560"
+        MinHeight="420"
+        WindowStartupLocation="CenterScreen"
+        Icon="pack://application:,,,/Resources/app.ico">
+
+    <Window.Resources>
+        <local:ProductImageConverter x:Key="ProductImageConverter"/>
+        <GridView x:Key="ProductsGridView" x:Shared="False">
+            <GridViewColumn Width="80">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource S_ColPhoto}"/>
+                </GridViewColumn.Header>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding Converter={StaticResource ProductImageConverter}}" Width="60" Height="60" Stretch="Uniform"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="120" DisplayMemberBinding="{Binding ShortName}">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource S_ColShort}"/>
+                </GridViewColumn.Header>
+            </GridViewColumn>
+            <GridViewColumn Width="150" DisplayMemberBinding="{Binding FullName}">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource S_ColFull}"/>
+                </GridViewColumn.Header>
+            </GridViewColumn>
+            <GridViewColumn Width="90" DisplayMemberBinding="{Binding Category}">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource S_ColCategory}"/>
+                </GridViewColumn.Header>
+            </GridViewColumn>
+            <GridViewColumn Width="80" DisplayMemberBinding="{Binding Price}">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource S_ColPrice}"/>
+                </GridViewColumn.Header>
+            </GridViewColumn>
+            <GridViewColumn Width="60" DisplayMemberBinding="{Binding Discount}">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource S_ColDiscount}"/>
+                </GridViewColumn.Header>
+            </GridViewColumn>
+            <GridViewColumn Width="60" DisplayMemberBinding="{Binding Rating}">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource S_ColRating}"/>
+                </GridViewColumn.Header>
+            </GridViewColumn>
+            <GridViewColumn Width="70">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource S_ColStock}"/>
+                </GridViewColumn.Header>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Quantity}"
+                                   Foreground="{Binding IsOutOfStock, Converter={StaticResource StockToColorConverter}}"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="80" DisplayMemberBinding="{Binding Size}">
+                <GridViewColumn.Header>
+                    <TextBlock Text="{DynamicResource S_ColSize}"/>
+                </GridViewColumn.Header>
+            </GridViewColumn>
+        </GridView>
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static controlsCommands:ConfectioneryCommands.CreateTastingSet}"
+                        CanExecute="CreateTastingSet_CanExecute"
+                        Executed="CreateTastingSet_Executed"/>
+    </Window.CommandBindings>
+
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="{DynamicResource S_Menu_File}">
+                <MenuItem Header="{DynamicResource S_Menu_Exit}" Click="Exit_Click" InputGestureText="Alt+F4"/>
+            </MenuItem>
+            <MenuItem Header="{DynamicResource S_Menu_Db}" Click="OpenDbAdmin_Click"/>
+            <MenuItem Header="{DynamicResource S_Menu_Language}">
+                <MenuItem Header="{DynamicResource S_Menu_LangRu}" Click="SetRussianLanguage"/>
+                <MenuItem Header="{DynamicResource S_Menu_LangEn}" Click="SetEnglishLanguage"/>
+            </MenuItem>
+            <MenuItem Header="{DynamicResource S_Menu_Theme}">
+                <MenuItem Header="{DynamicResource S_Menu_ThemeRose}" Click="SetRoseTheme"/>
+                <MenuItem Header="{DynamicResource S_Menu_ThemeGray}" Click="SetGrayTheme"/>
+            </MenuItem>
+            <MenuItem Header="{DynamicResource S_Menu_Profile}" Command="{Binding OpenProfileCommand}"/>
+            <MenuItem Header="{DynamicResource S_Menu_Edit}">
+                <MenuItem Header="{DynamicResource S_Menu_Undo}" Command="{Binding UndoCommand}" InputGestureText="Ctrl+Z"/>
+                <MenuItem Header="{DynamicResource S_Menu_Redo}" Command="{Binding RedoCommand}" InputGestureText="Ctrl+Y"/>
+            </MenuItem>
+            <MenuItem Header="{DynamicResource S_Menu_Help}">
+                <MenuItem Header="{DynamicResource S_Menu_About}" Click="About_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom" Background="{StaticResource BrushStatus}">
+            <StatusBarItem>
+                <TextBlock Text="{DynamicResource S_Status_InList}"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding DisplayedCount, Mode= OneWay}" FontWeight="Bold" Margin="0,0,10,0"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{DynamicResource S_Status_Selected}"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding SelectedProduct.ShortName, FallbackValue=—}" FontWeight="Bold"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text=" | "/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{DynamicResource S_Role}"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock FontWeight="Bold">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Text" Value="{DynamicResource S_Role_Client}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsAdmin}" Value="True">
+                                    <Setter Property="Text" Value="{DynamicResource S_Role_Admin}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="200" MaxWidth="420"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="2.2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    Background="{StaticResource BrushPanel}"
+                    Margin="0,0,6,0"
+                    Padding="10"
+                    BorderBrush="{StaticResource BrushBorder}"
+                    BorderThickness="1"
+                    CornerRadius="8">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel>
+                        <TextBlock Text="{DynamicResource S_Panel_Control}" Style="{StaticResource SectionHeader}"/>
+                        <TextBlock Text="{DynamicResource S_Panel_Filters}" FontWeight="Bold" Foreground="{StaticResource BrushTextMuted}" Margin="0,0,0,10"/>
+
+                        <TextBlock Text="{DynamicResource S_Role}" FontWeight="Bold" Margin="0,0,0,4"/>
+                        <ComboBox SelectedIndex="{Binding RoleIndex}" Margin="0,0,0,10">
+                            <ComboBoxItem Content="{DynamicResource S_Role_Admin}"/>
+                            <ComboBoxItem Content="{DynamicResource S_Role_Client}"/>
+                        </ComboBox>
+
+                        <TextBlock Text="{DynamicResource S_SearchHint}" FontWeight="Bold" Margin="0,0,0,4"/>
+                        <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,0,0,10" MinWidth="120"/>
+
+                        <TextBlock Text="{DynamicResource S_Category}" FontWeight="Bold" Margin="0,0,0,4"/>
+                        <ComboBox ItemsSource="{Binding Categories}"
+                                  SelectedItem="{Binding SelectedCategory}"
+                                  Margin="0,0,0,10" HorizontalAlignment="Stretch"/>
+
+                        <TextBlock Text="{DynamicResource S_PriceRange}" FontWeight="Bold" Margin="0,0,0,4"/>
+                        <Grid Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{DynamicResource S_From}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,6,4"/>
+                            <TextBox Text="{Binding MinPrice}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,4" MinWidth="60"/>
+                            <TextBlock Text="{DynamicResource S_To}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,6,0"/>
+                            <TextBox Text="{Binding MaxPrice}" Grid.Row="1" Grid.Column="1" MinWidth="60"/>
+                        </Grid>
+
+                        <TextBlock Text="{DynamicResource S_RatingRange}" FontWeight="Bold" Margin="0,6,0,4"/>
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Text="{Binding MinRating, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0"/>
+                            <TextBox Text="{Binding MaxRating, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2"/>
+                        </Grid>
+
+                        <TextBlock Text="{DynamicResource S_Country}" FontWeight="Bold" Margin="0,0,0,4"/>
+                        <TextBox Text="{Binding FilterCountry, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+                        <TextBlock Text="{DynamicResource S_SortProducts}" FontWeight="Bold" Margin="0,0,0,4"/>
+                        <ComboBox Margin="0,0,0,10" Width="200" HorizontalAlignment="Left"
+                                  SelectedValuePath="Tag"
+                                  SelectedValue="{Binding ProductSortKey, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBoxItem Tag="Name" Content="{DynamicResource S_Sort_Name}"/>
+                            <ComboBoxItem Tag="Price" Content="{DynamicResource S_Sort_Price}"/>
+                            <ComboBoxItem Tag="Rating" Content="{DynamicResource S_Sort_Rating}"/>
+                        </ComboBox>
+
+                        <CheckBox Content="{DynamicResource S_OnlyInStock}" IsChecked="{Binding OnlyInStock}" Margin="0,0,0,10"/>
+
+                        <Button Content="{DynamicResource S_ApplyFilters}"
+                                Command="{Binding RefreshCommand}"
+                                Style="{StaticResource ActionButton}"
+                                Background="{StaticResource BrushBtnNeutral}"
+                                HorizontalAlignment="Stretch"/>
+
+                        <controls:SweetStatCard Title="{DynamicResource S_Stat_Total}" Value="{Binding DisplayedCount}" Description="{DynamicResource S_Stat_Total_Desc}"/>
+                        <controls:SweetStatCard Title="{DynamicResource S_Stat_Selected}" Value="{Binding SelectedProduct.Quantity, FallbackValue=0}" Description="{DynamicResource S_Stat_Selected_Desc}"/>
+
+                        <Border Padding="8" Margin="0,10,0,0" BorderBrush="{StaticResource BrushBorder}" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <TextBlock Text="Лаб 7" FontWeight="Bold"/>
+
+                                <controls:BatchPreparationControl x:Name="BatchControl"
+                                                                  TasteCheck="BatchControl_TasteCheck"
+                                                                  PreviewBatchPrepared="BatchControl_PreviewBatchPrepared"
+                                                                  BatchPrepared="BatchControl_BatchPrepared"/>
+
+                                <controls:PackagingControl x:Name="PackagingControl"
+                                                           PackagingConfirmed="PackagingControl_PackagingConfirmed"/>
+
+                                <Button Margin="0,8,0,0"
+                                        Content="Заказать"
+                                        Command="{x:Static controlsCommands:ConfectioneryCommands.CreateTastingSet}"/>
+
+                                <TextBlock Margin="0,8,0,4" Text="Журнал маршрутизации событий:" FontWeight="Bold"/>
+                                <ListBox x:Name="RoutingLogList" Height="130"/>
+                            </StackPanel>
+                        </Border>
+
+                        <TextBlock Margin="0,12,0,0" FontSize="11" Foreground="{StaticResource BrushTextMuted}" TextWrapping="Wrap">
+                            <Run Text="{DynamicResource S_FoundCount}"/>
+                            <Run Text=" " FontWeight="Bold"/>
+                            <Run Text="{Binding DisplayedCount, Mode=OneWay}" FontWeight="Bold"/>
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <GridSplitter Grid.Column="1"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch"
+                          Background="{StaticResource BrushSplitter}"
+                          ShowsPreview="False"/>
+
+            <Grid Grid.Column="2" MinWidth="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="{DynamicResource S_WorkArea}" Style="{StaticResource SectionHeader}" Margin="0,0,0,6"/>
+
+                <Border Grid.Row="1" Margin="0,0,0,8" Padding="0,0,0,4" BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1">
+                    <WrapPanel Orientation="Horizontal">
+                        <Button Content="{DynamicResource S_BtnAdd}"
+                                Command="{Binding AddProductCommand}"
+                                Style="{StaticResource ActionButton}"
+                                Background="{StaticResource BrushBtnAdd}"/>
+                        <Button Content="{DynamicResource S_BtnDetails}"
+                                Command="{Binding OpenDetailCommand}"
+                                Style="{StaticResource ActionButton}"
+                                Background="{StaticResource BrushBtnDetails}"/>
+                        <Button Content="{DynamicResource S_BtnEdit}"
+                                Command="{Binding EditProductCommand}"
+                                Style="{StaticResource ActionButton}"
+                                Background="{StaticResource BrushBtnEdit}"/>
+                        <Button Content="{DynamicResource S_BtnDelete}"
+                                Command="{Binding DeleteProductCommand}"
+                                Style="{StaticResource ActionButton}"
+                                Background="{StaticResource BrushBtnDelete}"/>
+                        <Button Content="{DynamicResource S_BtnUndo}" Command="{Binding UndoCommand}" Style="{StaticResource ActionButton}" Background="{StaticResource BrushBtnNeutral}"/>
+                        <Button Content="{DynamicResource S_BtnRedo}" Command="{Binding RedoCommand}" Style="{StaticResource ActionButton}" Background="{StaticResource BrushBtnNeutral}"/>
+                        <CheckBox Content="{DynamicResource S_ListMode}" IsChecked="{Binding UseSimpleList}"
+                                  VerticalAlignment="Center" Margin="8,6,0,6" FontWeight="Bold"/>
+                    </WrapPanel>
+                </Border>
+
+                <ListView Grid.Row="2"
+                          ItemsSource="{Binding Products}"
+                          SelectedItem="{Binding SelectedProduct}"
+                          HorizontalContentAlignment="Stretch"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListView.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenDetailCommand}"/>
+                    </ListView.InputBindings>
+                    <ListView.Style>
+                        <Style TargetType="ListView">
+                            <Setter Property="BorderBrush" Value="{StaticResource BrushBorder}"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Padding" Value="2"/>
+                            <Setter Property="View" Value="{StaticResource ProductsGridView}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding UseSimpleList}" Value="True">
+                                    <Setter Property="View" Value="{x:Null}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Style>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Style.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsMouseOver" Value="True"/>
+                                        <Condition Property="IsSelected" Value="True"/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </MultiTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="6" BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" MinWidth="56"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="{Binding Converter={StaticResource ProductImageConverter}}" Width="56" Height="56" Stretch="Uniform" Margin="0,0,10,0"/>
+                                    <StackPanel Grid.Column="1" MinWidth="0">
+                                        <TextBlock Text="{Binding ShortName}" FontWeight="Bold" FontSize="13" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding FullName}" Foreground="{StaticResource BrushTextMuted}" FontSize="11" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{DynamicResource S_StockWarning}" Visibility="Collapsed" Foreground="Red" FontWeight="Bold">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Quantity}" Value="0">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                        <TextBlock Margin="0,4,0,0" TextWrapping="Wrap">
+                                            <Run Text="{Binding Category, Mode=OneWay}"/>
+                                            <Run Text=" | "/>
+                                            <Run Text="{Binding Price, Mode=OneWay}"/>
+                                            <Run Text="{DynamicResource S_ItemSuffix}"/>
+                                            <Run Text="{Binding Rating, Mode=OneWay}"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </DockPanel>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.75" To="1" Duration="0:0:0.35"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+</Window>

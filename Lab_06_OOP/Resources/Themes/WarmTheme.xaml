@@ -1,0 +1,33 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ── Тёплая песочно-карамельная тема ── -->
+    <!-- Фоны -->
+    <SolidColorBrush x:Key="BackgroundBrush"      Color="#ECE6DF"/>
+    <SolidColorBrush x:Key="SurfaceBrush"         Color="#FAF5EF"/>
+    <SolidColorBrush x:Key="AlternateBrush"       Color="#E8DED4"/>
+    <SolidColorBrush x:Key="InputBackgroundBrush" Color="#FFF8F2"/>
+    <SolidColorBrush x:Key="BorderBrush"          Color="#D9C5B0"/>
+
+    <!-- Текст -->
+    <SolidColorBrush x:Key="TextDarkBrush"        Color="#2C1A0E"/>
+    <SolidColorBrush x:Key="TextMediumBrush"      Color="#5A3426"/>
+    <SolidColorBrush x:Key="TextLightBrush"       Color="#9C7060"/>
+    <SolidColorBrush x:Key="IconForeground"       Color="#5A3426"/>
+
+    <!-- Акцент (карамельно-янтарный) — переопределяет глобальный розовый -->
+    <SolidColorBrush x:Key="AccentBrush"          Color="#D6953D"/>
+    <SolidColorBrush x:Key="AccentHoverBrush"     Color="#B87A2E"/>
+    <SolidColorBrush x:Key="AccentLightBrush"     Color="#F5E4C8"/>
+
+    <!-- Сайдбар — тёмно-шоколадный градиент -->
+    <LinearGradientBrush x:Key="SidebarBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#5A3426" Offset="0"/>
+        <GradientStop Color="#3E2018" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Эффекты под тёплые цвета -->
+    <DropShadowEffect x:Key="CardShadow"      Color="#30000000" BlurRadius="14" ShadowDepth="2" Opacity="0.14"/>
+    <DropShadowEffect x:Key="CardShadowHover" Color="#44D6953D" BlurRadius="20" ShadowDepth="4" Opacity="0.28"/>
+    <DropShadowEffect x:Key="ButtonGlow"      Color="#80D6953D" BlurRadius="12" ShadowDepth="0"/>
+</ResourceDictionary>

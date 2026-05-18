@@ -1,0 +1,159 @@
+<UserControl x:Class="Confectionery.Views.Admin.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="{StaticResource PrimaryFont}">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,20">
+            <TextBlock Text="{DynamicResource Admin_Dashboard}"
+                       Style="{StaticResource SectionHeader}" Margin="0,0,16,0"/>
+            <Button Content="🔄" Style="{StaticResource SecondaryButton}"
+                    Padding="14,8" VerticalAlignment="Center"
+                    Command="{Binding RefreshCommand}"/>
+        </StackPanel>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Статы -->
+                <WrapPanel Margin="0,0,0,24">
+                    <Border Style="{StaticResource StatCard}">
+                        <StackPanel>
+                            <TextBlock Text="📦" FontSize="24" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding TotalOrders}"
+                                       FontSize="28" FontWeight="Bold"
+                                       Foreground="{StaticResource AccentBrush}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Dash_TotalOrders}" FontSize="11"
+                                       Foreground="{DynamicResource TextMediumBrush}"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource StatCard}">
+                        <StackPanel>
+                            <TextBlock Text="💰" FontSize="24" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding TotalRevenue, Converter={StaticResource PriceFormatConverter}}"
+                                       FontSize="20" FontWeight="Bold"
+                                       Foreground="{StaticResource SuccessBrush}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Dash_Revenue}" FontSize="11"
+                                       Foreground="{DynamicResource TextMediumBrush}"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource StatCard}">
+                        <StackPanel>
+                            <TextBlock Text="🍰" FontSize="24" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding TotalProducts}"
+                                       FontSize="28" FontWeight="Bold"
+                                       Foreground="{DynamicResource TextDarkBrush}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Dash_Products}" FontSize="11"
+                                       Foreground="{DynamicResource TextMediumBrush}"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource StatCard}">
+                        <StackPanel>
+                            <TextBlock Text="👥" FontSize="24" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding TotalClients}"
+                                       FontSize="28" FontWeight="Bold"
+                                       Foreground="{DynamicResource TextDarkBrush}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{DynamicResource Dash_Clients}" FontSize="11"
+                                       Foreground="{DynamicResource TextMediumBrush}"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </WrapPanel>
+
+                <!-- Статусы -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="{DynamicResource Dash_StatusTitle}"
+                                   FontSize="15" FontWeight="Bold"
+                                   Foreground="{DynamicResource TextDarkBrush}"
+                                   Margin="0,0,0,16"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                                <Border Background="#FFF3E0" CornerRadius="8" Padding="12,8"
+                                        HorizontalAlignment="Center" MinWidth="70">
+                                    <TextBlock Text="{Binding OrdersAccepted}"
+                                               FontSize="22" FontWeight="Bold"
+                                               Foreground="{StaticResource WarningBrush}"
+                                               HorizontalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="{DynamicResource Status_Accepted}" FontSize="12"
+                                           Foreground="{DynamicResource TextMediumBrush}"
+                                           HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                                <Border Background="#E3F2FD" CornerRadius="8" Padding="12,8"
+                                        HorizontalAlignment="Center" MinWidth="70">
+                                    <TextBlock Text="{Binding OrdersPreparing}"
+                                               FontSize="22" FontWeight="Bold"
+                                               Foreground="#1565C0"
+                                               HorizontalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="{DynamicResource Status_Preparing}" FontSize="12"
+                                           Foreground="{DynamicResource TextMediumBrush}"
+                                           HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                                <Border Background="{StaticResource AccentLightBrush}"
+                                        CornerRadius="8" Padding="12,8"
+                                        HorizontalAlignment="Center" MinWidth="70">
+                                    <TextBlock Text="{Binding OrdersReady}"
+                                               FontSize="22" FontWeight="Bold"
+                                               Foreground="{StaticResource AccentBrush}"
+                                               HorizontalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="{DynamicResource Status_Ready}" FontSize="12"
+                                           Foreground="{DynamicResource TextMediumBrush}"
+                                           HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" HorizontalAlignment="Center">
+                                <Border Background="#E8F5E9" CornerRadius="8" Padding="12,8"
+                                        HorizontalAlignment="Center" MinWidth="70">
+                                    <TextBlock Text="{Binding OrdersCompleted}"
+                                               FontSize="22" FontWeight="Bold"
+                                               Foreground="{StaticResource SuccessBrush}"
+                                               HorizontalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="{DynamicResource Status_Completed}" FontSize="12"
+                                           Foreground="{DynamicResource TextMediumBrush}"
+                                           HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Топ товаров -->
+                <Border Style="{StaticResource Card}">
+                    <StackPanel>
+                        <TextBlock Text="{DynamicResource Dash_TopProducts}"
+                                   FontSize="15" FontWeight="Bold"
+                                   Foreground="{DynamicResource TextDarkBrush}"
+                                   Margin="0,0,0,12"/>
+                        <DataGrid ItemsSource="{Binding TopProducts}"
+                                  IsReadOnly="True" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{DynamicResource Dash_ColProduct}"
+                                                    Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="{DynamicResource Dash_ColCount}"
+                                                    Binding="{Binding Count}" Width="110"/>
+                                <DataGridTextColumn Header="{DynamicResource Dash_ColRevenue}"
+                                                    Binding="{Binding Revenue, Converter={StaticResource PriceFormatConverter}}"
+                                                    Width="130"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

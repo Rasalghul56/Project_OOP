@@ -1,0 +1,41 @@
+<UserControl x:Class="Lab_06_OOP.UserControls.SweetStatCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="CardRoot">
+    <Border x:Name="CardBorder" CornerRadius="12" Padding="10" Margin="0,0,0,8">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FFF2D6FF" Offset="0"/>
+                <GradientStop Color="#FFE5F5FF" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Border.Effect>
+            <DropShadowEffect x:Name="CardShadow" Color="#AA000000" BlurRadius="14" ShadowDepth="4" Opacity="0.5"/>
+        </Border.Effect>
+
+        <StackPanel>
+            <TextBlock Text="{Binding Title, ElementName=CardRoot}" FontWeight="Bold" FontSize="12"/>
+            <TextBlock Text="{Binding Value, ElementName=CardRoot}" FontWeight="ExtraBold" FontSize="24" Margin="0,4,0,0"/>
+            <TextBlock Text="{Binding Description, ElementName=CardRoot}" Opacity="0.8" FontSize="11"/>
+        </StackPanel>
+    </Border>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="MouseEnter">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="CardShadow" Storyboard.TargetProperty="BlurRadius" To="24" Duration="0:0:0.2"/>
+                    <DoubleAnimation Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="Opacity" To="0.95" Duration="0:0:0.2"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="MouseLeave">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="CardShadow" Storyboard.TargetProperty="BlurRadius" To="14" Duration="0:0:0.2"/>
+                    <DoubleAnimation Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+</UserControl>

@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Тёплая молочно-розовая светлая тема -->
+    <SolidColorBrush x:Key="BackgroundBrush"      Color="#FFF7F0FA"/>
+    <SolidColorBrush x:Key="SurfaceBrush"         Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="AlternateBrush"       Color="#FDF5FA"/>
+    <SolidColorBrush x:Key="InputBackgroundBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="BorderBrush"          Color="#EDD5E8"/>
+    <SolidColorBrush x:Key="TextDarkBrush"        Color="#1E1028"/>
+    <SolidColorBrush x:Key="TextMediumBrush"      Color="#5A3A60"/>
+    <SolidColorBrush x:Key="TextLightBrush"       Color="#9A7AA8"/>
+    <SolidColorBrush x:Key="IconForeground"       Color="#5A3A60"/>
+</ResourceDictionary>

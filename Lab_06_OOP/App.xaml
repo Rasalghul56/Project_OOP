@@ -1,0 +1,36 @@
+﻿<Application x:Class="Confectionery.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:h="clr-namespace:Confectionery.Helpers"
+             Startup="App_OnStartup">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- 1. Цвета темы (меняется при смене темы) -->
+                <ResourceDictionary Source="/Lab_06_OOP;component/Resources/Themes/LightTheme.xaml"/>
+                <!-- 2. Языковые строки (меняется при смене языка) -->
+                <ResourceDictionary Source="/Lab_06_OOP;component/Resources/Strings.ru.xaml"/>
+                <!-- 3. Стили (используют DynamicResource из темы) -->
+                <ResourceDictionary Source="/Lab_06_OOP;component/Resources/AppTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Конвертеры -->
+            <h:OrderStatusToStringConverter   x:Key="OrderStatusToStringConverter"/>
+            <h:OrderStatusToStringConverter   x:Key="OrderStatusConverter"/>
+            <h:OrderStatusToColorConverter    x:Key="OrderStatusToColorConverter"/>
+            <h:DeliveryTypeToStringConverter  x:Key="DeliveryTypeToStringConverter"/>
+            <h:DeliveryTypeToStringConverter  x:Key="DeliveryTypeConverter"/>
+            <h:BoolToVisibilityConverter      x:Key="BoolToVisibilityConverter"/>
+            <h:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
+            <h:NullToVisibilityConverter      x:Key="NullToVisibilityConverter"/>
+            <h:RatingToStarsConverter         x:Key="RatingToStarsConverter"/>
+            <h:ReviewsAverageConverter        x:Key="ReviewsAverageConverter"/>
+            <h:ImagePathConverter             x:Key="ImagePathConverter"/>
+            <h:ImagePathConverter             x:Key="ImagePathConverter2"/>
+            <h:PriceFormatConverter           x:Key="PriceFormatConverter"/>
+            <h:RatingEqualConverter           x:Key="RatingEqualConverter"/>
+            <h:PaymentMethodToStringConverter x:Key="PaymentMethodToStringConverter"/>
+            <h:CategoryNameConverter           x:Key="CategoryNameConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

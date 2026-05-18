@@ -1,0 +1,121 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ─── Навигация клиента ─── -->
+    <sys:String x:Key="Nav_Showcase">🏠 Витрина</sys:String>
+    <sys:String x:Key="Nav_Catalog">🛍 Каталог</sys:String>
+    <sys:String x:Key="Nav_Cart">🛒 Корзина</sys:String>
+    <sys:String x:Key="Nav_Orders">📦 Мои заказы</sys:String>
+    <sys:String x:Key="Nav_Profile">👤 Профиль</sys:String>
+
+    <!-- ─── Навигация админа ─── -->
+    <sys:String x:Key="Admin_Dashboard">📊 Дашборд</sys:String>
+    <sys:String x:Key="Admin_Products">🍰 Товары</sys:String>
+    <sys:String x:Key="Admin_Orders">📦 Заказы</sys:String>
+    <sys:String x:Key="Admin_Reviews">💬 Отзывы</sys:String>
+
+    <!-- ─── Каталог ─── -->
+    <sys:String x:Key="Sort_NameAZ">По названию А–Я</sys:String>
+    <sys:String x:Key="Sort_NameZA">По названию Я–А</sys:String>
+    <sys:String x:Key="Sort_PriceAsc">Цена ↑</sys:String>
+    <sys:String x:Key="Sort_PriceDesc">Цена ↓</sys:String>
+    <sys:String x:Key="Sort_Rating">Рейтинг ↓</sys:String>
+    <sys:String x:Key="Cat_All">Все категории</sys:String>
+    <sys:String x:Key="Catalog_Search">🔍 Поиск товаров...</sys:String>
+
+    <!-- ─── Кнопки каталога ─── -->
+    <sys:String x:Key="Btn_Theme">🌙 Тема</sys:String>
+    <sys:String x:Key="Btn_Lang">🌐 EN</sys:String>
+    <sys:String x:Key="Btn_AddToCart">В корзину</sys:String>
+    <sys:String x:Key="Btn_Detail">Подробнее</sys:String>
+
+    <!-- ─── Корзина ─── -->
+    <sys:String x:Key="Cart_Title">🛒 Корзина</sys:String>
+    <sys:String x:Key="Cart_Empty">Корзина пуста</sys:String>
+    <sys:String x:Key="Cart_OrderForm">Оформление</sys:String>
+    <sys:String x:Key="Cart_Receive">Способ получения</sys:String>
+    <sys:String x:Key="Cart_PickupPoint">Точка самовывоза</sys:String>
+    <sys:String x:Key="Cart_DeliveryAddr">Адрес доставки *</sys:String>
+    <sys:String x:Key="Cart_DeliveryPhone">Телефон *</sys:String>
+    <sys:String x:Key="Cart_Payment">Оплата</sys:String>
+    <sys:String x:Key="Cart_Comment">Комментарий</sys:String>
+    <sys:String x:Key="Cart_Total">Итого:</sys:String>
+    <sys:String x:Key="Cart_Clear">Очистить корзину</sys:String>
+    <sys:String x:Key="Delivery_Pickup">Самовывоз</sys:String>
+    <sys:String x:Key="Delivery_Courier">Доставка</sys:String>
+    <sys:String x:Key="Pay_Cash">Наличными</sys:String>
+    <sys:String x:Key="Pay_Card">Картой</sys:String>
+    <sys:String x:Key="Btn_PlaceOrder">Оформить заказ</sys:String>
+
+    <!-- ─── Мои заказы ─── -->
+    <sys:String x:Key="Orders_Title">📦 Мои заказы</sys:String>
+    <sys:String x:Key="Orders_Composition">Состав заказа</sys:String>
+    <sys:String x:Key="Orders_Total">Итого:</sys:String>
+    <sys:String x:Key="Btn_Repeat">Повторить заказ</sys:String>
+
+    <!-- ─── Профиль ─── -->
+    <sys:String x:Key="Profile_Title">👤 Профиль</sys:String>
+    <sys:String x:Key="Profile_Email">Email</sys:String>
+    <sys:String x:Key="Profile_Name">Имя</sys:String>
+    <sys:String x:Key="Profile_Phone">Телефон</sys:String>
+    <sys:String x:Key="Profile_Save">Сохранить профиль</sys:String>
+    <sys:String x:Key="Profile_ChangePass">Смена пароля</sys:String>
+    <sys:String x:Key="Profile_OldPass">Текущий пароль</sys:String>
+    <sys:String x:Key="Profile_NewPass">Новый пароль</sys:String>
+    <sys:String x:Key="Profile_ConfirmPass">Повторите новый пароль</sys:String>
+    <sys:String x:Key="Profile_ChangePassBtn">Изменить пароль</sys:String>
+
+    <!-- ─── Дашборд ─── -->
+    <sys:String x:Key="Dash_TotalOrders">Всего заказов</sys:String>
+    <sys:String x:Key="Dash_Revenue">Выручка</sys:String>
+    <sys:String x:Key="Dash_Products">Товаров</sys:String>
+    <sys:String x:Key="Dash_Clients">Клиентов</sys:String>
+    <sys:String x:Key="Dash_StatusTitle">Заказы по статусам</sys:String>
+    <sys:String x:Key="Dash_TopProducts">Топ-5 товаров</sys:String>
+    <sys:String x:Key="Dash_ColProduct">Товар</sys:String>
+    <sys:String x:Key="Dash_ColCount">Заказов (шт.)</sys:String>
+    <sys:String x:Key="Dash_ColRevenue">Выручка</sys:String>
+    <sys:String x:Key="Status_Accepted">Принято</sys:String>
+    <sys:String x:Key="Status_Preparing">Готовится</sys:String>
+    <sys:String x:Key="Status_Ready">Готово</sys:String>
+    <sys:String x:Key="Status_Completed">Выдано</sys:String>
+
+    <!-- ─── Товары (admin) ─── -->
+    <sys:String x:Key="Prod_AddBtn">＋ Добавить товар</sys:String>
+    <sys:String x:Key="Prod_FormTitle">Форма товара</sys:String>
+    <sys:String x:Key="Prod_Name">Название *</sys:String>
+    <sys:String x:Key="Prod_Category">Категория *</sys:String>
+    <sys:String x:Key="Prod_Price">Цена (руб.) *</sys:String>
+    <sys:String x:Key="Prod_Weight">Вес (г)</sys:String>
+    <sys:String x:Key="Prod_Desc">Описание</sys:String>
+    <sys:String x:Key="Prod_Comp">Состав</sys:String>
+    <sys:String x:Key="Prod_Available">В наличии</sys:String>
+    <sys:String x:Key="Prod_Save">💾 Сохранить</sys:String>
+    <sys:String x:Key="Prod_Cancel">Отмена</sys:String>
+    <sys:String x:Key="Prod_Edit">✏️ Редактировать</sys:String>
+    <sys:String x:Key="Prod_Delete">🗑 Удалить</sys:String>
+
+    <!-- ─── Заказы (admin) ─── -->
+    <sys:String x:Key="AdminOrder_Title">📦 Заказы</sys:String>
+    <sys:String x:Key="AdminOrder_Status">Статус:</sys:String>
+    <sys:String x:Key="AdminOrder_DateFrom">Дата от:</sys:String>
+    <sys:String x:Key="AdminOrder_DateTo">до:</sys:String>
+    <sys:String x:Key="AdminOrder_Reset">Сбросить</sys:String>
+    <sys:String x:Key="AdminOrder_Manage">Управление заказом</sys:String>
+    <sys:String x:Key="AdminOrder_Client">Клиент</sys:String>
+    <sys:String x:Key="AdminOrder_Delivery">Тип доставки</sys:String>
+    <sys:String x:Key="AdminOrder_Address">Адрес доставки</sys:String>
+    <sys:String x:Key="AdminOrder_Phone">Телефон</sys:String>
+    <sys:String x:Key="AdminOrder_ChangeStatus">Изменить статус</sys:String>
+    <sys:String x:Key="AdminOrder_SaveStatus">Сохранить статус</sys:String>
+    <sys:String x:Key="AdminOrder_Composition">Состав заказа</sys:String>
+
+    <!-- ─── Отзывы (admin) ─── -->
+    <sys:String x:Key="Reviews_Title">💬 Отзывы</sys:String>
+    <sys:String x:Key="Reviews_ReplyTitle">Ответить на отзыв</sys:String>
+    <sys:String x:Key="Reviews_ReviewText">Отзыв</sys:String>
+    <sys:String x:Key="Reviews_YourReply">Ваш ответ</sys:String>
+    <sys:String x:Key="Reviews_SendReply">💬 Отправить ответ</sys:String>
+    <sys:String x:Key="Reviews_AdminReply">Ответ администратора:</sys:String>
+</ResourceDictionary>

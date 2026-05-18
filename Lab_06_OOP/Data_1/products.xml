@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Product>
+		<Id>1</Id>
+		<ShortName>Макарон</ShortName>
+		<FullName>Макарон с малиной</FullName>
+		<Description>Нежное французское пирожное с малиновым кремом. Хрустящая корочка снаружи и мягкая начинка внутри.</Description>
+		<ImagePath>macaron.jpg</ImagePath>
+		<Category>Пирожные</Category>
+		<Rating>4.8</Rating>
+		<Price>3.5</Price>
+		<Quantity>50</Quantity>
+		<Color>Розовый</Color>
+		<Size>5 см</Size>
+		<Country>Франция</Country>
+		<Discount>10</Discount>
+		<IsOutOfStock>false</IsOutOfStock>
+		<SoldCount>150</SoldCount>
+		<Manufacturer>Французская кондитерская</Manufacturer>
+	</Product>
+	<Product>
+		<Id>2</Id>
+		<ShortName>Торт Наполеон</ShortName>
+		<FullName>Торт Наполеон классический</FullName>
+		<Description>Слоеный торт с нежным заварным кремом. Рецепт проверен годами. Вес 1 кг.</Description>
+		<ImagePath>napoleon.jpg</ImagePath>
+		<Category>Торты</Category>
+		<Rating>4.9</Rating>
+		<Price>28</Price>
+		<Quantity>15</Quantity>
+		<Color>Золотистый</Color>
+		<Size>1 кг</Size>
+		<Country>Беларусь</Country>
+		<Discount>0</Discount>
+		<IsOutOfStock>false</IsOutOfStock>
+		<SoldCount>320</SoldCount>
+		<Manufacturer>Минская кондитерская фабрика</Manufacturer>
+	</Product>
+	<Product>
+		<Id>3</Id>
+		<ShortName>Эклер</ShortName>
+		<FullName>Эклер с шоколадным кремом</FullName>
+		<Description>Заварное пирожное с насыщенным шоколадным кремом и глазурью.</Description>
+		<ImagePath>eclair.jpg</ImagePath>
+		<Category>Пирожные</Category>
+		<Rating>4.7</Rating>
+		<Price>2.8</Price>
+		<Quantity>30</Quantity>
+		<Color>Коричневый</Color>
+		<Size>10 см</Size>
+		<Country>Беларусь</Country>
+		<Discount>5</Discount>
+		<IsOutOfStock>false</IsOutOfStock>
+		<SoldCount>280</SoldCount>
+		<Manufacturer>Слодыч</Manufacturer>
+	</Product>
+	<Product>
+		<Id>4</Id>
+		<ShortName>Кекс</ShortName>
+		<FullName>Кекс с изюмом</FullName>
+		<Description>Классический кекс с изюмом и ванилью. Вкус из детства.</Description>
+		<ImagePath>cake.jpg</ImagePath>
+		<Category>Кексы</Category>
+		<Rating>4.5</Rating>
+		<Price>2.2</Price>
+		<Quantity>0</Quantity>
+		<Color>Бежевый</Color>
+		<Size>100 г</Size>
+		<Country>Беларусь</Country>
+		<Discount>0</Discount>
+		<IsOutOfStock>true</IsOutOfStock>
+		<SoldCount>450</SoldCount>
+		<Manufacturer>Кондитерский комбинат</Manufacturer>
+	</Product>
+	<Product>
+		<Id>5</Id>
+		<ShortName>Безе</ShortName>
+		<FullName>Безе воздушное</FullName>
+		<Description>Легкое и хрустящее безе, тает во рту. Идеально к чаю.</Description>
+		<ImagePath>meringue.jpg</ImagePath>
+		<Category>Пирожные</Category>
+		<Rating>4.6</Rating>
+		<Price>1.5</Price>
+		<Quantity>100</Quantity>
+		<Color>Белый</Color>
+		<Size>4 см</Size>
+		<Country>Беларусь</Country>
+		<Discount>0</Discount>
+		<IsOutOfStock>false</IsOutOfStock>
+		<SoldCount>620</SoldCount>
+		<Manufacturer>Домашняя кондитерская</Manufacturer>
+	</Product>
+	<Product>
+		<Id>6</Id>
+		<ShortName>Торт Красный бархат</ShortName>
+		<FullName>Торт Красный бархат с сырным кремом</FullName>
+		<Description>Бархатистый красный бисквит с нежнейшим сырным кремом. Вес 1.2 кг.</Description>
+		<ImagePath>redvelvet.jpg</ImagePath>
+		<Category>Торты</Category>
+		<Rating>5.0</Rating>
+		<Price>35</Price>
+		<Quantity>8</Quantity>
+		<Color>Красный</Color>
+		<Size>1.2 кг</Size>
+		<Country>Беларусь</Country>
+		<Discount>15</Discount>
+		<IsOutOfStock>false</IsOutOfStock>
+		<SoldCount>95</SoldCount>
+		<Manufacturer>Минская кондитерская фабрика</Manufacturer>
+	</Product>
+</ArrayOfProduct>
