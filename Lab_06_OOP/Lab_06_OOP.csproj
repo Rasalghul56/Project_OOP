@@ -119,6 +119,7 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ThemeService.cs" />
     <Compile Include="Services\LanguageService.cs" />
+    <Compile Include="Services\OrderNotificationService.cs" />
   </ItemGroup>
   <!-- ─────────── Helpers ─────────── -->
   <ItemGroup>

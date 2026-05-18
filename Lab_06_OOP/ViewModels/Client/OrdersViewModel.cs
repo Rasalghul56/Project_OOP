@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Confectionery.Helpers;
 using Confectionery.Models;
@@ -52,7 +54,7 @@ namespace Confectionery.ViewModels.Client
                 }
 
                 StatusMessage = $"Товары из заказа №{order.OrderNumber} добавлены в корзину.";
-            }, p => p is Order);
+            }, p => p is Order o && o.Status == OrderStatus.Completed);
 
             LoadOrders();
         }
@@ -63,8 +65,17 @@ namespace Confectionery.ViewModels.Client
             var user = SessionService.CurrentUser;
             if (user == null) return;
 
+            var freshOrders = _uow.Orders.GetByUser(user.Id).ToList();
+
+            // Mark which orders have a new status so the View can highlight them
+            foreach (var o in freshOrders)
+                o.IsStatusChanged = OrderNotificationService.HasChanged(o.Id, o.Status);
+
+            // Record current statuses as seen
+            OrderNotificationService.MarkSeen(freshOrders);
+
             Orders.Clear();
-            foreach (var o in _uow.Orders.GetByUser(user.Id))
+            foreach (var o in freshOrders)
                 Orders.Add(o);
         }
     }

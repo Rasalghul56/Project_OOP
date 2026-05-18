@@ -84,8 +84,22 @@
                     </Button>
 
                     <Button Style="{StaticResource SidebarButton}"
-                            Command="{Binding ShowOrdersCommand}">
-                        <TextBlock Text="{DynamicResource Nav_Orders}"/>
+                            Command="{Binding ShowOrdersCommand}"
+                            HorizontalContentAlignment="Stretch">
+                        <DockPanel LastChildFill="False">
+                            <TextBlock DockPanel.Dock="Left"
+                                       Text="{DynamicResource Nav_Orders}"
+                                       VerticalAlignment="Center"/>
+                            <Border DockPanel.Dock="Right"
+                                    Style="{StaticResource CartBadge}"
+                                    Visibility="{Binding OrdersHasNotification,
+                                        Converter={StaticResource BoolToVisibilityConverter}}"
+                                    VerticalAlignment="Center">
+                                <TextBlock Text="{Binding OrdersNotificationCount}"
+                                           Foreground="White" FontSize="11"
+                                           FontWeight="Bold" Padding="2,0"/>
+                            </Border>
+                        </DockPanel>
                     </Button>
 
                     <Button Style="{StaticResource SidebarButton}"

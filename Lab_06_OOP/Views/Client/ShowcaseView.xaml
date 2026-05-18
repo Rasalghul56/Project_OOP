@@ -56,45 +56,6 @@
                 </Grid>
             </Border>
 
-            <!-- ── Быстрые категории ─────────────────────────────────────────── -->
-            <TextBlock Text="Категории" FontSize="17" FontWeight="Bold"
-                       Foreground="{DynamicResource TextDarkBrush}" Margin="0,0,0,10"/>
-            <ItemsControl ItemsSource="{Binding Categories}" Margin="0,0,0,24">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Margin="0,0,10,10" Cursor="Hand" BorderThickness="0"
-                                Command="{Binding DataContext.NavigateToCategoryCommand,
-                                    RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                CommandParameter="{Binding}">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border x:Name="Bd" CornerRadius="20" Padding="18,9"
-                                            Background="{DynamicResource AccentLightBrush}"
-                                            BorderBrush="{DynamicResource AccentBrush}"
-                                            BorderThickness="1.5">
-                                        <TextBlock Text="{Binding Name,
-                                                       Converter={StaticResource CategoryNameConverter}}"
-                                                   FontSize="13" FontWeight="SemiBold"
-                                                   Foreground="{DynamicResource AccentBrush}"/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="Bd" Property="Background"
-                                                    Value="{DynamicResource AccentBrush}"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
             <!-- ── Популярные ────────────────────────────────────────────────── -->
             <Grid Margin="0,0,0,6">
                 <TextBlock Text="⭐ Популярные десерты" FontSize="17" FontWeight="Bold"
@@ -121,11 +82,12 @@
                                 <StackPanel Grid.Row="0">
                                     <Border CornerRadius="8" Height="110" Margin="0,0,0,8"
                                             Background="{DynamicResource AccentLightBrush}">
-                                        <TextBlock Text="🍰" FontSize="40"
+                                        <TextBlock Text="{Binding Category.Name,
+                                                       Converter={StaticResource CategoryEmojiConverter}}"
+                                                   FontSize="40"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
-                                                   Foreground="{DynamicResource AccentBrush}"
-                                                   Opacity="0.5"/>
+                                                   Opacity="0.75"/>
                                     </Border>
                                     <TextBlock Text="{Binding Category.Name, Converter={StaticResource CategoryNameConverter}}"
                                                FontSize="10" FontWeight="SemiBold"

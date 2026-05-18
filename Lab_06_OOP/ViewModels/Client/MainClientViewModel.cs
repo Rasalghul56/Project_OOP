@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Confectionery.Helpers;
 using Confectionery.Services;
@@ -43,6 +45,18 @@ namespace Confectionery.ViewModels.Client
 
         public bool CartHasItems => CartItemCount > 0;
 
+        private int _ordersNotificationCount;
+        public int OrdersNotificationCount
+        {
+            get => _ordersNotificationCount;
+            private set
+            {
+                SetProperty(ref _ordersNotificationCount, value);
+                OnPropertyChanged(nameof(OrdersHasNotification));
+            }
+        }
+        public bool OrdersHasNotification => OrdersNotificationCount > 0;
+
         public ICommand ShowShowcaseCommand { get; }
         public ICommand ShowCatalogCommand  { get; }
         public ICommand ShowCartCommand     { get; }
@@ -70,28 +84,67 @@ namespace Confectionery.ViewModels.Client
             {
                 ShowcaseVM.Load();
                 CurrentView = ShowcaseVM;
+                RefreshOrderNotification();
             });
-            ShowCatalogCommand = new RelayCommand(p => CurrentView = CatalogVM);
-            ShowCartCommand    = new RelayCommand(p => CurrentView = CartVM);
-            ShowOrdersCommand  = new RelayCommand(p =>
+            ShowCatalogCommand = new RelayCommand(p =>
             {
-                OrdersVM.LoadOrders();
+                CurrentView = CatalogVM;
+                RefreshOrderNotification();
+            });
+            ShowCartCommand = new RelayCommand(p =>
+            {
+                CurrentView = CartVM;
+                RefreshOrderNotification();
+            });
+            ShowOrdersCommand = new RelayCommand(p =>
+            {
+                OrdersVM.LoadOrders();   // marks all as seen inside
+                OrdersNotificationCount = 0;
                 CurrentView = OrdersVM;
             });
-            ShowProfileCommand = new RelayCommand(p => CurrentView = ProfileVM);
+            ShowProfileCommand = new RelayCommand(p =>
+            {
+                CurrentView = ProfileVM;
+                RefreshOrderNotification();
+            });
             ToggleThemeCommand = new RelayCommand(p => ThemeService.Toggle());
             ToggleLangCommand  = new RelayCommand(p => LanguageService.Toggle());
             LogoutCommand = new RelayCommand(p =>
             {
+                OrderNotificationService.Reset();
                 SessionService.Logout();
                 navigation.NavigateToLogin();
             });
 
-            // Showcase может навигировать в каталог
+            // Showcase may navigate to catalog
             ShowcaseVM.NavigateToCatalogCommand = ShowCatalogCommand;
 
-            // Открываемся с Витрины
+            // Initialize notification baseline
+            try
+            {
+                var userId = SessionService.CurrentUser?.Id ?? 0;
+                if (userId > 0)
+                {
+                    var initialOrders = _uow.Orders.GetByUser(userId).ToList();
+                    OrderNotificationService.Initialize(initialOrders);
+                }
+            }
+            catch { }
+
+            // Start on Showcase
             CurrentView = ShowcaseVM;
+        }
+
+        private void RefreshOrderNotification()
+        {
+            try
+            {
+                var userId = SessionService.CurrentUser?.Id ?? 0;
+                if (userId <= 0) return;
+                var orders = _uow.Orders.GetByUser(userId).ToList();
+                OrdersNotificationCount = OrderNotificationService.GetChangedCount(orders);
+            }
+            catch { }
         }
     }
 }

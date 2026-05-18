@@ -4,53 +4,100 @@
              FontFamily="{StaticResource PrimaryFont}">
     <DockPanel>
         <!-- Панель фильтров -->
-        <Border DockPanel.Dock="Top" Margin="0,0,0,16" Padding="16"
+        <Border DockPanel.Dock="Top" Margin="0,0,0,16" Padding="14,10"
                 Style="{StaticResource Card}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="180"/>
-                    <ColumnDefinition Width="12"/>
-                    <ColumnDefinition Width="160"/>
-                    <ColumnDefinition Width="12"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+            <StackPanel>
 
-                <!-- Поиск -->
-                <Grid Grid.Column="0">
-                    <TextBox Style="{StaticResource ModernTextBox}"
-                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                             Padding="36,0,12,0"/>
-                    <TextBlock Text="🔍" VerticalAlignment="Center"
-                               Margin="12,0" Foreground="{DynamicResource TextLightBrush}"
-                               IsHitTestVisible="False"/>
+                <!-- Ряд 1: pill-кнопки категорий -->
+                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Disabled"
+                              Margin="0,0,0,10">
+                    <ItemsControl ItemsSource="{Binding Categories}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Margin="0,0,8,0" Cursor="Hand" BorderThickness="0"
+                                        Command="{Binding DataContext.SelectCategoryCommand,
+                                            RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding}">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="Bd" CornerRadius="20" Padding="16,7"
+                                                    BorderBrush="{DynamicResource AccentBrush}"
+                                                    BorderThickness="1.5"
+                                                    Background="Transparent">
+                                                <TextBlock x:Name="Lbl"
+                                                           Text="{Binding Name,
+                                                               Converter={StaticResource CategoryNameConverter}}"
+                                                           FontSize="12" FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource AccentBrush}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <!-- Hover -->
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bd" Property="Background"
+                                                            Value="{DynamicResource AccentLightBrush}"/>
+                                                </Trigger>
+                                                <!-- Selected (after hover so it wins) -->
+                                                <DataTrigger Value="True">
+                                                    <DataTrigger.Binding>
+                                                        <MultiBinding Converter="{StaticResource ObjectEqualityConverter}">
+                                                            <Binding Path="."/>
+                                                            <Binding Path="DataContext.SelectedCategory"
+                                                                     RelativeSource="{RelativeSource AncestorType=ItemsControl}"/>
+                                                        </MultiBinding>
+                                                    </DataTrigger.Binding>
+                                                    <Setter TargetName="Bd" Property="Background"
+                                                            Value="{DynamicResource AccentBrush}"/>
+                                                    <Setter TargetName="Lbl" Property="Foreground"
+                                                            Value="White"/>
+                                                </DataTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <!-- Ряд 2: поиск + сортировка + сброс -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="165"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Поиск -->
+                    <Grid Grid.Column="0">
+                        <TextBox Style="{StaticResource ModernTextBox}"
+                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                 Padding="36,0,12,0"/>
+                        <TextBlock Text="🔍" VerticalAlignment="Center"
+                                   Margin="12,0" Foreground="{DynamicResource TextLightBrush}"
+                                   IsHitTestVisible="False"/>
+                    </Grid>
+
+                    <!-- Сортировка -->
+                    <ComboBox Grid.Column="2"
+                              ItemsSource="{Binding SortOptions}"
+                              SelectedItem="{Binding SelectedSort}"/>
+
+                    <!-- Сброс -->
+                    <Button Grid.Column="4" Content="✕"
+                            Style="{StaticResource IconButton}"
+                            Width="34" Height="34" FontSize="13"
+                            Command="{Binding ClearFiltersCommand}"
+                            ToolTip="Сбросить все фильтры"/>
                 </Grid>
-
-                <!-- Категория -->
-                <ComboBox Grid.Column="2"
-                          ItemsSource="{Binding Categories}"
-                          SelectedItem="{Binding SelectedCategory}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name,
-                                Converter={StaticResource CategoryNameConverter}}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-
-                <!-- Сортировка -->
-                <ComboBox Grid.Column="4"
-                          ItemsSource="{Binding SortOptions}"
-                          SelectedItem="{Binding SelectedSort}"/>
-
-                <!-- Кнопка сброса -->
-                <Button Grid.Column="6" Content="✕"
-                        Style="{StaticResource IconButton}"
-                        Width="36" Height="36" FontSize="14"
-                        Command="{Binding ClearFiltersCommand}"
-                        ToolTip="Сбросить все фильтры"/>
-            </Grid>
+            </StackPanel>
         </Border>
 
         <!-- Список товаров -->
@@ -86,11 +133,12 @@
                                             Height="130" Margin="0,0,0,10"
                                             Background="{DynamicResource AccentLightBrush}">
                                         <Grid>
-                                            <TextBlock Text="🍰" FontSize="48"
+                                            <TextBlock Text="{Binding Category.Name,
+                                                           Converter={StaticResource CategoryEmojiConverter}}"
+                                                       FontSize="48"
                                                        HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
-                                                       Foreground="{DynamicResource AccentBrush}"
-                                                       Opacity="0.55"/>
+                                                       Opacity="0.75"/>
                                             <Image Stretch="UniformToFill"
                                                    Source="{Binding ImagePath, Converter={StaticResource ImagePathConverter}}">
                                                 <Image.Style>

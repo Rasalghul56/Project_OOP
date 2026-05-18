@@ -31,6 +31,8 @@
             <h:RatingEqualConverter           x:Key="RatingEqualConverter"/>
             <h:PaymentMethodToStringConverter x:Key="PaymentMethodToStringConverter"/>
             <h:CategoryNameConverter           x:Key="CategoryNameConverter"/>
+            <h:CategoryEmojiConverter          x:Key="CategoryEmojiConverter"/>
+            <h:ObjectEqualityConverter         x:Key="ObjectEqualityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

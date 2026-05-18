@@ -53,10 +53,11 @@ namespace Confectionery.ViewModels.Client
             set { SetProperty(ref _selectedSort, value); ApplyFilter(); }
         }
 
-        public ICommand AddToCartCommand { get; }
-        public ICommand ClearFiltersCommand { get; }
-        public ICommand RefreshCommand { get; }
-        public ICommand ShowDetailCommand { get; }
+        public ICommand AddToCartCommand      { get; }
+        public ICommand SelectCategoryCommand { get; }
+        public ICommand ClearFiltersCommand   { get; }
+        public ICommand RefreshCommand        { get; }
+        public ICommand ShowDetailCommand     { get; }
 
         // Backward compat alias used in XAML
         public ICommand ClearCategoryCommand => ClearFiltersCommand;
@@ -68,7 +69,8 @@ namespace Confectionery.ViewModels.Client
 
             RebuildSortOptions();
 
-            AddToCartCommand  = new RelayCommand(p => { if (p is Product pr) _cart.AddProduct(pr); });
+            AddToCartCommand      = new RelayCommand(p => { if (p is Product pr) _cart.AddProduct(pr); });
+            SelectCategoryCommand = new RelayCommand(p => { if (p is Category c) SelectedCategory = c; });
             ClearFiltersCommand = new RelayCommand(_ =>
             {
                 _searchText = null;

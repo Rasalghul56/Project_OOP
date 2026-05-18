@@ -210,4 +210,38 @@ namespace Confectionery.Helpers
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => throw new NotImplementedException();
     }
+
+    /// <summary>Returns a per-category emoji for product placeholder images.</summary>
+    public class CategoryEmojiConverter : IValueConverter
+    {
+        private static readonly Dictionary<string, string> CatEmoji =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "Торты",    "🎂" },
+                { "Пирожные", "🧁" },
+                { "Печенье",  "🍪" },
+                { "Конфеты",  "🍬" },
+                { "Зефир",    "☁" },
+                { "Шоколад",  "🍫" },
+                { "Напитки",  "🥤" },
+            };
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is string name && CatEmoji.TryGetValue(name, out var emoji)) return emoji;
+            return "🍰";
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            => throw new NotImplementedException();
+    }
+
+    /// <summary>MultiValueConverter: returns true when two objects are equal (used for pill-button selected state).</summary>
+    public class ObjectEqualityConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+            => values != null && values.Length == 2 && Equals(values[0], values[1]);
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+            => throw new NotImplementedException();
+    }
 }

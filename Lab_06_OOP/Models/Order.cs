@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Confectionery.Models
 {
@@ -59,5 +60,9 @@ namespace Confectionery.Models
         public decimal TotalPrice { get; set; }
 
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+        /// <summary>Transient flag set by the notification service to highlight orders with a changed status.</summary>
+        [NotMapped]
+        public bool IsStatusChanged { get; set; }
     }
 }
