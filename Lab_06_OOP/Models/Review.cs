@@ -16,7 +16,7 @@ namespace Confectionery.Models
         [Required]
         public string Text { get; set; }
 
-        public int Rating { get; set; } // 1–5
+        public int Rating { get; set; } 
 
         public string AdminReply { get; set; }
 
