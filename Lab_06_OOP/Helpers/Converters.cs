@@ -17,14 +17,16 @@ namespace Confectionery.Helpers
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is OrderStatus)) return value?.ToString();
+            string key;
             switch ((OrderStatus)value)
             {
-                case OrderStatus.Accepted: return "Принят";
-                case OrderStatus.Preparing: return "Готовится";
-                case OrderStatus.Ready: return "Готов";
-                case OrderStatus.Completed: return "Выполнен";
+                case OrderStatus.Accepted:  key = "Status_Accepted";  break;
+                case OrderStatus.Preparing: key = "Status_Preparing"; break;
+                case OrderStatus.Ready:     key = "Status_Ready";     break;
+                case OrderStatus.Completed: key = "Status_Completed"; break;
                 default: return value.ToString();
             }
+            return System.Windows.Application.Current.TryFindResource(key) as string ?? key;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => throw new NotImplementedException();

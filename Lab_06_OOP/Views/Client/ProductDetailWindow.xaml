@@ -70,13 +70,13 @@
             <!-- Описание + Состав -->
             <Border Style="{StaticResource Card}" Margin="0,0,0,12">
                 <StackPanel>
-                    <TextBlock Text="Описание" Style="{StaticResource LabelText}" FontSize="13"/>
+                    <TextBlock Text="{DynamicResource Detail_Description}" Style="{StaticResource LabelText}" FontSize="13"/>
                     <TextBlock Text="{Binding Product.Description}"
                                TextWrapping="Wrap" FontSize="14"
                                Foreground="{DynamicResource TextDarkBrush}"
                                LineHeight="22"/>
                     <Separator Margin="0,12"/>
-                    <TextBlock Text="Состав" Style="{StaticResource LabelText}" FontSize="13"/>
+                    <TextBlock Text="{DynamicResource Detail_Composition}" Style="{StaticResource LabelText}" FontSize="13"/>
                     <TextBlock Text="{Binding Product.Composition}"
                                TextWrapping="Wrap" FontSize="13"
                                Foreground="{DynamicResource TextMediumBrush}"/>
@@ -84,19 +84,19 @@
             </Border>
 
             <!-- Кнопка в корзину -->
-            <Button Content="🛒  В корзину"
+            <Button Content="{DynamicResource Detail_AddToCart}"
                     Style="{StaticResource PrimaryButton}"
                     Height="44" Margin="0,0,0,24"
                     Command="{Binding AddToCartCommand}"/>
 
             <!-- Отзывы -->
-            <TextBlock Text="Отзывы покупателей"
+            <TextBlock Text="{DynamicResource Detail_Reviews}"
                        FontSize="18" FontWeight="Bold"
                        Foreground="{DynamicResource TextDarkBrush}"
                        Margin="0,0,0,12"/>
 
             <StackPanel Margin="0,0,0,12">
-                <Button Content="✏️ Оставить отзыв"
+                <Button Content="{DynamicResource Detail_LeaveReview}"
                         Style="{StaticResource SecondaryButton}"
                         Padding="16,8" HorizontalAlignment="Left"
                         Command="{Binding ToggleReviewFormCommand}"
@@ -119,7 +119,7 @@
                     Visibility="{Binding IsReviewFormVisible,
                         Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel>
-                    <TextBlock Text="Оценка (1–5):" Style="{StaticResource LabelText}"/>
+                    <TextBlock Text="{DynamicResource Detail_Rating}" Style="{StaticResource LabelText}"/>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                         <Slider Minimum="1" Maximum="5" TickFrequency="1"
                                 IsSnapToTickEnabled="True"
@@ -132,12 +132,12 @@
                         <TextBlock Text="⭐" FontSize="20"
                                    VerticalAlignment="Center" Margin="4,0,0,0"/>
                     </StackPanel>
-                    <TextBlock Text="Текст отзыва:" Style="{StaticResource LabelText}"/>
+                    <TextBlock Text="{DynamicResource Detail_ReviewText}" Style="{StaticResource LabelText}"/>
                     <TextBox Style="{StaticResource ModernTextBox}"
                              Text="{Binding NewText, UpdateSourceTrigger=PropertyChanged}"
                              Height="80" TextWrapping="Wrap" AcceptsReturn="True"
                              Margin="0,0,0,12"/>
-                    <Button Content="Отправить отзыв"
+                    <Button Content="{DynamicResource Detail_Submit}"
                             Style="{StaticResource PrimaryButton}"
                             Height="38" HorizontalAlignment="Left"
                             Padding="20,0"
@@ -176,7 +176,7 @@
                                         Visibility="{Binding AdminReply,
                                             Converter={StaticResource NullToVisibilityConverter}}">
                                     <StackPanel>
-                                        <TextBlock Text="Ответ администратора:"
+                                        <TextBlock Text="{DynamicResource Detail_AdminReply}"
                                                    FontWeight="SemiBold" FontSize="12"
                                                    Foreground="{StaticResource AccentBrush}"/>
                                         <TextBlock Text="{Binding AdminReply}"
@@ -191,7 +191,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <TextBlock Text="Отзывов пока нет. Будьте первым!"
+            <TextBlock Text="{DynamicResource Detail_NoReviews}"
                        Foreground="{DynamicResource TextLightBrush}"
                        FontSize="13" HorizontalAlignment="Center"
                        Margin="0,16">

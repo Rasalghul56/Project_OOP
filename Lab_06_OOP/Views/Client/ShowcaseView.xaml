@@ -22,12 +22,12 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel>
-                        <TextBlock Text="{Binding WelcomeText}"
-                                   FontSize="22" FontWeight="Bold" Foreground="White"
-                                   Margin="0,0,0,6"/>
-                        <TextBlock Text="Свежие авторские десерты с доставкой по Минску"
+                    <TextBlock Text="{Binding WelcomeText}"
+                               FontSize="22" FontWeight="Bold" Foreground="White"
+                               Margin="0,0,0,6"/>
+                        <TextBlock Text="{DynamicResource Showcase_HeroSubtitle}"
                                    FontSize="14" Foreground="#FFF0D8"/>
-                        <Button Content="🛍 Перейти в каталог"
+                        <Button Content="{DynamicResource Showcase_HeroBtn}"
                                 Margin="0,18,0,0" Height="40" Width="180"
                                 HorizontalAlignment="Left"
                                 Cursor="Hand" BorderThickness="0"
@@ -58,9 +58,9 @@
 
             <!-- ── Популярные ────────────────────────────────────────────────── -->
             <Grid Margin="0,0,0,6">
-                <TextBlock Text="⭐ Популярные десерты" FontSize="17" FontWeight="Bold"
+                <TextBlock Text="{DynamicResource Showcase_Popular}" FontSize="17" FontWeight="Bold"
                            Foreground="{DynamicResource TextDarkBrush}"/>
-                <Button Content="Все →" HorizontalAlignment="Right"
+                <Button Content="{DynamicResource Showcase_AllBtn}" HorizontalAlignment="Right"
                         Style="{StaticResource SecondaryButton}" Padding="12,6"
                         FontSize="12"
                         Command="{Binding NavigateToCatalogCommand}"/>
@@ -148,7 +148,7 @@
             </ItemsControl>
 
             <!-- ── Новинки ────────────────────────────────────────────────────── -->
-            <TextBlock Text="🆕 Новинки и сезонные позиции" FontSize="17" FontWeight="Bold"
+            <TextBlock Text="{DynamicResource Showcase_New}" FontSize="17" FontWeight="Bold"
                        Foreground="{DynamicResource TextDarkBrush}" Margin="0,0,0,10"/>
             <ItemsControl ItemsSource="{Binding NewProducts}" Margin="0,0,0,24">
                 <ItemsControl.ItemsPanel>
@@ -202,7 +202,7 @@
             <!-- ── Персональные рекомендации ─────────────────────────────────── -->
             <StackPanel Visibility="{Binding RecommendedProducts.Count,
                             Converter={StaticResource NullToVisibilityConverter}}">
-                <TextBlock Text="💡 Рекомендуем для вас" FontSize="17" FontWeight="Bold"
+                <TextBlock Text="{DynamicResource Showcase_Recommend}" FontSize="17" FontWeight="Bold"
                            Foreground="{DynamicResource TextDarkBrush}" Margin="0,0,0,10"/>
                 <ItemsControl ItemsSource="{Binding RecommendedProducts}" Margin="0,0,0,8">
                     <ItemsControl.ItemsPanel>

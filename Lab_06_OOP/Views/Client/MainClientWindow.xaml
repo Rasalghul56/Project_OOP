@@ -137,7 +137,7 @@
                     <Button Style="{StaticResource SidebarButton}"
                             Command="{Binding LogoutCommand}"
                             HorizontalContentAlignment="Center" Padding="6,8">
-                        <TextBlock Text="🚪 Выйти" FontSize="12" Foreground="#FF8888"/>
+                        <TextBlock Text="{DynamicResource Nav_Logout}" FontSize="12" Foreground="#FF8888"/>
                     </Button>
                 </StackPanel>
 

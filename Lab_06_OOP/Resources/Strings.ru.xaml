@@ -8,6 +8,7 @@
     <sys:String x:Key="Nav_Cart">🛒 Корзина</sys:String>
     <sys:String x:Key="Nav_Orders">📦 Мои заказы</sys:String>
     <sys:String x:Key="Nav_Profile">👤 Профиль</sys:String>
+    <sys:String x:Key="Nav_Logout">🚪 Выйти</sys:String>
 
     <!-- ─── Навигация админа ─── -->
     <sys:String x:Key="Admin_Dashboard">📊 Дашборд</sys:String>
@@ -76,10 +77,11 @@
     <sys:String x:Key="Dash_ColProduct">Товар</sys:String>
     <sys:String x:Key="Dash_ColCount">Заказов (шт.)</sys:String>
     <sys:String x:Key="Dash_ColRevenue">Выручка</sys:String>
-    <sys:String x:Key="Status_Accepted">Принято</sys:String>
+    <sys:String x:Key="Status_All">Все</sys:String>
+    <sys:String x:Key="Status_Accepted">Принят</sys:String>
     <sys:String x:Key="Status_Preparing">Готовится</sys:String>
-    <sys:String x:Key="Status_Ready">Готово</sys:String>
-    <sys:String x:Key="Status_Completed">Выдано</sys:String>
+    <sys:String x:Key="Status_Ready">Готов</sys:String>
+    <sys:String x:Key="Status_Completed">Выполнен</sys:String>
 
     <!-- ─── Товары (admin) ─── -->
     <sys:String x:Key="Prod_AddBtn">＋ Добавить товар</sys:String>
@@ -97,6 +99,26 @@
     <sys:String x:Key="Prod_Edit">✏️ Редактировать</sys:String>
     <sys:String x:Key="Prod_Delete">🗑 Удалить</sys:String>
 
+    <!-- ─── Витрина ─── -->
+    <sys:String x:Key="Showcase_HeroSubtitle">Свежие авторские десерты с доставкой по Минску</sys:String>
+    <sys:String x:Key="Showcase_HeroBtn">🛍 Перейти в каталог</sys:String>
+    <sys:String x:Key="Showcase_Popular">⭐ Популярные десерты</sys:String>
+    <sys:String x:Key="Showcase_AllBtn">Все →</sys:String>
+    <sys:String x:Key="Showcase_New">🆕 Новинки и сезонные позиции</sys:String>
+    <sys:String x:Key="Showcase_Recommend">💡 Рекомендуем для вас</sys:String>
+
+    <!-- ─── Карточка товара (детали) ─── -->
+    <sys:String x:Key="Detail_Description">Описание</sys:String>
+    <sys:String x:Key="Detail_Composition">Состав</sys:String>
+    <sys:String x:Key="Detail_AddToCart">🛒  В корзину</sys:String>
+    <sys:String x:Key="Detail_Reviews">Отзывы покупателей</sys:String>
+    <sys:String x:Key="Detail_LeaveReview">✏️ Оставить отзыв</sys:String>
+    <sys:String x:Key="Detail_Rating">Оценка (1–5):</sys:String>
+    <sys:String x:Key="Detail_ReviewText">Текст отзыва:</sys:String>
+    <sys:String x:Key="Detail_Submit">Отправить отзыв</sys:String>
+    <sys:String x:Key="Detail_NoReviews">Отзывов пока нет. Будьте первым!</sys:String>
+    <sys:String x:Key="Detail_AdminReply">Ответ администратора:</sys:String>
+
     <!-- ─── Заказы (admin) ─── -->
     <sys:String x:Key="AdminOrder_Title">📦 Заказы</sys:String>
     <sys:String x:Key="AdminOrder_Status">Статус:</sys:String>
@@ -111,6 +133,9 @@
     <sys:String x:Key="AdminOrder_ChangeStatus">Изменить статус</sys:String>
     <sys:String x:Key="AdminOrder_SaveStatus">Сохранить статус</sys:String>
     <sys:String x:Key="AdminOrder_Composition">Состав заказа</sys:String>
+    <sys:String x:Key="AdminOrder_PickupPoint">Точка самовывоза</sys:String>
+    <sys:String x:Key="AdminOrder_Amount">Сумма</sys:String>
+    <sys:String x:Key="AdminOrder_Pcs">шт.</sys:String>
 
     <!-- ─── Отзывы (admin) ─── -->
     <sys:String x:Key="Reviews_Title">💬 Отзывы</sys:String>

@@ -46,7 +46,7 @@
                         <DataGridTextColumn Header="{DynamicResource AdminOrder_DateFrom}"
                                             Binding="{Binding CreatedAt, StringFormat='{}{0:dd.MM.yyyy}'}"
                                             Width="90"/>
-                        <DataGridTextColumn Header="Сумма"
+                        <DataGridTextColumn Header="{DynamicResource AdminOrder_Amount}"
                                             Binding="{Binding TotalPrice, StringFormat='{}{0:F2} Br'}"
                                             Width="100"/>
                         <DataGridTextColumn Header="{DynamicResource AdminOrder_Status}"
@@ -95,7 +95,7 @@
                     <!-- Точка самовывоза -->
                     <StackPanel Visibility="{Binding SelectedOrder.PickupLocation,
                                     Converter={StaticResource NullToVisibilityConverter}}">
-                        <TextBlock Style="{StaticResource LabelText}" Text="Точка самовывоза"/>
+                        <TextBlock Style="{StaticResource LabelText}" Text="{DynamicResource AdminOrder_PickupPoint}"/>
                         <TextBlock Text="{Binding SelectedOrder.PickupLocation}"
                                    FontSize="13" Foreground="{DynamicResource TextDarkBrush}"
                                    Margin="0,0,0,8"/>
@@ -104,7 +104,7 @@
                     <TextBlock Style="{StaticResource LabelText}"
                                Text="{DynamicResource AdminOrder_ChangeStatus}"/>
                     <ComboBox ItemsSource="{Binding AvailableStatuses}"
-                              SelectedItem="{Binding NewStatus}"
+                              SelectedItem="{Binding SelectedStatusInDropdown}"
                               Margin="0,0,0,12"/>
 
                     <Button Content="{DynamicResource AdminOrder_SaveStatus}"
@@ -126,7 +126,8 @@
                                                FontSize="12"
                                                Foreground="{DynamicResource TextMediumBrush}">
                                         <Run Text="{Binding Quantity}"/>
-                                        <Run Text=" шт."/>
+                                        <Run Text=" "/>
+                                        <Run Text="{DynamicResource AdminOrder_Pcs}"/>
                                     </TextBlock>
                                 </Grid>
                             </DataTemplate>

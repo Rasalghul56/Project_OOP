@@ -8,6 +8,7 @@
     <sys:String x:Key="Nav_Cart">🛒 Cart</sys:String>
     <sys:String x:Key="Nav_Orders">📦 My Orders</sys:String>
     <sys:String x:Key="Nav_Profile">👤 Profile</sys:String>
+    <sys:String x:Key="Nav_Logout">🚪 Log out</sys:String>
 
     <!-- ─── Admin nav ─── -->
     <sys:String x:Key="Admin_Dashboard">📊 Dashboard</sys:String>
@@ -76,10 +77,11 @@
     <sys:String x:Key="Dash_ColProduct">Product</sys:String>
     <sys:String x:Key="Dash_ColCount">Orders (pcs.)</sys:String>
     <sys:String x:Key="Dash_ColRevenue">Revenue</sys:String>
+    <sys:String x:Key="Status_All">All</sys:String>
     <sys:String x:Key="Status_Accepted">Accepted</sys:String>
     <sys:String x:Key="Status_Preparing">Preparing</sys:String>
     <sys:String x:Key="Status_Ready">Ready</sys:String>
-    <sys:String x:Key="Status_Completed">Delivered</sys:String>
+    <sys:String x:Key="Status_Completed">Completed</sys:String>
 
     <!-- ─── Products (admin) ─── -->
     <sys:String x:Key="Prod_AddBtn">＋ Add product</sys:String>
@@ -97,6 +99,26 @@
     <sys:String x:Key="Prod_Edit">✏️ Edit</sys:String>
     <sys:String x:Key="Prod_Delete">🗑 Delete</sys:String>
 
+    <!-- ─── Showcase ─── -->
+    <sys:String x:Key="Showcase_HeroSubtitle">Fresh artisan desserts delivered in Minsk</sys:String>
+    <sys:String x:Key="Showcase_HeroBtn">🛍 Go to catalog</sys:String>
+    <sys:String x:Key="Showcase_Popular">⭐ Popular desserts</sys:String>
+    <sys:String x:Key="Showcase_AllBtn">All →</sys:String>
+    <sys:String x:Key="Showcase_New">🆕 New &amp; seasonal</sys:String>
+    <sys:String x:Key="Showcase_Recommend">💡 Recommended for you</sys:String>
+
+    <!-- ─── Product detail ─── -->
+    <sys:String x:Key="Detail_Description">Description</sys:String>
+    <sys:String x:Key="Detail_Composition">Composition</sys:String>
+    <sys:String x:Key="Detail_AddToCart">🛒  Add to cart</sys:String>
+    <sys:String x:Key="Detail_Reviews">Customer reviews</sys:String>
+    <sys:String x:Key="Detail_LeaveReview">✏️ Leave a review</sys:String>
+    <sys:String x:Key="Detail_Rating">Rating (1–5):</sys:String>
+    <sys:String x:Key="Detail_ReviewText">Review text:</sys:String>
+    <sys:String x:Key="Detail_Submit">Submit review</sys:String>
+    <sys:String x:Key="Detail_NoReviews">No reviews yet. Be the first!</sys:String>
+    <sys:String x:Key="Detail_AdminReply">Admin reply:</sys:String>
+
     <!-- ─── Orders (admin) ─── -->
     <sys:String x:Key="AdminOrder_Title">📦 Orders</sys:String>
     <sys:String x:Key="AdminOrder_Status">Status:</sys:String>
@@ -111,6 +133,9 @@
     <sys:String x:Key="AdminOrder_ChangeStatus">Change status</sys:String>
     <sys:String x:Key="AdminOrder_SaveStatus">Save status</sys:String>
     <sys:String x:Key="AdminOrder_Composition">Order contents</sys:String>
+    <sys:String x:Key="AdminOrder_PickupPoint">Pickup point</sys:String>
+    <sys:String x:Key="AdminOrder_Amount">Amount</sys:String>
+    <sys:String x:Key="AdminOrder_Pcs">pcs.</sys:String>
 
     <!-- ─── Reviews (admin) ─── -->
     <sys:String x:Key="Reviews_Title">💬 Reviews</sys:String>

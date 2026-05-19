@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using Confectionery.Helpers;
 using Confectionery.Models;
+using Confectionery.Services;
 using Confectionery.UnitOfWork;
 using Confectionery.ViewModels.Base;
 
@@ -14,22 +16,14 @@ namespace Confectionery.ViewModels.Admin
         private readonly IUnitOfWork _uow;
 
         private Order _selectedOrder;
-        private string _selectedStatusFilter;
+        private int _filterIndex;   // 0=All, 1=Accepted, 2=Preparing, 3=Ready, 4=Completed
+        private int _statusIndex;   // index inside AvailableStatuses
         private DateTime? _dateFrom;
         private DateTime? _dateTo;
-        private string _newStatus;
 
-        public ObservableCollection<Order> Orders { get; } = new ObservableCollection<Order>();
-
-        public ObservableCollection<string> StatusFilter { get; } = new ObservableCollection<string>
-        {
-            "Все", "Принят", "Готовится", "Готов", "Выполнен"
-        };
-
-        public ObservableCollection<string> AvailableStatuses { get; } = new ObservableCollection<string>
-        {
-            "Принят", "Готовится", "Готов", "Выполнен"
-        };
+        public ObservableCollection<Order> Orders          { get; } = new ObservableCollection<Order>();
+        public ObservableCollection<string> StatusFilter   { get; } = new ObservableCollection<string>();
+        public ObservableCollection<string> AvailableStatuses { get; } = new ObservableCollection<string>();
 
         public Order SelectedOrder
         {
@@ -37,14 +31,34 @@ namespace Confectionery.ViewModels.Admin
             set
             {
                 SetProperty(ref _selectedOrder, value);
-                if (value != null) NewStatus = MapStatus(value.Status);
+                if (value != null) _statusIndex = (int)value.Status; // Accepted=0…
+                OnPropertyChanged(nameof(SelectedStatusInDropdown));
             }
         }
 
         public string SelectedStatusFilter
         {
-            get => _selectedStatusFilter;
-            set { SetProperty(ref _selectedStatusFilter, value); LoadOrders(); }
+            get => StatusFilter.Count > _filterIndex ? StatusFilter[_filterIndex] : null;
+            set
+            {
+                var idx = StatusFilter.IndexOf(value);
+                if (idx < 0) return;
+                _filterIndex = idx;
+                OnPropertyChanged(nameof(SelectedStatusFilter));
+                LoadOrders();
+            }
+        }
+
+        public string SelectedStatusInDropdown
+        {
+            get => AvailableStatuses.Count > _statusIndex ? AvailableStatuses[_statusIndex] : null;
+            set
+            {
+                var idx = AvailableStatuses.IndexOf(value);
+                if (idx < 0) return;
+                _statusIndex = idx;
+                OnPropertyChanged(nameof(SelectedStatusInDropdown));
+            }
         }
 
         public DateTime? DateFrom
@@ -59,15 +73,9 @@ namespace Confectionery.ViewModels.Admin
             set { SetProperty(ref _dateTo, value); LoadOrders(); }
         }
 
-        public string NewStatus
-        {
-            get => _newStatus;
-            set => SetProperty(ref _newStatus, value);
-        }
-
-        public ICommand RefreshCommand       { get; }
-        public ICommand UpdateStatusCommand  { get; }
-        public ICommand ResetFilterCommand   { get; }
+        public ICommand RefreshCommand      { get; }
+        public ICommand UpdateStatusCommand { get; }
+        public ICommand ResetFilterCommand  { get; }
 
         public OrderManagementViewModel(IUnitOfWork uow)
         {
@@ -76,17 +84,47 @@ namespace Confectionery.ViewModels.Admin
             RefreshCommand = new RelayCommand(p => LoadOrders());
 
             UpdateStatusCommand = new RelayCommand(ExecuteUpdateStatus,
-                p => SelectedOrder != null && !string.IsNullOrWhiteSpace(NewStatus));
+                p => SelectedOrder != null);
 
             ResetFilterCommand = new RelayCommand(p =>
             {
-                SelectedStatusFilter = "Все";
+                _filterIndex = 0;
+                OnPropertyChanged(nameof(SelectedStatusFilter));
                 DateFrom = null;
                 DateTo   = null;
             });
 
-            SelectedStatusFilter = "Все";
+            LanguageService.LanguageChanged += RebuildLists;
+            RebuildLists();
             LoadOrders();
+        }
+
+        private static string L(string key)
+            => Application.Current.TryFindResource(key) as string ?? key;
+
+        private void RebuildLists()
+        {
+            var prevFilter = _filterIndex;
+            var prevStatus = _statusIndex;
+
+            StatusFilter.Clear();
+            StatusFilter.Add(L("Status_All"));
+            StatusFilter.Add(L("Status_Accepted"));
+            StatusFilter.Add(L("Status_Preparing"));
+            StatusFilter.Add(L("Status_Ready"));
+            StatusFilter.Add(L("Status_Completed"));
+
+            AvailableStatuses.Clear();
+            AvailableStatuses.Add(L("Status_Accepted"));
+            AvailableStatuses.Add(L("Status_Preparing"));
+            AvailableStatuses.Add(L("Status_Ready"));
+            AvailableStatuses.Add(L("Status_Completed"));
+
+            _filterIndex = prevFilter < StatusFilter.Count ? prevFilter : 0;
+            _statusIndex = prevStatus < AvailableStatuses.Count ? prevStatus : 0;
+
+            OnPropertyChanged(nameof(SelectedStatusFilter));
+            OnPropertyChanged(nameof(SelectedStatusInDropdown));
         }
 
         private void LoadOrders()
@@ -101,7 +139,8 @@ namespace Confectionery.ViewModels.Admin
 
             foreach (var o in result)
             {
-                if (SelectedStatusFilter == "Все" || MapStatus(o.Status) == SelectedStatusFilter)
+                // filterIndex 0 = All; 1-4 map to OrderStatus 0-3
+                if (_filterIndex == 0 || (int)o.Status == _filterIndex - 1)
                     Orders.Add(o);
             }
         }
@@ -109,36 +148,12 @@ namespace Confectionery.ViewModels.Admin
         private void ExecuteUpdateStatus(object p)
         {
             if (SelectedOrder == null) return;
-            var status = ParseStatus(NewStatus);
-            SelectedOrder.Status = status;
-            // Notify the client that their order status has changed
+            // _statusIndex maps directly to OrderStatus enum (0=Accepted … 3=Completed)
+            SelectedOrder.Status = (OrderStatus)_statusIndex;
             SelectedOrder.HasStatusNotification = true;
             _uow.Orders.Update(SelectedOrder);
             _uow.Save();
             LoadOrders();
-        }
-
-        private static string MapStatus(OrderStatus s)
-        {
-            switch (s)
-            {
-                case OrderStatus.Accepted:  return "Принят";
-                case OrderStatus.Preparing: return "Готовится";
-                case OrderStatus.Ready:     return "Готов";
-                case OrderStatus.Completed: return "Выполнен";
-                default: return s.ToString();
-            }
-        }
-
-        private static OrderStatus ParseStatus(string s)
-        {
-            switch (s)
-            {
-                case "Готовится": return OrderStatus.Preparing;
-                case "Готов":     return OrderStatus.Ready;
-                case "Выполнен":  return OrderStatus.Completed;
-                default:          return OrderStatus.Accepted;
-            }
         }
     }
 }
