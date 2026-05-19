@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -14,8 +15,10 @@ namespace Confectionery.ViewModels.Admin
     public class ProductManagementViewModel : BaseViewModel
     {
         private readonly IUnitOfWork _uow;
+        private readonly List<Product> _allProducts = new List<Product>();
 
         private Product _selectedProduct;
+        private string _searchText;
         private bool _isEditing;
         private string _statusMessage;
 
@@ -31,6 +34,21 @@ namespace Confectionery.ViewModels.Admin
 
         public ObservableCollection<Product> Products { get; } = new ObservableCollection<Product>();
         public ObservableCollection<Category> Categories { get; } = new ObservableCollection<Category>();
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                if (SetProperty(ref _searchText, value))
+                {
+                    OnPropertyChanged(nameof(HasSearchText));
+                    ApplyFilter();
+                }
+            }
+        }
+
+        public bool HasSearchText => !string.IsNullOrWhiteSpace(SearchText);
 
         public Product SelectedProduct
         {
@@ -77,10 +95,13 @@ namespace Confectionery.ViewModels.Admin
         public ICommand CancelCommand { get; }
         public ICommand BrowseImageCommand { get; }
         public ICommand RefreshCommand { get; }
+        public ICommand ClearSearchCommand { get; }
 
         public ProductManagementViewModel(IUnitOfWork uow)
         {
             _uow = uow;
+
+            ClearSearchCommand = new RelayCommand(_ => SearchText = null);
 
             AddNewCommand = new RelayCommand(p => StartAdd());
             EditCommand = new RelayCommand(p => IsEditing = true, p => SelectedProduct != null);
@@ -95,15 +116,38 @@ namespace Confectionery.ViewModels.Admin
 
         private void LoadData()
         {
-            Products.Clear();
-            foreach (var p in _uow.Products.GetAllWithCategory())
-                Products.Add(p);
+            _allProducts.Clear();
+            _allProducts.AddRange(_uow.Products.GetAllWithCategory());
 
             Categories.Clear();
             foreach (var c in _uow.Categories.GetAll())
                 Categories.Add(c);
 
+            ApplyFilter();
             StatusMessage = null;
+        }
+
+        private void ApplyFilter()
+        {
+            IEnumerable<Product> filtered = _allProducts;
+
+            if (!string.IsNullOrWhiteSpace(SearchText))
+            {
+                var q = SearchText.Trim().ToLower();
+                filtered = filtered.Where(p =>
+                    (p.Name != null && p.Name.ToLower().Contains(q)) ||
+                    (p.Category?.Name != null && p.Category.Name.ToLower().Contains(q)) ||
+                    (p.Description != null && p.Description.ToLower().Contains(q)) ||
+                    (p.Composition != null && p.Composition.ToLower().Contains(q)));
+            }
+
+            var selectedId = SelectedProduct?.Id;
+            Products.Clear();
+            foreach (var p in filtered.OrderBy(p => p.Name))
+                Products.Add(p);
+
+            if (selectedId.HasValue)
+                SelectedProduct = Products.FirstOrDefault(p => p.Id == selectedId.Value);
         }
 
         private void StartAdd()

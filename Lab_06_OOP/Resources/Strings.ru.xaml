@@ -84,6 +84,7 @@
     <sys:String x:Key="Status_Completed">Выполнен</sys:String>
 
     <!-- ─── Товары (admin) ─── -->
+    <sys:String x:Key="Prod_Search">🔍 Поиск товара...</sys:String>
     <sys:String x:Key="Prod_AddBtn">＋ Добавить товар</sys:String>
     <sys:String x:Key="Prod_FormTitle">Форма товара</sys:String>
     <sys:String x:Key="Prod_Name">Название *</sys:String>

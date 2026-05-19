@@ -84,6 +84,7 @@
     <sys:String x:Key="Status_Completed">Completed</sys:String>
 
     <!-- ─── Products (admin) ─── -->
+    <sys:String x:Key="Prod_Search">🔍 Search product...</sys:String>
     <sys:String x:Key="Prod_AddBtn">＋ Add product</sys:String>
     <sys:String x:Key="Prod_FormTitle">Product form</sys:String>
     <sys:String x:Key="Prod_Name">Name *</sys:String>
