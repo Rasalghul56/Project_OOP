@@ -44,26 +44,29 @@
                 </StackPanel>
             </Grid>
 
-            <!-- Изображение -->
-            <Border CornerRadius="12" ClipToBounds="True" Height="200" Margin="0,0,0,16"
-                    Background="{StaticResource AccentLightBrush}">
+            <!-- Изображение: целиком, без обрезки, с ограничением по высоте -->
+            <Border CornerRadius="12" ClipToBounds="True" Margin="0,0,0,16"
+                    Background="{DynamicResource AccentLightBrush}"
+                    Padding="16" MinHeight="220">
                 <Grid>
-                    <TextBlock Text="🍰" FontSize="64"
-                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Product.ImagePath}"
-                                                 Value="{x:Null}">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <Image Source="{Binding Product.ImagePath, Converter={StaticResource ImagePathConverter}}"
-                           Stretch="UniformToFill"/>
+                    <TextBlock Text="{Binding Product.Category.Name,
+                                   Converter={StaticResource CategoryEmojiConverter}}"
+                               FontSize="72"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Opacity="0.75"
+                               Visibility="{Binding Product.ImagePath,
+                                   Converter={StaticResource ImageFileMissingConverter}}"/>
+                    <Viewbox Stretch="Uniform"
+                             StretchDirection="DownOnly"
+                             MaxHeight="420"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Visibility="{Binding Product.ImagePath,
+                                 Converter={StaticResource ImageFileExistsConverter}}">
+                        <Image Source="{Binding Product.ImagePath, Converter={StaticResource ImagePathConverter}}"
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Viewbox>
                 </Grid>
             </Border>
 

@@ -166,10 +166,22 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0">
                                     <Border CornerRadius="8" Height="90" Margin="0,0,0,10"
-                                            Background="{DynamicResource AlternateBrush}">
-                                        <TextBlock Text="✨" FontSize="36"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"/>
+                                            ClipToBounds="True"
+                                            Background="{DynamicResource AccentLightBrush}">
+                                        <Grid>
+                                            <TextBlock Text="{Binding Category.Name,
+                                                           Converter={StaticResource CategoryEmojiConverter}}"
+                                                       FontSize="36"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Opacity="0.75"
+                                                       Visibility="{Binding ImagePath,
+                                                           Converter={StaticResource ImageFileMissingConverter}}"/>
+                                            <Image Stretch="UniformToFill"
+                                                   Source="{Binding ImagePath, Converter={StaticResource ImagePathConverter}}"
+                                                   Visibility="{Binding ImagePath,
+                                                       Converter={StaticResource ImageFileExistsConverter}}"/>
+                                        </Grid>
                                     </Border>
                                     <Border Background="{DynamicResource AccentBrush}"
                                             CornerRadius="4" Padding="6,2" Margin="0,0,0,6"
@@ -220,10 +232,22 @@
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0">
                                         <Border CornerRadius="8" Height="88" Margin="0,0,0,8"
-                                                Background="{DynamicResource AlternateBrush}">
-                                            <TextBlock Text="💝" FontSize="34"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"/>
+                                                ClipToBounds="True"
+                                                Background="{DynamicResource AccentLightBrush}">
+                                            <Grid>
+                                                <TextBlock Text="{Binding Category.Name,
+                                                               Converter={StaticResource CategoryEmojiConverter}}"
+                                                           FontSize="34"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Opacity="0.75"
+                                                           Visibility="{Binding ImagePath,
+                                                               Converter={StaticResource ImageFileMissingConverter}}"/>
+                                                <Image Stretch="UniformToFill"
+                                                       Source="{Binding ImagePath, Converter={StaticResource ImagePathConverter}}"
+                                                       Visibility="{Binding ImagePath,
+                                                           Converter={StaticResource ImageFileExistsConverter}}"/>
+                                            </Grid>
                                         </Border>
                                         <TextBlock Text="{Binding Name}"
                                                    FontSize="13" FontWeight="Bold"
