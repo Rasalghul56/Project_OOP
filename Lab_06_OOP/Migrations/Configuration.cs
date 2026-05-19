@@ -37,7 +37,13 @@ namespace Confectionery.Migrations
             var cats = ctx.Categories.ToDictionary(c => c.Name, c => c.Id);
 
             // ── Товары ────────────────────────────────────────────────────────
-            ctx.Products.AddOrUpdate(p => p.Name,
+            // ВАЖНО: добавляем товары только при первом запуске (если БД пуста).
+            // Это гарантирует что ImagePath и другие поля, изменённые администратором,
+            // никогда не перезаписываются при повторных запусках приложения.
+            if (ctx.Products.Any()) return;
+
+            ctx.Products.AddRange(new[]
+            {
                 // Торты
                 new Product {
                     Name = "Торт «Наполеон»",
@@ -199,7 +205,7 @@ namespace Confectionery.Migrations
                     Composition = "Какао-масло, молоко сухое цельное, сахар, фундук, лецитин",
                     Weight = 0.10, Price = 6.50m, CategoryId = cats["Шоколад"], IsAvailable = true
                 }
-            );
+            });
             ctx.SaveChanges();
 
         }
