@@ -91,12 +91,30 @@ namespace Confectionery.ViewModels.Client
             var session = SessionService.CurrentUser;
             if (session == null) return;
 
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                ErrorMessage = GetString("Validation_NameRequired", "Укажите имя.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(Phone))
+            {
+                ErrorMessage = GetString("Validation_PhoneRequired", "Укажите номер телефона.");
+                return;
+            }
+
+            if (!PhoneValidationHelper.IsValid(Phone))
+            {
+                ErrorMessage = PhoneValidationHelper.GetErrorMessage();
+                return;
+            }
+
             // Загружаем свежую сущность из текущего UoW-контекста
             var user = _uow.Users.GetById(session.Id);
             if (user == null) return;
 
-            user.Name  = Name?.Trim();
-            user.Phone = Phone?.Trim();
+            user.Name  = Name.Trim();
+            user.Phone = Phone.Trim();
             _uow.Users.Update(user);
             _uow.Save();
 
@@ -142,5 +160,8 @@ namespace Confectionery.ViewModels.Client
             OldPassword = NewPassword = ConfirmNewPassword = null;
             SuccessMessage = "Пароль успешно изменён.";
         }
+
+        private static string GetString(string key, string fallback)
+            => System.Windows.Application.Current?.TryFindResource(key) as string ?? fallback;
     }
 }

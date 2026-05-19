@@ -95,7 +95,13 @@ namespace Confectionery.ViewModels.Auth
                 return;
             }
 
-            var ok = _authService.Register(Name, Email, Password, Phone);
+            if (!string.IsNullOrWhiteSpace(Phone) && !PhoneValidationHelper.IsValid(Phone))
+            {
+                ErrorMessage = PhoneValidationHelper.GetErrorMessage();
+                return;
+            }
+
+            var ok = _authService.Register(Name, Email, Password, Phone?.Trim());
             if (!ok)
             {
                 ErrorMessage = "Пользователь с таким email уже существует.";

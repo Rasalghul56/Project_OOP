@@ -62,6 +62,9 @@
     <sys:String x:Key="Profile_Email">Email</sys:String>
     <sys:String x:Key="Profile_Name">Name</sys:String>
     <sys:String x:Key="Profile_Phone">Phone</sys:String>
+    <sys:String x:Key="Validation_Phone">+375298677777</sys:String>
+    <sys:String x:Key="Validation_PhoneRequired">Please enter your phone number.</sys:String>
+    <sys:String x:Key="Validation_NameRequired">Please enter your name.</sys:String>
     <sys:String x:Key="Profile_Save">Save profile</sys:String>
     <sys:String x:Key="Profile_ChangePass">Change password</sys:String>
     <sys:String x:Key="Profile_OldPass">Current password</sys:String>

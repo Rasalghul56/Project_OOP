@@ -184,10 +184,6 @@ namespace Confectionery.ViewModels.Client
             ItemsChanged?.Invoke(ItemCount);
         }
 
-        private static readonly System.Text.RegularExpressions.Regex PhoneRegex =
-            new System.Text.RegularExpressions.Regex(
-                @"^\+375(29|44|33)\d{7}$",
-                System.Text.RegularExpressions.RegexOptions.Compiled);
 
         private bool ValidateForm()
         {
@@ -209,9 +205,9 @@ namespace Confectionery.ViewModels.Client
                     ValidationError = "Укажите номер телефона для доставки.";
                     return false;
                 }
-                if (!PhoneRegex.IsMatch(DeliveryPhone.Trim()))
+                if (!PhoneValidationHelper.IsValid(DeliveryPhone))
                 {
-                    ValidationError = "Телефон должен быть в формате +375(29|44|33|25)XXXXXXX";
+                    ValidationError = PhoneValidationHelper.GetErrorMessage();
                     return false;
                 }
             }

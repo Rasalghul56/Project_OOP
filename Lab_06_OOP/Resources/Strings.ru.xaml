@@ -62,6 +62,9 @@
     <sys:String x:Key="Profile_Email">Email</sys:String>
     <sys:String x:Key="Profile_Name">Имя</sys:String>
     <sys:String x:Key="Profile_Phone">Телефон</sys:String>
+    <sys:String x:Key="Validation_Phone">Телефон например +375298677777</sys:String>
+    <sys:String x:Key="Validation_PhoneRequired">Укажите номер телефона.</sys:String>
+    <sys:String x:Key="Validation_NameRequired">Укажите имя.</sys:String>
     <sys:String x:Key="Profile_Save">Сохранить профиль</sys:String>
     <sys:String x:Key="Profile_ChangePass">Смена пароля</sys:String>
     <sys:String x:Key="Profile_OldPass">Текущий пароль</sys:String>

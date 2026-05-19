@@ -34,6 +34,7 @@
             <TextBlock Text="{DynamicResource Profile_Phone}" Style="{StaticResource LabelText}"/>
             <TextBox Style="{StaticResource ModernTextBox}"
                      Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="+375298677777"
                      Margin="0,0,0,12"/>
 
             <TextBlock Text="{Binding SuccessMessage}" Style="{StaticResource SuccessText}"

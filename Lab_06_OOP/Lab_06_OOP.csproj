@@ -127,6 +127,7 @@
     <Compile Include="Helpers\Converters.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\OrderItemNameConverter.cs" />
+    <Compile Include="Helpers\PhoneValidationHelper.cs" />
   </ItemGroup>
   <!-- ─────────── ViewModels ─────────── -->
   <ItemGroup>
