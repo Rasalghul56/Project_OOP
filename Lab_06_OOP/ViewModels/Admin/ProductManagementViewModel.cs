@@ -1,4 +1,6 @@
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Win32;
@@ -240,8 +242,19 @@ namespace Confectionery.ViewModels.Admin
                 Title = "Выберите изображение",
                 Filter = "Изображения|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
             };
-            if (dlg.ShowDialog() == true)
-                FormImagePath = dlg.FileName;
+            if (dlg.ShowDialog() != true) return;
+
+            // Copy image to AppData — persists across rebuilds and reinstalls
+            Directory.CreateDirectory(ImageHelper.ImagesDirectory);
+
+            var ext      = Path.GetExtension(dlg.FileName);
+            var fileName = Guid.NewGuid().ToString("N") + ext;
+            var dest     = Path.Combine(ImageHelper.ImagesDirectory, fileName);
+
+            File.Copy(dlg.FileName, dest, overwrite: true);
+
+            // Store only the filename — path is resolved at runtime via ImageHelper
+            FormImagePath = fileName;
         }
     }
 }

@@ -7,6 +7,12 @@
 ;    2. Установите Inno Setup 6 (бесплатно)
 ;    3. Откройте этот файл в Inno Setup Compiler и нажмите Compile (Ctrl+F9)
 ;    4. Готовый установщик появится в папке Setup\Output\
+;
+;  Фотографии товаров:
+;    - Хранятся в %APPDATA%\Confectionery\Images\ на вашем ПК
+;    - Инсталлятор автоматически включает все фото из этой папки
+;    - При установке они копируются в %APPDATA%\Confectionery\Images\ у получателя
+;    - Таким образом все добавленные фото будут доступны на любом ПК
 ; ============================================================
 
 #define MyAppName      "Кондитерская"
@@ -61,6 +67,13 @@ Name: "desktopicon"; Description: "Создать значок на рабоче
 ; Копируем все файлы из папки Release (включая подпапки)
 Source: "{#MyAppSourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
+; Копируем фотографии товаров из AppData разработчика → в AppData получателя
+; Папка создаётся автоматически, если она пуста — секция пропускается без ошибки
+Source: "{localappdata}\..\Roaming\Confectionery\Images\*"; \
+    DestDir: "{userappdata}\Confectionery\Images"; \
+    Flags: ignoreversion skipifsourcedoesntexist; \
+    Check: ImagesExist
+
 [Icons]
 ; Меню «Пуск»
 Name: "{group}\{#MyAppName}";           Filename: "{app}\{#MyAppExeName}"
@@ -79,6 +92,12 @@ Filename: "{app}\{#MyAppExeName}"; \
 Type: filesandordirs; Name: "{app}\Logs"
 
 [Code]
+// ── Проверяет, существует ли папка с фото (чтобы не падать если папки нет) ───
+function ImagesExist(): Boolean;
+begin
+  Result := DirExists(ExpandConstant('{localappdata}\..\Roaming\Confectionery\Images'));
+end;
+
 // ── Проверка наличия .NET Framework 4.7.2 ────────────────────────────────────
 function IsDotNetInstalled(): Boolean;
 var

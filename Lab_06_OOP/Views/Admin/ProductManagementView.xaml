@@ -46,11 +46,22 @@
                                             Binding="{Binding Weight}" Width="70"/>
                         <DataGridCheckBoxColumn Header="{DynamicResource Prod_Available}"
                                                 Binding="{Binding IsAvailable}" Width="80"/>
+                        <DataGridTemplateColumn Header="{DynamicResource Prod_Image}" Width="56">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding ImagePath, Converter={StaticResource ImagePathConverter}}"
+                                           Width="40" Height="40" Stretch="UniformToFill"
+                                           Visibility="{Binding ImagePath, Converter={StaticResource NullToVisibilityConverter}}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
 
-            <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Top">
+            <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <TextBlock Text="{DynamicResource Prod_FormTitle}"
                                FontSize="15" FontWeight="Bold"
@@ -102,6 +113,35 @@
                              Height="50" TextWrapping="Wrap"
                              VerticalContentAlignment="Top" Padding="10,8" Margin="0,0,0,10"/>
 
+                    <!-- Фото товара -->
+                    <TextBlock Text="{DynamicResource Prod_Image}" Style="{StaticResource LabelText}"/>
+                    <Grid Margin="0,0,0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0"
+                                 Style="{StaticResource ModernTextBox}"
+                                 Text="{Binding FormImagePath, UpdateSourceTrigger=PropertyChanged}"
+                                 IsReadOnly="True"
+                                 IsEnabled="{Binding IsEditing}"
+                                 ToolTip="{Binding FormImagePath}"/>
+                        <Button Grid.Column="2"
+                                Content="📂 Обзор"
+                                Style="{StaticResource SecondaryButton}"
+                                Height="38" Padding="10,0"
+                                IsEnabled="{Binding IsEditing}"
+                                Command="{Binding BrowseImageCommand}"/>
+                    </Grid>
+                    <!-- Предпросмотр -->
+                    <Border CornerRadius="6" Margin="0,0,0,10" Height="100"
+                            Background="{DynamicResource SurfaceBrush}"
+                            Visibility="{Binding FormImagePath, Converter={StaticResource ImageFileExistsConverter}}">
+                        <Image Source="{Binding FormImagePath, Converter={StaticResource ImagePathConverter}}"
+                               Stretch="Uniform" Margin="4"/>
+                    </Border>
+
                     <CheckBox Content="{DynamicResource Prod_Available}"
                               IsChecked="{Binding FormIsAvailable}"
                               IsEnabled="{Binding IsEditing}"
@@ -136,6 +176,7 @@
                                 Command="{Binding DeleteCommand}"/>
                     </StackPanel>
                 </StackPanel>
+                </ScrollViewer>
             </Border>
         </Grid>
     </DockPanel>

@@ -133,7 +133,7 @@
                                             Height="130" Margin="0,0,0,10"
                                             Background="{DynamicResource AccentLightBrush}">
                                         <Grid>
-                                            <!-- Emoji: shown when no image path is set -->
+                                            <!-- Emoji: shown when no image / file missing -->
                                             <TextBlock Text="{Binding Category.Name,
                                                            Converter={StaticResource CategoryEmojiConverter}}"
                                                        FontSize="48"
@@ -141,12 +141,12 @@
                                                        VerticalAlignment="Center"
                                                        Opacity="0.75"
                                                        Visibility="{Binding ImagePath,
-                                                           Converter={StaticResource InverseNullToVisibilityConverter2}}"/>
-                                            <!-- Real image: shown when ImagePath is set -->
+                                                           Converter={StaticResource ImageFileMissingConverter}}"/>
+                                            <!-- Real image: shown only when file exists on disk -->
                                             <Image Stretch="UniformToFill"
                                                    Source="{Binding ImagePath, Converter={StaticResource ImagePathConverter}}"
                                                    Visibility="{Binding ImagePath,
-                                                       Converter={StaticResource NullToVisibilityConverter}}"/>
+                                                       Converter={StaticResource ImageFileExistsConverter}}"/>
                                         </Grid>
                                     </Border>
 

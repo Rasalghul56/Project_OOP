@@ -95,6 +95,32 @@ namespace Confectionery.Helpers
             => throw new NotImplementedException();
     }
 
+    /// <summary>Visible when the stored value resolves to an existing file on disk.</summary>
+    public class ImageFileExistsConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var path = ImageHelper.GetFullPath(value as string);
+            return path != null && File.Exists(path)
+                ? Visibility.Visible : Visibility.Collapsed;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            => throw new NotImplementedException();
+    }
+
+    /// <summary>Visible when value is empty OR the resolved file does not exist (shows emoji placeholder).</summary>
+    public class ImageFileMissingConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var path = ImageHelper.GetFullPath(value as string);
+            return path == null || !File.Exists(path)
+                ? Visibility.Visible : Visibility.Collapsed;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            => throw new NotImplementedException();
+    }
+
     public class RatingToStarsConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -159,8 +185,8 @@ namespace Confectionery.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var path = value as string;
-            if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+            var path = ImageHelper.GetFullPath(value as string);
+            if (path == null || !File.Exists(path))
                 return null;
             try
             {

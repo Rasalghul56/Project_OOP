@@ -90,6 +90,7 @@
     <sys:String x:Key="Prod_Weight">Weight (g)</sys:String>
     <sys:String x:Key="Prod_Desc">Description</sys:String>
     <sys:String x:Key="Prod_Comp">Composition</sys:String>
+    <sys:String x:Key="Prod_Image">Product photo</sys:String>
     <sys:String x:Key="Prod_Available">In stock</sys:String>
     <sys:String x:Key="Prod_Save">💾 Save</sys:String>
     <sys:String x:Key="Prod_Cancel">Cancel</sys:String>

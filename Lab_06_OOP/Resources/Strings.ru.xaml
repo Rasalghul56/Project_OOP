@@ -90,6 +90,7 @@
     <sys:String x:Key="Prod_Weight">Вес (г)</sys:String>
     <sys:String x:Key="Prod_Desc">Описание</sys:String>
     <sys:String x:Key="Prod_Comp">Состав</sys:String>
+    <sys:String x:Key="Prod_Image">Фото товара</sys:String>
     <sys:String x:Key="Prod_Available">В наличии</sys:String>
     <sys:String x:Key="Prod_Save">💾 Сохранить</sys:String>
     <sys:String x:Key="Prod_Cancel">Отмена</sys:String>
