@@ -4,8 +4,26 @@
              xmlns:models="clr-namespace:Confectionery.Models"
              FontFamily="{StaticResource PrimaryFont}">
     <DockPanel>
-        <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Orders_Title}"
-                   Style="{StaticResource SectionHeader}"/>
+        <!-- Title row with unread-notification counter -->
+        <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+            <TextBlock Text="{DynamicResource Orders_Title}"
+                       Style="{StaticResource SectionHeader}"
+                       Margin="0,0,0,0" DockPanel.Dock="Left"
+                       VerticalAlignment="Center"/>
+            <Border Style="{StaticResource OrdersBadge}"
+                    DockPanel.Dock="Left"
+                    Visibility="{Binding HasUnread,
+                        Converter={StaticResource BoolToVisibilityConverter}}"
+                    Margin="10,4,0,0" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding UnreadCount}"
+                               Foreground="White" FontSize="12" FontWeight="Bold"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text=" новых" Foreground="White" FontSize="11"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </DockPanel>
 
         <Border DockPanel.Dock="Top"
                 Background="{StaticResource AccentLightBrush}"

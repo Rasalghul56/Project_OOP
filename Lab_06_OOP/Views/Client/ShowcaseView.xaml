@@ -81,13 +81,22 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0">
                                     <Border CornerRadius="8" Height="110" Margin="0,0,0,8"
+                                            ClipToBounds="True"
                                             Background="{DynamicResource AccentLightBrush}">
-                                        <TextBlock Text="{Binding Category.Name,
-                                                       Converter={StaticResource CategoryEmojiConverter}}"
-                                                   FontSize="40"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Opacity="0.75"/>
+                                        <Grid>
+                                            <TextBlock Text="{Binding Category.Name,
+                                                           Converter={StaticResource CategoryEmojiConverter}}"
+                                                       FontSize="40"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Opacity="0.75"
+                                                       Visibility="{Binding ImagePath,
+                                                           Converter={StaticResource InverseNullToVisibilityConverter2}}"/>
+                                            <Image Stretch="UniformToFill"
+                                                   Source="{Binding ImagePath, Converter={StaticResource ImagePathConverter}}"
+                                                   Visibility="{Binding ImagePath,
+                                                       Converter={StaticResource NullToVisibilityConverter}}"/>
+                                        </Grid>
                                     </Border>
                                     <TextBlock Text="{Binding Category.Name, Converter={StaticResource CategoryNameConverter}}"
                                                FontSize="10" FontWeight="SemiBold"

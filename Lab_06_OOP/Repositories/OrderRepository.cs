@@ -13,6 +13,7 @@ namespace Confectionery.Repositories
 
         public IEnumerable<Order> GetByUser(int userId)
             => Context.Orders
+                .AsNoTracking()
                 .Include(o => o.OrderItems.Select(oi => oi.Product))
                 .Where(o => o.UserId == userId)
                 .OrderByDescending(o => o.CreatedAt)
@@ -46,5 +47,10 @@ namespace Confectionery.Repositories
                 .Include(o => o.OrderItems.Select(oi => oi.Product))
                 .OrderByDescending(o => o.CreatedAt)
                 .ToList();
+
+        public int GetNotificationCount(int userId)
+            => Context.Orders
+                .AsNoTracking()
+                .Count(o => o.UserId == userId && o.HasStatusNotification);
     }
 }

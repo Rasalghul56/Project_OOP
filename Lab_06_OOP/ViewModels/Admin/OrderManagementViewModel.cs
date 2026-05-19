@@ -111,6 +111,8 @@ namespace Confectionery.ViewModels.Admin
             if (SelectedOrder == null) return;
             var status = ParseStatus(NewStatus);
             SelectedOrder.Status = status;
+            // Notify the client that their order status has changed
+            SelectedOrder.HasStatusNotification = true;
             _uow.Orders.Update(SelectedOrder);
             _uow.Save();
             LoadOrders();

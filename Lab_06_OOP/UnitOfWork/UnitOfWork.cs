@@ -36,6 +36,10 @@ namespace Confectionery.UnitOfWork
         public void Save()
             => _context.SaveChanges();
 
+        public void ClearSingleOrderNotification(int orderId)
+            => _context.Database.ExecuteSqlCommand(
+                "UPDATE Orders SET HasStatusNotification = 0 WHERE Id = {0}", orderId);
+
         public void Dispose()
             => _context.Dispose();
     }

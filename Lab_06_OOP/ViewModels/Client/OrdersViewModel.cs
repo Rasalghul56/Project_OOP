@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -20,10 +20,31 @@ namespace Confectionery.ViewModels.Client
 
         public ObservableCollection<Order> Orders { get; } = new ObservableCollection<Order>();
 
+        /// <summary>Fired when the user reads a notification (sidebar badge must be refreshed).</summary>
+        public event Action NotificationCountChanged;
+
+        // ── Count of highlighted (unread) orders ─────────────────────────────
+        public int  UnreadCount => Orders.Count(o => o.IsStatusChanged);
+        public bool HasUnread   => UnreadCount > 0;
+
         public Order SelectedOrder
         {
             get => _selectedOrder;
-            set => SetProperty(ref _selectedOrder, value);
+            set
+            {
+                SetProperty(ref _selectedOrder, value);
+
+                // When the user clicks on a highlighted order → mark it as read immediately
+                if (value != null && value.IsStatusChanged)
+                {
+                    value.IsStatusChanged = false;          // triggers DataTrigger in the View
+                    _uow.ClearSingleOrderNotification(value.Id);  // SQL UPDATE in DB
+
+                    OnPropertyChanged(nameof(UnreadCount));
+                    OnPropertyChanged(nameof(HasUnread));
+                    NotificationCountChanged?.Invoke();     // tell sidebar to refresh badge
+                }
+            }
         }
 
         public string StatusMessage
@@ -32,8 +53,8 @@ namespace Confectionery.ViewModels.Client
             set => SetProperty(ref _statusMessage, value);
         }
 
-        public ICommand RefreshCommand { get; }
-        public ICommand RepeatOrderCommand { get; }
+        public ICommand RefreshCommand      { get; }
+        public ICommand RepeatOrderCommand  { get; }
 
         public OrdersViewModel(IUnitOfWork uow, CartViewModel cart)
         {
@@ -65,18 +86,20 @@ namespace Confectionery.ViewModels.Client
             var user = SessionService.CurrentUser;
             if (user == null) return;
 
+            // GetByUser uses AsNoTracking — always fresh data from DB.
             var freshOrders = _uow.Orders.GetByUser(user.Id).ToList();
 
-            // Mark which orders have a new status so the View can highlight them
+            // Copy the DB notification flag into the transient, notifiable IsStatusChanged.
+            // Notifications are cleared one by one as the user clicks each order.
             foreach (var o in freshOrders)
-                o.IsStatusChanged = OrderNotificationService.HasChanged(o.Id, o.Status);
-
-            // Record current statuses as seen
-            OrderNotificationService.MarkSeen(freshOrders);
+                o.IsStatusChanged = o.HasStatusNotification;
 
             Orders.Clear();
             foreach (var o in freshOrders)
                 Orders.Add(o);
+
+            OnPropertyChanged(nameof(UnreadCount));
+            OnPropertyChanged(nameof(HasUnread));
         }
     }
 }

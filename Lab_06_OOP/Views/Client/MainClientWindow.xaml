@@ -86,19 +86,21 @@
                     <Button Style="{StaticResource SidebarButton}"
                             Command="{Binding ShowOrdersCommand}"
                             HorizontalContentAlignment="Stretch">
-                        <DockPanel LastChildFill="False">
-                            <TextBlock DockPanel.Dock="Left"
-                                       Text="{DynamicResource Nav_Orders}"
-                                       VerticalAlignment="Center"/>
+                        <DockPanel LastChildFill="True">
                             <Border DockPanel.Dock="Right"
-                                    Style="{StaticResource CartBadge}"
+                                    Style="{StaticResource OrdersBadge}"
                                     Visibility="{Binding OrdersHasNotification,
                                         Converter={StaticResource BoolToVisibilityConverter}}"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    Margin="6,0,0,0">
                                 <TextBlock Text="{Binding OrdersNotificationCount}"
                                            Foreground="White" FontSize="11"
-                                           FontWeight="Bold" Padding="2,0"/>
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
                             </Border>
+                            <TextBlock Text="{DynamicResource Nav_Orders}"
+                                       VerticalAlignment="Center"/>
                         </DockPanel>
                     </Button>
 

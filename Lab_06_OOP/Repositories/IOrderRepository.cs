@@ -11,5 +11,11 @@ namespace Confectionery.Repositories
         IEnumerable<Order> GetByDateRange(DateTime from, DateTime to);
         Order GetWithDetails(int id);
         IEnumerable<Order> GetAllWithDetails();
+
+        /// <summary>
+        /// Returns the count of orders that have a pending status notification for the user.
+        /// Uses AsNoTracking to always read fresh data from DB, bypassing EF identity cache.
+        /// </summary>
+        int GetNotificationCount(int userId);
     }
 }

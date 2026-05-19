@@ -22,7 +22,8 @@
             <h:DeliveryTypeToStringConverter  x:Key="DeliveryTypeConverter"/>
             <h:BoolToVisibilityConverter      x:Key="BoolToVisibilityConverter"/>
             <h:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
-            <h:NullToVisibilityConverter      x:Key="NullToVisibilityConverter"/>
+            <h:NullToVisibilityConverter        x:Key="NullToVisibilityConverter"/>
+            <h:InverseNullToVisibilityConverter x:Key="InverseNullToVisibilityConverter2"/>
             <h:RatingToStarsConverter         x:Key="RatingToStarsConverter"/>
             <h:ReviewsAverageConverter        x:Key="ReviewsAverageConverter"/>
             <h:ImagePathConverter             x:Key="ImagePathConverter"/>

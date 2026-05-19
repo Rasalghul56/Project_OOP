@@ -400,6 +400,20 @@
         <Setter Property="Padding" Value="4,0"/>
     </Style>
 
+    <!-- ══════════════════════ Badge (уведомления заказов) ══════════════════════ -->
+    <Style x:Key="OrdersBadge" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="MinWidth" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Padding" Value="5,0"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#D6953D" BlurRadius="6" ShadowDepth="0" Opacity="0.6"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- ══════════════════════ StatusBadge ══════════════════════ -->
     <Style x:Key="StatusBadge" TargetType="Border">
         <Setter Property="CornerRadius" Value="6"/>
