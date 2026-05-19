@@ -54,6 +54,8 @@
     <sys:String x:Key="Orders_Composition">Order contents</sys:String>
     <sys:String x:Key="Orders_Total">Total:</sys:String>
     <sys:String x:Key="Btn_Repeat">Repeat order</sys:String>
+    <sys:String x:Key="Orders_NewSuffix"> new</sys:String>
+    <sys:String x:Key="OrderItem_Deleted">(product removed)</sys:String>
 
     <!-- ─── Profile ─── -->
     <sys:String x:Key="Profile_Title">👤 Profile</sys:String>

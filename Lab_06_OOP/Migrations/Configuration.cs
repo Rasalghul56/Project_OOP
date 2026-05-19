@@ -208,6 +208,15 @@ namespace Confectionery.Migrations
             });
             ctx.SaveChanges();
 
+            // Заполнить сохранённое название у старых позиций заказов (если ещё не задано)
+            foreach (var oi in ctx.OrderItems.Where(oi => oi.ProductName == null || oi.ProductName == "").ToList())
+            {
+                if (!oi.ProductId.HasValue) continue;
+                var p = ctx.Products.Find(oi.ProductId.Value);
+                if (p != null)
+                    oi.ProductName = p.Name;
+            }
+            ctx.SaveChanges();
         }
     }
 }

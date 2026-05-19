@@ -36,6 +36,7 @@
             <h:ObjectEqualityConverter         x:Key="ObjectEqualityConverter"/>
             <h:ImageFileExistsConverter        x:Key="ImageFileExistsConverter"/>
             <h:ImageFileMissingConverter       x:Key="ImageFileMissingConverter"/>
+            <h:OrderItemNameConverter          x:Key="OrderItemNameConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

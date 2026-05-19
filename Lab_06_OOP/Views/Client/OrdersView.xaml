@@ -19,7 +19,7 @@
                     <TextBlock Text="{Binding UnreadCount}"
                                Foreground="White" FontSize="12" FontWeight="Bold"
                                VerticalAlignment="Center"/>
-                    <TextBlock Text=" новых" Foreground="White" FontSize="11"
+                    <TextBlock Text="{DynamicResource Orders_NewSuffix}" Foreground="White" FontSize="11"
                                VerticalAlignment="Center"/>
                 </StackPanel>
             </Border>
@@ -89,11 +89,14 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <TextBlock FontSize="11"
-                                                           Foreground="{DynamicResource TextMediumBrush}">
-                                                    <Run Text="• "/>
-                                                    <Run Text="{Binding Product.Name}"/>
-                                                    <Run Text=" × "/>
-                                                    <Run Text="{Binding Quantity}"/>
+                                                           Foreground="{DynamicResource TextMediumBrush}"
+                                                           TextWrapping="Wrap">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="• {0} × {1}">
+                                                            <Binding Converter="{StaticResource OrderItemNameConverter}"/>
+                                                            <Binding Path="Quantity"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
                                                 </TextBlock>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -148,7 +151,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Product.Name}"
+                                    <TextBlock Text="{Binding Converter={StaticResource OrderItemNameConverter}}"
                                                FontSize="13"
                                                Foreground="{DynamicResource TextDarkBrush}"
                                                TextWrapping="Wrap"/>

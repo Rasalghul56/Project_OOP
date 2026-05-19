@@ -247,9 +247,10 @@ namespace Confectionery.ViewModels.Client
             {
                 order.OrderItems.Add(new OrderItem
                 {
-                    ProductId = item.Product.Id,
-                    Quantity  = item.Quantity,
-                    UnitPrice = item.Product.Price
+                    ProductId   = item.Product.Id,
+                    ProductName = item.Product.Name,
+                    Quantity    = item.Quantity,
+                    UnitPrice   = item.Product.Price
                 });
             }
 

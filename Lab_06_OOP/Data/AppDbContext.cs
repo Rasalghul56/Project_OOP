@@ -28,6 +28,16 @@ namespace Confectionery.Data
                 .Property(oi => oi.UnitPrice)
                 .HasPrecision(18, 2);
 
+            modelBuilder.Entity<OrderItem>()
+                .Property(oi => oi.ProductName)
+                .HasMaxLength(200);
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOptional(oi => oi.Product)
+                .WithMany(p => p.OrderItems)
+                .HasForeignKey(oi => oi.ProductId)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Order>()
                 .HasRequired(o => o.User)
                 .WithMany(u => u.Orders)

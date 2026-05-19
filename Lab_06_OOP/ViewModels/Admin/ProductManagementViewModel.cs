@@ -273,6 +273,7 @@ namespace Confectionery.ViewModels.Admin
         private void ExecuteDelete()
         {
             if (SelectedProduct == null) return;
+            _uow.Orders.DetachProductFromOrderItems(SelectedProduct.Id, SelectedProduct.Name);
             _uow.Products.Delete(SelectedProduct.Id);
             _uow.Save();
             StatusMessage = "Товар удалён.";

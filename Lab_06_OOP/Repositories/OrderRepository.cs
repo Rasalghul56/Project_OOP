@@ -52,5 +52,16 @@ namespace Confectionery.Repositories
             => Context.Orders
                 .AsNoTracking()
                 .Count(o => o.UserId == userId && o.HasStatusNotification);
+
+        public void DetachProductFromOrderItems(int productId, string productName)
+        {
+            var items = Context.OrderItems.Where(oi => oi.ProductId == productId).ToList();
+            foreach (var oi in items)
+            {
+                if (string.IsNullOrWhiteSpace(oi.ProductName))
+                    oi.ProductName = productName;
+                oi.ProductId = null;
+            }
+        }
     }
 }

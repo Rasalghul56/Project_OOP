@@ -126,6 +126,7 @@
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
     <Compile Include="Helpers\Converters.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\OrderItemNameConverter.cs" />
   </ItemGroup>
   <!-- ─────────── ViewModels ─────────── -->
   <ItemGroup>

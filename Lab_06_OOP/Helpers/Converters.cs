@@ -142,6 +142,21 @@ namespace Confectionery.Helpers
     }
 
     /// <summary>Конвертирует коллекцию Reviews в среднее значение рейтинга (double).</summary>
+    public class ReviewsAverageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is IEnumerable<Review> reviews)
+            {
+                var list = reviews.ToList();
+                return list.Any() ? list.Average(r => r.Rating) : 0.0;
+            }
+            return 0.0;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            => throw new NotImplementedException();
+    }
+
     /// <summary>Переводит название категории при активном английском языке.</summary>
     public class CategoryNameConverter : IValueConverter
     {
@@ -163,21 +178,6 @@ namespace Confectionery.Helpers
             if (!LanguageService.IsEnglish) return value;
             if (value is string s && RuToEn.TryGetValue(s, out var en)) return en;
             return value;
-        }
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotImplementedException();
-    }
-
-    public class ReviewsAverageConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is IEnumerable<Review> reviews)
-            {
-                var list = reviews.ToList();
-                return list.Any() ? list.Average(r => r.Rating) : 0.0;
-            }
-            return 0.0;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => throw new NotImplementedException();

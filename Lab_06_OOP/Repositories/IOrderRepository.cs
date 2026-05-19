@@ -17,5 +17,8 @@ namespace Confectionery.Repositories
         /// Uses AsNoTracking to always read fresh data from DB, bypassing EF identity cache.
         /// </summary>
         int GetNotificationCount(int userId);
+
+        /// <summary>Сохраняет название в позициях заказов и отвязывает товар перед удалением из каталога.</summary>
+        void DetachProductFromOrderItems(int productId, string productName);
     }
 }

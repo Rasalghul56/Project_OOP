@@ -54,6 +54,8 @@
     <sys:String x:Key="Orders_Composition">Состав заказа</sys:String>
     <sys:String x:Key="Orders_Total">Итого:</sys:String>
     <sys:String x:Key="Btn_Repeat">Повторить заказ</sys:String>
+    <sys:String x:Key="Orders_NewSuffix"> новых</sys:String>
+    <sys:String x:Key="OrderItem_Deleted">(товар удалён)</sys:String>
 
     <!-- ─── Профиль ─── -->
     <sys:String x:Key="Profile_Title">👤 Профиль</sys:String>

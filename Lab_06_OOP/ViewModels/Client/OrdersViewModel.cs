@@ -67,15 +67,24 @@ namespace Confectionery.ViewModels.Client
             {
                 if (!(p is Order order)) return;
 
+                var added = 0;
                 foreach (var item in order.OrderItems)
                 {
-                    var product = _uow.Products.GetById(item.ProductId);
+                    if (!item.ProductId.HasValue) continue;
+                    var product = _uow.Products.GetById(item.ProductId.Value);
                     if (product != null && product.IsAvailable)
+                    {
                         _cart.AddProduct(product);
+                        added++;
+                    }
                 }
 
-                StatusMessage = $"Товары из заказа №{order.OrderNumber} добавлены в корзину.";
+                StatusMessage = added > 0
+                    ? $"Товары из заказа №{order.OrderNumber} добавлены в корзину."
+                    : $"В заказе №{order.OrderNumber} нет доступных товаров для повтора.";
             }, p => p is Order o && o.Status == OrderStatus.Completed);
+
+            LanguageService.LanguageChanged += () => LoadOrders();
 
             LoadOrders();
         }

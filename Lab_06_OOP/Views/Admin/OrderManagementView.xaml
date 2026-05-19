@@ -119,9 +119,10 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="0,0,0,6">
-                                    <TextBlock Text="{Binding Product.Name}"
+                                    <TextBlock Text="{Binding Converter={StaticResource OrderItemNameConverter}}"
                                                FontSize="12"
-                                               Foreground="{DynamicResource TextDarkBrush}"/>
+                                               Foreground="{DynamicResource TextDarkBrush}"
+                                               TextWrapping="Wrap"/>
                                     <TextBlock HorizontalAlignment="Right"
                                                FontSize="12"
                                                Foreground="{DynamicResource TextMediumBrush}">
