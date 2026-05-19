@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 using Confectionery.Helpers;
 using Confectionery.Services;
@@ -114,7 +112,6 @@ namespace Confectionery.ViewModels.Client
             ToggleLangCommand  = new RelayCommand(p => LanguageService.Toggle());
             LogoutCommand = new RelayCommand(p =>
             {
-                OrderNotificationService.Reset();
                 SessionService.Logout();
                 navigation.NavigateToLogin();
             });

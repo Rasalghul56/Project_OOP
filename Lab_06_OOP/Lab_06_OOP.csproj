@@ -88,7 +88,6 @@
   <!-- ─────────── Data ─────────── -->
   <ItemGroup>
     <Compile Include="Data\AppDbContext.cs" />
-    <Compile Include="Data\ConfectioneryDbInitializer.cs" />
   </ItemGroup>
   <!-- ─────────── Repositories ─────────── -->
   <ItemGroup>
@@ -119,7 +118,6 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ThemeService.cs" />
     <Compile Include="Services\LanguageService.cs" />
-    <Compile Include="Services\OrderNotificationService.cs" />
   </ItemGroup>
   <!-- ─────────── Helpers ─────────── -->
   <ItemGroup>

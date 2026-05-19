@@ -1,7 +1,5 @@
 namespace Confectionery.Migrations
 {
-    using System;
-    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using Confectionery.Helpers;
@@ -20,12 +18,7 @@ namespace Confectionery.Migrations
         {
             // ── Пользователи ──────────────────────────────────────────────────
             ctx.Users.AddOrUpdate(u => u.Email,
-                new User { Name = "Администратор",  Email = "admin@mail.ru",        PasswordHash = PasswordHelper.Hash("admin"),      Role = "Admin",  Phone = "+375291234567" },
-                new User { Name = "Анна Ковалёва",  Email = "anna@mail.ru",         PasswordHash = PasswordHelper.Hash("anna123"),    Role = "Client", Phone = "+375291112233" },
-                new User { Name = "Иван Петров",    Email = "ivan@mail.ru",         PasswordHash = PasswordHelper.Hash("ivan123"),    Role = "Client", Phone = "+375441234567" },
-                new User { Name = "Мария Сидорова", Email = "maria@mail.ru",        PasswordHash = PasswordHelper.Hash("maria123"),   Role = "Client", Phone = "+375339876543" },
-                new User { Name = "Дарья Кузьмина", Email = "darya@mail.ru",        PasswordHash = PasswordHelper.Hash("darya123"),  Role = "Client", Phone = "+375297654321" },
-                new User { Name = "Алексей Борисов",Email = "alexey@mail.ru",       PasswordHash = PasswordHelper.Hash("alex123"),    Role = "Client", Phone = "+375443334455" }
+                new User { Name = "Администратор", Email = "admin@mail.ru", PasswordHash = PasswordHelper.Hash("admin"), Role = "Admin", Phone = "+375291234567" }
             );
             ctx.SaveChanges();
 
@@ -209,141 +202,6 @@ namespace Confectionery.Migrations
             );
             ctx.SaveChanges();
 
-            // ── Отзывы ────────────────────────────────────────────────────────
-            // Получаем пользователей и товары из БД
-            var anna    = ctx.Users.FirstOrDefault(u => u.Email == "anna@mail.ru");
-            var ivan    = ctx.Users.FirstOrDefault(u => u.Email == "ivan@mail.ru");
-            var maria   = ctx.Users.FirstOrDefault(u => u.Email == "maria@mail.ru");
-            var darya   = ctx.Users.FirstOrDefault(u => u.Email == "darya@mail.ru");
-            var alexey  = ctx.Users.FirstOrDefault(u => u.Email == "alexey@mail.ru");
-
-            var napoleon = ctx.Products.FirstOrDefault(p => p.Name == "Торт «Наполеон»");
-            var honey    = ctx.Products.FirstOrDefault(p => p.Name == "Торт «Медовик»");
-            var eclair   = ctx.Products.FirstOrDefault(p => p.Name == "Эклер классический");
-            var macaroon = ctx.Products.FirstOrDefault(p => p.Name == "Макарон ассорти (6 шт.)");
-            var tiramisu = ctx.Products.FirstOrDefault(p => p.Name == "Тирамису");
-            var zefir    = ctx.Products.FirstOrDefault(p => p.Name == "Зефир ванильный (6 шт.)");
-            var truffle  = ctx.Products.FirstOrDefault(p => p.Name == "Трюфели из бельгийского шоколада (12 шт.)");
-            var cheesecake = ctx.Products.FirstOrDefault(p => p.Name == "Чизкейк «Нью-Йорк»");
-
-            if (anna != null && napoleon != null && !ctx.Reviews.Any(r => r.UserId == anna.Id && r.ProductId == napoleon.Id))
-                ctx.Reviews.Add(new Review { UserId = anna.Id, ProductId = napoleon.Id, Rating = 5, Text = "Торт просто объедение! Коржи нежнейшие, крем ароматный. Заказываю уже в третий раз — результат всегда стабильный. Спасибо мастерам!", CreatedAt = DateTime.Now.AddDays(-15) });
-
-            if (ivan != null && napoleon != null && !ctx.Reviews.Any(r => r.UserId == ivan.Id && r.ProductId == napoleon.Id))
-                ctx.Reviews.Add(new Review { UserId = ivan.Id, ProductId = napoleon.Id, Rating = 5, Text = "Лучший Наполеон, что я пробовал. Заказал на день рождения мамы — все гости в восторге. Упаковка красивая, торт доехал целым.", CreatedAt = DateTime.Now.AddDays(-8), AdminReply = "Спасибо за тёплые слова! Поздравляем маму с днём рождения! 🎂" });
-
-            if (maria != null && honey != null && !ctx.Reviews.Any(r => r.UserId == maria.Id && r.ProductId == honey.Id))
-                ctx.Reviews.Add(new Review { UserId = maria.Id, ProductId = honey.Id, Rating = 4, Text = "Медовик очень вкусный, чувствуется натуральный мёд. Немного сладковат для меня, но это дело вкуса. Точно закажу снова!", CreatedAt = DateTime.Now.AddDays(-20) });
-
-            if (anna != null && eclair != null && !ctx.Reviews.Any(r => r.UserId == anna.Id && r.ProductId == eclair.Id))
-                ctx.Reviews.Add(new Review { UserId = anna.Id, ProductId = eclair.Id, Rating = 5, Text = "Эклеры свежайшие, тесто хрустящее, крем воздушный. Взяла сразу 10 штук — разлетелись моментально! Буду брать регулярно.", CreatedAt = DateTime.Now.AddDays(-5) });
-
-            if (darya != null && macaroon != null && !ctx.Reviews.Any(r => r.UserId == darya.Id && r.ProductId == macaroon.Id))
-                ctx.Reviews.Add(new Review { UserId = darya.Id, ProductId = macaroon.Id, Rating = 5, Text = "Макароны просто потрясающие! Каждый вкус уникален. Особенно понравились фисташковый и малиновый. Красиво упакованы — отличный подарок.", CreatedAt = DateTime.Now.AddDays(-3), AdminReply = "Благодарим за отзыв! Рады, что вам понравилось наше ассорти. Ждём вас снова! 🌸" });
-
-            if (alexey != null && tiramisu != null && !ctx.Reviews.Any(r => r.UserId == alexey.Id && r.ProductId == tiramisu.Id))
-                ctx.Reviews.Add(new Review { UserId = alexey.Id, ProductId = tiramisu.Id, Rating = 4, Text = "Тирамису на высоте — маскарпоне качественный, кофейная пропитка не перебивает нежность крема. Свежий, не сухой. 4 звезды только потому что хотелось большей порции.", CreatedAt = DateTime.Now.AddDays(-12) });
-
-            if (maria != null && zefir != null && !ctx.Reviews.Any(r => r.UserId == maria.Id && r.ProductId == zefir.Id))
-                ctx.Reviews.Add(new Review { UserId = maria.Id, ProductId = zefir.Id, Rating = 5, Text = "Зефир нежнейший! Муж теперь требует каждую неделю. Дети едят вместо конфет. Вкус настоящий, домашний — чувствуется что без химии.", CreatedAt = DateTime.Now.AddDays(-7) });
-
-            if (ivan != null && truffle != null && !ctx.Reviews.Any(r => r.UserId == ivan.Id && r.ProductId == truffle.Id))
-                ctx.Reviews.Add(new Review { UserId = ivan.Id, ProductId = truffle.Id, Rating = 5, Text = "Трюфели — лучший подарок! Подарил коллегам на 8 марта. Качество шоколада чувствуется сразу. Коробка красивая, не стыдно дарить. Закажу ещё на Новый год!", CreatedAt = DateTime.Now.AddDays(-25) });
-
-            if (darya != null && cheesecake != null && !ctx.Reviews.Any(r => r.UserId == darya.Id && r.ProductId == cheesecake.Id))
-                ctx.Reviews.Add(new Review { UserId = darya.Id, ProductId = cheesecake.Id, Rating = 5, Text = "Чизкейк — это что-то с чем-то! Нежная начинка, хрустящая основа, идеально сбалансированная сладость. Обожаю нью-йоркский стиль. Точно войдёт в мой топ.", CreatedAt = DateTime.Now.AddDays(-2) });
-
-            ctx.SaveChanges();
-
-            // ── Заказы (примеры для демонстрации) ────────────────────────────
-            if (!ctx.Orders.Any() && anna != null && napoleon != null)
-            {
-                var praga     = ctx.Products.FirstOrDefault(p => p.Name == "Торт «Прага»");
-                var brownie   = ctx.Products.FirstOrDefault(p => p.Name == "Брауни шоколадный");
-                var ovsyanoe  = ctx.Products.FirstOrDefault(p => p.Name == "Овсяное печенье с изюмом");
-                var zefirChoc = ctx.Products.FirstOrDefault(p => p.Name == "Зефир в шоколаде (8 шт.)");
-                var praline   = ctx.Products.FirstOrDefault(p => p.Name == "Конфеты «Пралине» (10 шт.)");
-
-                var orders = new List<Order>
-                {
-                    new Order {
-                        UserId       = anna.Id,
-                        OrderNumber  = 10047,
-                        Status       = OrderStatus.Completed,
-                        DeliveryType = DeliveryType.Delivery,
-                        DeliveryAddress = "г. Минск, пр. Независимости, 45, кв. 12",
-                        DeliveryPhone   = "+375291112233",
-                        PaymentMethod   = PaymentMethod.Card,
-                        TotalPrice   = napoleon.Price + eclair.Price * 4,
-                        CreatedAt    = DateTime.Now.AddDays(-30),
-                        OrderItems   = new List<OrderItem> {
-                            new OrderItem { ProductId = napoleon.Id, Quantity = 1, UnitPrice = napoleon.Price },
-                            new OrderItem { ProductId = eclair.Id,   Quantity = 4, UnitPrice = eclair.Price  }
-                        }
-                    },
-                    new Order {
-                        UserId       = ivan.Id,
-                        OrderNumber  = 10052,
-                        Status       = OrderStatus.Completed,
-                        DeliveryType = DeliveryType.Pickup,
-                        PickupLocation = "г. Минск, ул. Бобруйская, 25",
-                        PaymentMethod  = PaymentMethod.Cash,
-                        TotalPrice   = (honey?.Price ?? 38) + (tiramisu?.Price ?? 8.5m) * 2,
-                        CreatedAt    = DateTime.Now.AddDays(-22),
-                        OrderItems   = new List<OrderItem> {
-                            new OrderItem { ProductId = honey?.Id ?? 2,    Quantity = 1, UnitPrice = honey?.Price ?? 38m },
-                            new OrderItem { ProductId = tiramisu?.Id ?? 6, Quantity = 2, UnitPrice = tiramisu?.Price ?? 8.5m }
-                        }
-                    },
-                    new Order {
-                        UserId       = maria.Id,
-                        OrderNumber  = 10063,
-                        Status       = OrderStatus.Preparing,
-                        DeliveryType = DeliveryType.Delivery,
-                        DeliveryAddress = "г. Минск, ул. Якуба Коласа, 20, оф. 301",
-                        DeliveryPhone   = "+375339876543",
-                        PaymentMethod   = PaymentMethod.Card,
-                        TotalPrice   = (macaroon?.Price ?? 12.5m) * 2 + (zefir?.Price ?? 8.5m),
-                        CreatedAt    = DateTime.Now.AddDays(-2),
-                        OrderItems   = new List<OrderItem> {
-                            new OrderItem { ProductId = macaroon?.Id ?? 9, Quantity = 2, UnitPrice = macaroon?.Price ?? 12.5m },
-                            new OrderItem { ProductId = zefir?.Id ?? 23,   Quantity = 1, UnitPrice = zefir?.Price ?? 8.5m    }
-                        }
-                    },
-                    new Order {
-                        UserId       = darya?.Id ?? anna.Id,
-                        OrderNumber  = 10071,
-                        Status       = OrderStatus.Ready,
-                        DeliveryType = DeliveryType.Pickup,
-                        PickupLocation = "г. Минск, ул. Бобруйская, 25",
-                        PaymentMethod  = PaymentMethod.Cash,
-                        TotalPrice   = (truffle?.Price ?? 18m) + (praline?.Price ?? 15m),
-                        CreatedAt    = DateTime.Now.AddDays(-1),
-                        OrderItems   = new List<OrderItem> {
-                            new OrderItem { ProductId = truffle?.Id ?? 19, Quantity = 1, UnitPrice = truffle?.Price ?? 18m  },
-                            new OrderItem { ProductId = praline?.Id ?? 20, Quantity = 1, UnitPrice = praline?.Price ?? 15m  }
-                        }
-                    },
-                    new Order {
-                        UserId       = anna.Id,
-                        OrderNumber  = 10088,
-                        Status       = OrderStatus.Accepted,
-                        DeliveryType = DeliveryType.Delivery,
-                        DeliveryAddress = "г. Минск, ул. Захарова, 7, кв. 3",
-                        DeliveryPhone   = "+375291112233",
-                        PaymentMethod   = PaymentMethod.Card,
-                        TotalPrice   = (praga?.Price ?? 48m) + (brownie?.Price ?? 8m) * 3,
-                        CreatedAt    = DateTime.Now.AddHours(-3),
-                        OrderItems   = new List<OrderItem> {
-                            new OrderItem { ProductId = praga?.Id ?? 4,   Quantity = 1, UnitPrice = praga?.Price ?? 48m    },
-                            new OrderItem { ProductId = brownie?.Id ?? 18, Quantity = 3, UnitPrice = brownie?.Price ?? 8m   }
-                        }
-                    }
-                };
-
-                ctx.Orders.AddRange(orders);
-                ctx.SaveChanges();
-            }
         }
     }
 }
