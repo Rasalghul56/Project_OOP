@@ -1,0 +1,128 @@
+<mxfile host="app.diagrams.net" agent="Cursor" version="22.1.0">
+  <diagram id="order-seq" name="Оформление заказа">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Объекты -->
+        <mxCell id="o1" value="&lt;u&gt;client : Клиент&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="100" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="o2" value="&lt;u&gt;cartView : CartView&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="170" y="20" width="120" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="o3" value="&lt;u&gt;cartVM : CartViewModel&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="320" y="20" width="150" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="o4" value="&lt;u&gt;session : SessionService&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="150" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="o5" value="&lt;u&gt;uow : UnitOfWork&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="680" y="20" width="130" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="o6" value="&lt;u&gt;db : AppDbContext&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="840" y="20" width="140" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- Линии жизни: x = центр объекта -->
+        <mxCell id="l1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="90" y="68" as="sourcePoint" /><mxPoint x="90" y="640" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="l2" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="230" y="68" as="sourcePoint" /><mxPoint x="230" y="640" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="l3" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="395" y="68" as="sourcePoint" /><mxPoint x="395" y="640" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="l4" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="575" y="68" as="sourcePoint" /><mxPoint x="575" y="640" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="l5" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="745" y="68" as="sourcePoint" /><mxPoint x="745" y="640" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="l6" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="910" y="68" as="sourcePoint" /><mxPoint x="910" y="640" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <!-- Фокус управления (ширина 10) -->
+        <mxCell id="a3" value="" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="390" y="120" width="10" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="740" y="300" width="10" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" value="" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="905" y="360" width="10" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Сообщения по линиям жизни (y фиксирован) -->
+        <!-- 1 простое: open arrow -->
+        <mxCell id="m1" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="1: Нажатие «Оформить заказ»">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="90" y="100" as="sourcePoint" /><mxPoint x="230" y="100" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <!-- 2 синхронное: block triangle -->
+        <mxCell id="m2" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="2: ExecutePlaceOrder()">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="230" y="130" as="sourcePoint" /><mxPoint x="395" y="130" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <!-- 3 самому себе -->
+        <mxCell id="m3" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="3: ValidateForm()">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="395" y="160" as="sourcePoint" />
+            <mxPoint x="395" y="190" as="targetPoint" />
+            <Array as="points"><mxPoint x="435" y="160" /><mxPoint x="435" y="190" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="4: get CurrentUser()">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="395" y="210" as="sourcePoint" /><mxPoint x="575" y="210" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <!-- 5 возврат: dashed open -->
+        <mxCell id="m5" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="5: user">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="575" y="235" as="sourcePoint" /><mxPoint x="395" y="235" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m6" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="6: создание Order, OrderItems">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="395" y="260" as="sourcePoint" />
+            <mxPoint x="395" y="285" as="targetPoint" />
+            <Array as="points"><mxPoint x="445" y="260" /><mxPoint x="445" y="285" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m7" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="7: Orders.Add(order)">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="395" y="305" as="sourcePoint" /><mxPoint x="745" y="305" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m8" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="8: Save()">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="395" y="330" as="sourcePoint" /><mxPoint x="745" y="330" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m9" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="9: INSERT Orders, OrderItems">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="745" y="365" as="sourcePoint" /><mxPoint x="910" y="365" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m10" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="10: Success">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="910" y="395" as="sourcePoint" /><mxPoint x="745" y="395" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m11" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="11: return">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="745" y="415" as="sourcePoint" /><mxPoint x="395" y="415" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m12" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="12: очистка корзины">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="395" y="440" as="sourcePoint" />
+            <mxPoint x="395" y="465" as="targetPoint" />
+            <Array as="points"><mxPoint x="450" y="440" /><mxPoint x="450" y="465" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m13" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="13: StatusMessage">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="395" y="490" as="sourcePoint" /><mxPoint x="230" y="490" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m14" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;strokeWidth=1;fontSize=10;labelBackgroundColor=#ffffff;" value="14: сообщение об успехе">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="230" y="520" as="sourcePoint" /><mxPoint x="90" y="520" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <mxCell id="title" value="Диаграмма последовательностей «Оформление заказа» программного средства «Кондитерская»" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="200" y="680" width="560" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg" value="Синхронное — сплошная линия со стрелкой-треугольником (▶)&lt;br&gt;Возврат — штриховая линия со стрелкой-углом&lt;br&gt;Простое — сплошная линия со стрелкой-углом&lt;br&gt;Линия жизни — вертикальная штриховая" style="text;html=1;align=left;verticalAlign=top;fontSize=9;strokeColor=#000000;fillColor=#f5f5f5;spacing=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="560" width="260" height="75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

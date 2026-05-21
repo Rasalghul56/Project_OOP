@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net" agent="Cursor">
+  <diagram name="Page-1" id="order-state">
+    <mxGraphModel dx="900" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="500" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s0" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="60" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Accepted&lt;br&gt;(Принят)" vertex="1">
+          <mxGeometry height="60" width="120" x="140" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Preparing&lt;br&gt;(Готовится)" vertex="1">
+          <mxGeometry height="60" width="120" x="320" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Ready&lt;br&gt;(Готов к выдаче)" vertex="1">
+          <mxGeometry height="60" width="140" x="500" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Completed&lt;br&gt;(Выполнен)" vertex="1">
+          <mxGeometry height="60" width="120" x="700" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="sf" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="760" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="sf_outer" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="40" width="40" x="755" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" edge="1" parent="1" source="s0" target="s1" style="endArrow=block;html=1;" value="Оформление заказа" />
+        <mxCell id="e1" edge="1" parent="1" source="s1" target="s2" style="endArrow=block;html=1;" value="Администратор&lt;br&gt;меняет статус" />
+        <mxCell id="e2" edge="1" parent="1" source="s2" target="s3" style="endArrow=block;html=1;" value="Администратор&lt;br&gt;меняет статус" />
+        <mxCell id="e3" edge="1" parent="1" source="s3" target="s4" style="endArrow=block;html=1;" value="Администратор&lt;br&gt;меняет статус" />
+        <mxCell id="e4" edge="1" parent="1" source="s4" target="sf_outer" style="endArrow=block;html=1;" value="Заказ завершён" />
+        <mxCell id="note" parent="1" style="text;html=1;align=left;" value="При каждом изменении статуса администратором&lt;br&gt;устанавливается HasStatusNotification = true" vertex="1">
+          <mxGeometry height="40" width="360" x="140" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;fontStyle=1;fontSize=13;align=center;" value="Рисунок 3.6 – Диаграмма состояний заказа" vertex="1">
+          <mxGeometry height="30" width="400" x="250" y="400" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

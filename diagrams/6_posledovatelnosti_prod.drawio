@@ -1,0 +1,214 @@
+<mxfile host="app.diagrams.net" agent="Cursor">
+  <diagram id="status-seq" name="Приложение В">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="920" pageHeight="1280" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="sep" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=2;fontSize=11;" value="Сценарий 1 — изменение статуса администратором" vertex="1">
+          <mxGeometry x="220" y="10" width="480" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="admin" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=11;strokeColor=#000000;" value="Администратор" vertex="1">
+          <mxGeometry height="60" width="30" x="25" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ov" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=10;" value="&lt;u&gt;orderView&lt;/u&gt;&lt;br&gt;OrderManagementView" vertex="1">
+          <mxGeometry height="52" width="150" x="120" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ovm" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=10;" value="&lt;u&gt;orderVM&lt;/u&gt;&lt;br&gt;OrderManagementViewModel" vertex="1">
+          <mxGeometry height="52" width="170" x="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uow1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=10;" value="&lt;u&gt;uow&lt;/u&gt;&lt;br&gt;UnitOfWork" vertex="1">
+          <mxGeometry height="52" width="110" x="500" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="db1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=10;" value="&lt;u&gt;db&lt;/u&gt;&lt;br&gt;база данных" vertex="1">
+          <mxGeometry height="52" width="110" x="650" y="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="la1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="40" y="82" as="sourcePoint" /><mxPoint x="40" y="530" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lo1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="195" y="82" as="sourcePoint" /><mxPoint x="195" y="530" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lm1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="385" y="82" as="sourcePoint" /><mxPoint x="385" y="530" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lu1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="555" y="82" as="sourcePoint" /><mxPoint x="555" y="530" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="ld1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="705" y="82" as="sourcePoint" /><mxPoint x="705" y="530" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <mxCell id="aa1" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="360" width="10" x="380" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="aa2" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="70" width="10" x="550" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="aa3" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="35" width="10" x="700" y="325" as="geometry" />
+        </mxCell>
+
+        <mxCell id="m1" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="1. Выбор заказа и статуса">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="40" y="110" as="sourcePoint" /><mxPoint x="195" y="110" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m2" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="2. Нажатие «Сохранить статус»">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="40" y="150" as="sourcePoint" /><mxPoint x="195" y="150" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m3" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="3. UpdateStatusCommand.Execute()">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="195" y="190" as="sourcePoint" /><mxPoint x="385" y="190" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m4" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="4. Status, HasStatusNotification = true">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="385" y="230" as="sourcePoint" />
+            <mxPoint x="385" y="255" as="targetPoint" />
+            <Array as="points"><mxPoint x="430" y="230" /><mxPoint x="430" y="255" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m5" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="5. Orders.Update(order)">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="385" y="280" as="sourcePoint" /><mxPoint x="555" y="280" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m6" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="6. Save()">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="385" y="310" as="sourcePoint" /><mxPoint x="555" y="310" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m7" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="7. UPDATE Orders">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="555" y="340" as="sourcePoint" /><mxPoint x="705" y="340" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m8" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="8. Success">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="705" y="375" as="sourcePoint" /><mxPoint x="555" y="375" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m9" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="9. return">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="555" y="405" as="sourcePoint" /><mxPoint x="385" y="405" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m10" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="10. LoadOrders()">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="385" y="440" as="sourcePoint" />
+            <mxPoint x="385" y="465" as="targetPoint" />
+            <Array as="points"><mxPoint x="435" y="440" /><mxPoint x="435" y="465" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m11" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="11. return">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="385" y="490" as="sourcePoint" /><mxPoint x="195" y="490" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="m12" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="12. Обновлённый список заказов">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="195" y="520" as="sourcePoint" /><mxPoint x="40" y="520" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <mxCell id="sep2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=2;fontSize=11;" value="Сценарий 2 — уведомление и просмотр клиентом" vertex="1">
+          <mxGeometry x="220" y="560" width="480" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="client" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=11;strokeColor=#000000;" value="Клиент" vertex="1">
+          <mxGeometry height="60" width="30" x="25" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="cv" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=10;" value="&lt;u&gt;ordersView&lt;/u&gt;&lt;br&gt;OrdersView" vertex="1">
+          <mxGeometry height="52" width="140" x="125" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="cvm" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=10;" value="&lt;u&gt;ordersVM&lt;/u&gt;&lt;br&gt;OrdersViewModel" vertex="1">
+          <mxGeometry height="52" width="150" x="295" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="uow2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=10;" value="&lt;u&gt;uow&lt;/u&gt;&lt;br&gt;UnitOfWork" vertex="1">
+          <mxGeometry height="52" width="110" x="475" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="db2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#ffffff;align=center;fontSize=10;" value="&lt;u&gt;db&lt;/u&gt;&lt;br&gt;база данных" vertex="1">
+          <mxGeometry height="52" width="110" x="625" y="580" as="geometry" />
+        </mxCell>
+
+        <mxCell id="la2" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="40" y="632" as="sourcePoint" /><mxPoint x="40" y="1160" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lc1" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="195" y="632" as="sourcePoint" /><mxPoint x="195" y="1160" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lc2" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="370" y="632" as="sourcePoint" /><mxPoint x="370" y="1160" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lu2" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="530" y="632" as="sourcePoint" /><mxPoint x="530" y="1160" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="ld2" edge="1" parent="1" style="endArrow=none;html=1;strokeColor=#000000;dashed=1;dashPattern=6 6;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="680" y="632" as="sourcePoint" /><mxPoint x="680" y="1160" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <mxCell id="ca1" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="420" width="10" x="365" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="ca2" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="55" width="10" x="525" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="ca3" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="10" x="675" y="775" as="geometry" />
+        </mxCell>
+        <mxCell id="ca4" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="60" width="10" x="525" y="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="ca5" parent="1" style="rounded=0;fillColor=#ffffff;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="30" width="10" x="675" y="1035" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="1. Открытие «Мои заказы»">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="40" y="660" as="sourcePoint" /><mxPoint x="195" y="660" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c2" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="2. LoadOrders()">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="195" y="700" as="sourcePoint" /><mxPoint x="370" y="700" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c3" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="3. GetByUser(userId)">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="370" y="740" as="sourcePoint" /><mxPoint x="530" y="740" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c4" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="4. SELECT FROM Orders">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="530" y="770" as="sourcePoint" /><mxPoint x="680" y="770" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c5" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="5. List&amp;lt;Order&amp;gt;">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="680" y="805" as="sourcePoint" /><mxPoint x="530" y="805" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c6" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="6. return orders">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="530" y="840" as="sourcePoint" /><mxPoint x="370" y="840" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c7" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="7. IsStatusChanged = HasStatusNotification">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="880" as="sourcePoint" />
+            <mxPoint x="370" y="905" as="targetPoint" />
+            <Array as="points"><mxPoint x="420" y="880" /><mxPoint x="420" y="905" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c8" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="8. return">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="370" y="940" as="sourcePoint" /><mxPoint x="195" y="940" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c9" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="9. Список заказов с подсветкой">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="195" y="975" as="sourcePoint" /><mxPoint x="40" y="975" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c10" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="10. Выбор заказа">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="40" y="1010" as="sourcePoint" /><mxPoint x="195" y="1010" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c11" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="11. SelectedOrder = order">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="195" y="1045" as="sourcePoint" /><mxPoint x="370" y="1045" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c12" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="12. ClearSingleOrderNotification()">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="370" y="1075" as="sourcePoint" /><mxPoint x="530" y="1075" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c13" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="13. UPDATE HasStatusNotification=0">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="530" y="1105" as="sourcePoint" /><mxPoint x="680" y="1105" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c14" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="14. Success">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="680" y="1140" as="sourcePoint" /><mxPoint x="530" y="1140" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c15" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="15. NotificationCountChanged">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="370" y="1175" as="sourcePoint" /><mxPoint x="195" y="1175" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="c16" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;dashPattern=8 8;html=1;strokeColor=#000000;fontSize=10;labelBackgroundColor=#ffffff;verticalAlign=bottom;" value="16. Снятие подсветки заказа">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="195" y="1210" as="sourcePoint" /><mxPoint x="40" y="1210" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=12;" value="Приложение В – Диаграмма последовательностей «Изменение статуса заказа и уведомление клиента»" vertex="1">
+          <mxGeometry height="30" width="760" x="80" y="1240" as="geometry" />
+        </mxCell>
+        <mxCell id="leg" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=9;strokeColor=#000000;fillColor=#f5f5f5;spacing=4;" value="▶ — синхронный вызов;&amp;nbsp; штрих — возврат;&amp;nbsp; угол — действие пользователя&lt;br&gt;Прямоугольник на линии жизни — фокус управления" vertex="1">
+          <mxGeometry height="40" width="360" x="40" y="1240" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

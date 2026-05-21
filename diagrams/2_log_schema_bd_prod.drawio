@@ -1,0 +1,131 @@
+<mxfile host="app.diagrams.net" agent="Cursor">
+  <diagram name="Приложение Е" id="er-gost-table">
+    <mxGraphModel dx="900" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="780" pageHeight="680" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=11;" value="Приложение Е – Логическая схема БД «Кондитерская»" vertex="1">
+          <mxGeometry x="100" y="6" width="580" height="22" as="geometry" />
+        </mxCell>
+
+        <!-- Categories -->
+        <mxCell id="Categories" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;" value="&lt;table style=&quot;width:100%;border-collapse:collapse;font-size:10px;font-family:Arial;&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot; align=&quot;center&quot; bgcolor=&quot;#FFF2CC&quot; style=&quot;padding:3px;border:1px solid #000;&quot;&gt;&lt;b&gt;Categories&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td width=&quot;38&quot; align=&quot;center&quot; style=&quot;border:1px solid #000;border-right:1px solid #000;padding:2px 4px;&quot;&gt;PK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&lt;u&gt;Id&lt;/u&gt; : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;border-right:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;Name : nvarchar(100)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry x="50" y="40" width="168" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- Products -->
+        <mxCell id="Products" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;" value="&lt;table style=&quot;width:100%;border-collapse:collapse;font-size:10px;font-family:Arial;&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot; align=&quot;center&quot; bgcolor=&quot;#D5E8D4&quot; style=&quot;padding:3px;border:1px solid #000;&quot;&gt;&lt;b&gt;Products&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td width=&quot;38&quot; align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;PK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&lt;u&gt;Id&lt;/u&gt; : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;FK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;CategoryId : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;Name : nvarchar(200)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;Description, Composition : nvarchar&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;Price : decimal(18,2), Weight : float&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;ImagePath : nvarchar, IsAvailable : bit&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry x="280" y="40" width="248" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Users -->
+        <mxCell id="Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;" value="&lt;table style=&quot;width:100%;border-collapse:collapse;font-size:10px;font-family:Arial;&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot; align=&quot;center&quot; bgcolor=&quot;#DAE8FC&quot; style=&quot;padding:3px;border:1px solid #000;&quot;&gt;&lt;b&gt;Users&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td width=&quot;38&quot; align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;PK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&lt;u&gt;Id&lt;/u&gt; : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;Name : nvarchar(100)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;U&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;Email : nvarchar(200)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;PasswordHash, Role, Phone : nvarchar&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry x="50" y="210" width="210" height="94" as="geometry" />
+        </mxCell>
+
+        <!-- Orders -->
+        <mxCell id="Orders" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;" value="&lt;table style=&quot;width:100%;border-collapse:collapse;font-size:10px;font-family:Arial;&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot; align=&quot;center&quot; bgcolor=&quot;#FFE6CC&quot; style=&quot;padding:3px;border:1px solid #000;&quot;&gt;&lt;b&gt;Orders&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td width=&quot;38&quot; align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;PK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&lt;u&gt;Id&lt;/u&gt; : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;FK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;UserId : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;OrderNumber : int, CreatedAt : datetime&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;Status, DeliveryType, PaymentMethod : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;PickupLocation, DeliveryAddress, DeliveryPhone&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;Comment, TotalPrice, HasStatusNotification&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry x="310" y="210" width="268" height="148" as="geometry" />
+        </mxCell>
+
+        <!-- OrderItems -->
+        <mxCell id="OrderItems" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;" value="&lt;table style=&quot;width:100%;border-collapse:collapse;font-size:10px;font-family:Arial;&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot; align=&quot;center&quot; bgcolor=&quot;#F8CECC&quot; style=&quot;padding:3px;border:1px solid #000;&quot;&gt;&lt;b&gt;OrderItems&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td width=&quot;38&quot; align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;PK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&lt;u&gt;Id&lt;/u&gt; : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;FK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;OrderId : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;FK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;ProductId : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;ProductName : nvarchar(200)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;Quantity : int, UnitPrice : decimal(18,2)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry x="310" y="390" width="228" height="112" as="geometry" />
+        </mxCell>
+
+        <!-- Reviews -->
+        <mxCell id="Reviews" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;" value="&lt;table style=&quot;width:100%;border-collapse:collapse;font-size:10px;font-family:Arial;&quot; border=&quot;1&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td colspan=&quot;2&quot; align=&quot;center&quot; bgcolor=&quot;#E1D5E7&quot; style=&quot;padding:3px;border:1px solid #000;&quot;&gt;&lt;b&gt;Reviews&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td width=&quot;38&quot; align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;PK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;&lt;u&gt;Id&lt;/u&gt; : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;FK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;UserId : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;FK&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;padding:2px 4px;&quot;&gt;ProductId : int&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td style=&quot;border:1px solid #000;border-top:2px solid #000;padding:2px 4px;&quot;&gt;Text, Rating, AdminReply, CreatedAt&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry x="50" y="390" width="228" height="94" as="geometry" />
+        </mxCell>
+
+        <!-- Якоря на строках FK/PK (невидимые, для точного подключения) -->
+        <mxCell id="Cat_pk_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="128" y="68" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="Prod_pk_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="396" y="68" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="Prod_fk_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="278" y="86" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="Usr_pk_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="148" y="238" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="Ord_pk_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="442" y="238" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="Ord_fk_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="308" y="256" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="OI_ord_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="308" y="436" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="OI_prod_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="536" y="454" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="Rev_usr_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="48" y="436" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="Rev_prod_a" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;opacity=0;" value="" vertex="1">
+          <mxGeometry x="48" y="454" width="4" height="4" as="geometry" />
+        </mxCell>
+
+        <!-- 1 CategoryId → Id -->
+        <mxCell id="e1" edge="1" parent="1" source="Prod_fk_a" target="Cat_pk_a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#000000;startArrow=ERzeroToMany;startFill=1;endArrow=ERzeroToOne;endFill=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 2 UserId → Id -->
+        <mxCell id="e2" edge="1" parent="1" source="Ord_fk_a" target="Usr_pk_a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#000000;startArrow=ERmany;startFill=1;endArrow=ERone;endFill=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 3 OrderId → Id -->
+        <mxCell id="e3" edge="1" parent="1" source="OI_ord_a" target="Ord_pk_a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#000000;startArrow=ERmany;startFill=1;endArrow=ERone;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="438" />
+              <mxPoint x="310" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 4 ProductId → Id -->
+        <mxCell id="e4" edge="1" parent="1" source="OI_prod_a" target="Prod_pk_a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#000000;startArrow=ERmany;startFill=1;endArrow=ERzeroToOne;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="456" />
+              <mxPoint x="570" y="70" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 5 Reviews.UserId → Users.Id -->
+        <mxCell id="e5" edge="1" parent="1" source="Rev_usr_a" target="Usr_pk_a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#000000;startArrow=ERmany;startFill=1;endArrow=ERone;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="438" />
+              <mxPoint x="30" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 6 Reviews.ProductId → Products.Id -->
+        <mxCell id="e6" edge="1" parent="1" source="Rev_prod_a" target="Prod_pk_a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#000000;startArrow=ERmany;startFill=1;endArrow=ERone;endFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="20" y="456" />
+              <mxPoint x="20" y="70" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="leg" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=9;strokeColor=#000000;fillColor=#f5f5f5;spacing=4;" value="Формат таблицы: &lt;b&gt;имя&lt;/b&gt; | &lt;b&gt;PK&lt;/b&gt; (подчёркнут) | &lt;b&gt;FK, U&lt;/b&gt; и прочие поля.&lt;br&gt;Жирная линия отделяет секцию PK от остальных полей. Стрелка: FK → PK." vertex="1">
+          <mxGeometry x="50" y="530" width="420" height="44" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

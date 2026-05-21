@@ -1,0 +1,208 @@
+<mxfile host="app.diagrams.net" agent="Cursor">
+  <diagram id="model-layer-class" name="Приложение Б">
+    <mxGraphModel dx="1100" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="860" pageHeight="780" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" parent="1" style="text;html=1;fontStyle=1;fontSize=12;align=center;strokeColor=none;fillColor=none;" value="Приложение Б – Диаграмма классов слоя модели (доменные сущности)" vertex="1">
+          <mxGeometry x="120" y="740" width="620" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=10;strokeColor=#000000;fillColor=#f5f5f5;spacing=4;" value="Слой Models — только классы сущностей и перечисления предметной области." vertex="1">
+          <mxGeometry x="40" y="40" width="320" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- Перечисления (слева) -->
+        <mxCell id="OrderStatus" parent="1" style="swimlane;fontStyle=2;fontSize=11;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=42;collapsible=0;html=1;strokeColor=#000000;fillColor=#ffffff;" value="&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;br&gt;OrderStatus" vertex="1">
+          <mxGeometry x="40" y="90" width="150" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="OrderStatus_v" parent="OrderStatus" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=10;html=1;" value="Accepted&lt;br&gt;Preparing&lt;br&gt;Ready&lt;br&gt;Completed" vertex="1">
+          <mxGeometry y="42" width="150" height="76" as="geometry" />
+        </mxCell>
+
+        <mxCell id="DeliveryType" parent="1" style="swimlane;fontStyle=2;fontSize=11;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=42;collapsible=0;html=1;strokeColor=#000000;fillColor=#ffffff;" value="&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;br&gt;DeliveryType" vertex="1">
+          <mxGeometry x="40" y="230" width="150" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="DeliveryType_v" parent="DeliveryType" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=10;html=1;" value="Pickup&lt;br&gt;Delivery" vertex="1">
+          <mxGeometry y="42" width="150" height="46" as="geometry" />
+        </mxCell>
+
+        <mxCell id="PaymentMethod" parent="1" style="swimlane;fontStyle=2;fontSize=11;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=42;collapsible=0;html=1;strokeColor=#000000;fillColor=#ffffff;" value="&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;br&gt;PaymentMethod" vertex="1">
+          <mxGeometry x="40" y="340" width="150" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="PaymentMethod_v" parent="PaymentMethod" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=10;html=1;" value="Cash&lt;br&gt;Card" vertex="1">
+          <mxGeometry y="42" width="150" height="46" as="geometry" />
+        </mxCell>
+
+        <!-- Сущности: верхний ряд -->
+        <mxCell id="Category" parent="1" style="swimlane;fontStyle=1;fontSize=11;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;collapsible=0;html=1;strokeColor=#000000;fillColor=#ffffff;" value="Category" vertex="1">
+          <mxGeometry x="560" y="90" width="170" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="Category_a" parent="Category" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=10;html=1;" value="- Id: int&lt;br&gt;- Name: string" vertex="1">
+          <mxGeometry y="26" width="170" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="Product" parent="1" style="swimlane;fontStyle=1;fontSize=11;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;collapsible=0;html=1;strokeColor=#000000;fillColor=#ffffff;" value="Product" vertex="1">
+          <mxGeometry x="560" y="220" width="200" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="Product_a" parent="Product" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=10;html=1;" value="- Id: int&lt;br&gt;- Name: string&lt;br&gt;- Description: string&lt;br&gt;- Composition: string&lt;br&gt;- Price: decimal&lt;br&gt;- Weight: double&lt;br&gt;- ImagePath: string&lt;br&gt;- IsAvailable: bool&lt;br&gt;- CategoryId: int?" vertex="1">
+          <mxGeometry y="26" width="200" height="142" as="geometry" />
+        </mxCell>
+
+        <!-- Сущности: средний ряд -->
+        <mxCell id="User" parent="1" style="swimlane;fontStyle=1;fontSize=11;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;collapsible=0;html=1;strokeColor=#000000;fillColor=#ffffff;" value="User" vertex="1">
+          <mxGeometry x="240" y="420" width="175" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="User_a" parent="User" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=10;html=1;" value="- Id: int&lt;br&gt;- Name: string&lt;br&gt;- Email: string&lt;br&gt;- PasswordHash: string&lt;br&gt;- Role: string&lt;br&gt;- Phone: string" vertex="1">
+          <mxGeometry y="26" width="175" height="92" as="geometry" />
+        </mxCell>
+
+        <mxCell id="Order" parent="1" style="swimlane;fontStyle=1;fontSize=11;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;collapsible=0;html=1;strokeColor=#000000;fillColor=#ffffff;" value="Order" vertex="1">
+          <mxGeometry x="460" y="400" width="210" height="188" as="geometry" />
+        </mxCell>
+        <mxCell id="Order_a" parent="Order" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=10;html=1;" value="- Id: int&lt;br&gt;- OrderNumber: int&lt;br&gt;- UserId: int&lt;br&gt;- CreatedAt: DateTime&lt;br&gt;- Status: OrderStatus&lt;br&gt;- DeliveryType: DeliveryType&lt;br&gt;- PaymentMethod: PaymentMethod&lt;br&gt;- PickupLocation: string&lt;br&gt;- DeliveryAddress: string&lt;br&gt;- DeliveryPhone: string&lt;br&gt;- Comment: string&lt;br&gt;- TotalPrice: decimal&lt;br&gt;- HasStatusNotification: bool" vertex="1">
+          <mxGeometry y="26" width="210" height="162" as="geometry" />
+        </mxCell>
+
+        <mxCell id="OrderItem" parent="1" style="swimlane;fontStyle=1;fontSize=11;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;collapsible=0;html=1;strokeColor=#000000;fillColor=#ffffff;" value="OrderItem" vertex="1">
+          <mxGeometry x="240" y="220" width="185" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="OrderItem_a" parent="OrderItem" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=10;html=1;" value="- Id: int&lt;br&gt;- OrderId: int&lt;br&gt;- ProductId: int?&lt;br&gt;- ProductName: string&lt;br&gt;- Quantity: int&lt;br&gt;- UnitPrice: decimal" vertex="1">
+          <mxGeometry y="26" width="185" height="102" as="geometry" />
+        </mxCell>
+
+        <!-- Review — нижний ряд -->
+        <mxCell id="Review" parent="1" style="swimlane;fontStyle=1;fontSize=11;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;collapsible=0;html=1;strokeColor=#000000;fillColor=#ffffff;" value="Review" vertex="1">
+          <mxGeometry x="460" y="620" width="185" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="Review_a" parent="Review" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;fontSize=10;html=1;" value="- Id: int&lt;br&gt;- UserId: int&lt;br&gt;- ProductId: int&lt;br&gt;- Text: string&lt;br&gt;- Rating: int&lt;br&gt;- AdminReply: string&lt;br&gt;- CreatedAt: DateTime" vertex="1">
+          <mxGeometry y="26" width="185" height="92" as="geometry" />
+        </mxCell>
+
+        <!-- Связи без пересечений -->
+
+        <!-- Category 1 — 1..* Product (вертикально вниз) -->
+        <mxCell id="e_cat_prod" edge="1" parent="1" source="Category" target="Product" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=none;startArrow=diamondThin;startFill=0;startSize=14;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry x="-0.3" y="-12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cat_prod_l1" connectable="0" parent="e_cat_prod" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint y="-10" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_cat_prod_l2" connectable="0" parent="e_cat_prod" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="1..*" vertex="1">
+          <mxGeometry x="0.65" relative="1" as="geometry"><mxPoint y="-10" as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- OrderItem * — 0..1 Product (горизонтально вправо) -->
+        <mxCell id="e_oi_prod" edge="1" parent="1" source="OrderItem" target="Product" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=none;exitX=1;exitY=0.35;entryX=0;entryY=0.5;">
+          <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_oi_prod_l1" connectable="0" parent="e_oi_prod" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="*" vertex="1">
+          <mxGeometry x="-0.75" relative="1" as="geometry"><mxPoint y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_oi_prod_l2" connectable="0" parent="e_oi_prod" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="0..1" vertex="1">
+          <mxGeometry x="0.7" relative="1" as="geometry"><mxPoint y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- Order 1 — 1..* OrderItem (вертикально вверх, композиция) -->
+        <mxCell id="e_ord_oi" edge="1" parent="1" source="Order" target="OrderItem" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=none;startArrow=diamond;startFill=1;startSize=14;exitX=0;exitY=0.2;entryX=1;entryY=0.65;">
+          <mxGeometry x="-0.15" y="10" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="438" />
+              <mxPoint x="440" y="303" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_ord_oi_l1" connectable="0" parent="e_ord_oi" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry x="-0.65" relative="1" as="geometry"><mxPoint x="-8" y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_ord_oi_l2" connectable="0" parent="e_ord_oi" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="1..*" vertex="1">
+          <mxGeometry x="0.7" relative="1" as="geometry"><mxPoint x="8" y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- User 1 — 1..* Order (горизонтально вправо, агрегация) -->
+        <mxCell id="e_user_ord" edge="1" parent="1" source="User" target="Order" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=none;startArrow=diamondThin;startFill=0;startSize=14;exitX=1;exitY=0.35;entryX=0;entryY=0.55;">
+          <mxGeometry x="-0.15" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_ord_l1" connectable="0" parent="e_user_ord" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_ord_l2" connectable="0" parent="e_user_ord" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="1..*" vertex="1">
+          <mxGeometry x="0.65" relative="1" as="geometry"><mxPoint y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- User 1 — * Review (вниз, затем вправо) -->
+        <mxCell id="e_user_rev" edge="1" parent="1" source="User" target="Review" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=none;exitX=0.5;exitY=1;entryX=0;entryY=0.5;">
+          <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="327" y="580" />
+              <mxPoint x="420" y="580" />
+              <mxPoint x="420" y="679" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_rev_l1" connectable="0" parent="e_user_rev" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry x="-0.75" relative="1" as="geometry"><mxPoint y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_rev_l2" connectable="0" parent="e_user_rev" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="*" vertex="1">
+          <mxGeometry x="0.75" relative="1" as="geometry"><mxPoint y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- Product 1 — * Review (вниз слева от Product) -->
+        <mxCell id="e_prod_rev" edge="1" parent="1" source="Product" target="Review" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=none;exitX=0.25;exitY=1;entryX=1;entryY=0.35;">
+          <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="580" />
+              <mxPoint x="680" y="580" />
+              <mxPoint x="680" y="661" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_prod_rev_l1" connectable="0" parent="e_prod_rev" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="1" vertex="1">
+          <mxGeometry x="-0.75" relative="1" as="geometry"><mxPoint y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_prod_rev_l2" connectable="0" parent="e_prod_rev" style="edgeLabel;html=1;fontSize=10;labelBackgroundColor=#ffffff;" value="*" vertex="1">
+          <mxGeometry x="0.75" relative="1" as="geometry"><mxPoint y="-8" as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- Зависимости Order → перечисления (слева, без пересечения с сущностями) -->
+        <mxCell id="d1" edge="1" parent="1" source="Order" target="OrderStatus" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=open;endFill=0;dashed=1;dashPattern=8 8;exitX=0;exitY=0.25;entryX=1;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="447" />
+              <mxPoint x="220" y="149" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d2" edge="1" parent="1" source="Order" target="DeliveryType" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=open;endFill=0;dashed=1;dashPattern=8 8;exitX=0;exitY=0.4;entryX=1;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="475" />
+              <mxPoint x="210" y="274" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3" edge="1" parent="1" source="Order" target="PaymentMethod" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#000000;strokeWidth=1;endArrow=open;endFill=0;dashed=1;dashPattern=8 8;exitX=0;exitY=0.55;entryX=1;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="503" />
+              <mxPoint x="200" y="384" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="legend" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=10;strokeColor=#000000;fillColor=#f5f5f5;spacing=4;" value="&lt;b&gt;Обозначения:&lt;/b&gt;&lt;br&gt;◇—— агрегация;&amp;nbsp; ◆—— композиция;&amp;nbsp; —— ассоциация&lt;br&gt;- - -▷ зависимость (использование перечисления)" vertex="1">
+          <mxGeometry x="40" y="620" width="280" height="52" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
