@@ -1,4 +1,4 @@
-﻿using ConfectioneryShop.Models;
+using ConfectioneryShop.Models;
 using Lab_06_OOP.ViewModels;
 
 namespace ConfectioneryShop.Views
@@ -12,4 +12,3 @@ namespace ConfectioneryShop.Views
         }
     }
 }
-

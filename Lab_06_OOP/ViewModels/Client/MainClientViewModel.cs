@@ -78,7 +78,7 @@ namespace Confectionery.ViewModels.Client
 
             CartVM.ItemsChanged += count => CartItemCount = count;
 
-            // When the client reads an order notification, refresh the sidebar badge immediately
+
             OrdersVM.NotificationCountChanged += RefreshOrderNotification;
 
             ShowShowcaseCommand = new RelayCommand(p =>
@@ -99,7 +99,7 @@ namespace Confectionery.ViewModels.Client
             });
             ShowOrdersCommand = new RelayCommand(p =>
             {
-                OrdersVM.LoadOrders();   // marks all as seen inside
+                OrdersVM.LoadOrders();   
                 OrdersNotificationCount = 0;
                 CurrentView = OrdersVM;
             });
@@ -116,13 +116,13 @@ namespace Confectionery.ViewModels.Client
                 navigation.NavigateToLogin();
             });
 
-            // Showcase may navigate to catalog
+
             ShowcaseVM.NavigateToCatalogCommand = ShowCatalogCommand;
 
-            // Check for pending notifications right after login
+
             RefreshOrderNotification();
 
-            // Start on Showcase
+
             CurrentView = ShowcaseVM;
         }
 
@@ -130,8 +130,8 @@ namespace Confectionery.ViewModels.Client
         {
             var userId = SessionService.CurrentUser?.Id ?? 0;
             if (userId <= 0) return;
-            // AsNoTracking query — always reads fresh data from DB,
-            // bypasses EF identity cache so admin changes are immediately visible.
+
+
             OrdersNotificationCount = _uow.Orders.GetNotificationCount(userId);
         }
     }

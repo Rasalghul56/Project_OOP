@@ -3,9 +3,8 @@ using System.Windows.Controls;
 
 namespace Confectionery.Helpers
 {
-    /// <summary>
-    /// Attached property for two-way binding of PasswordBox.Password in MVVM.
-    /// </summary>
+
+
     public static class PasswordBoxHelper
     {
         public static readonly DependencyProperty BoundPassword =

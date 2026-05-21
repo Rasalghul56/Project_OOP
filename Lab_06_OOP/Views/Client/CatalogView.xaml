@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              FontFamily="{StaticResource PrimaryFont}">
     <DockPanel>
-        <!-- Панель фильтров -->
+
         <Border DockPanel.Dock="Top" Margin="0,0,0,16" Padding="14,10"
                 Style="{StaticResource Card}">
             <StackPanel>
 
-                <!-- Ряд 1: pill-кнопки категорий -->
+
                 <ScrollViewer HorizontalScrollBarVisibility="Auto"
                               VerticalScrollBarVisibility="Disabled"
                               Margin="0,0,0,10">
@@ -37,12 +37,12 @@
                                                            Foreground="{DynamicResource AccentBrush}"/>
                                             </Border>
                                             <ControlTemplate.Triggers>
-                                                <!-- Hover -->
+
                                                 <Trigger Property="IsMouseOver" Value="True">
                                                     <Setter TargetName="Bd" Property="Background"
                                                             Value="{DynamicResource AccentLightBrush}"/>
                                                 </Trigger>
-                                                <!-- Selected (after hover so it wins) -->
+
                                                 <DataTrigger Value="True">
                                                     <DataTrigger.Binding>
                                                         <MultiBinding Converter="{StaticResource ObjectEqualityConverter}">
@@ -65,7 +65,7 @@
                     </ItemsControl>
                 </ScrollViewer>
 
-                <!-- Ряд 2: поиск + сортировка + сброс -->
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -75,7 +75,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Поиск -->
+
                     <Grid Grid.Column="0">
                         <TextBox Style="{StaticResource ModernTextBox}"
                                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
@@ -85,12 +85,12 @@
                                    IsHitTestVisible="False"/>
                     </Grid>
 
-                    <!-- Сортировка -->
+
                     <ComboBox Grid.Column="2"
                               ItemsSource="{Binding SortOptions}"
                               SelectedItem="{Binding SelectedSort}"/>
 
-                    <!-- Сброс -->
+
                     <Button Grid.Column="4" Content="✕"
                             Style="{StaticResource IconButton}"
                             Width="34" Height="34" FontSize="13"
@@ -100,7 +100,7 @@
             </StackPanel>
         </Border>
 
-        <!-- Список товаров -->
+
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Products}">
                 <ItemsControl.ItemsPanel>
@@ -110,7 +110,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <!-- Фиксированная высота — кнопки всегда на одном уровне -->
+
                         <Border Style="{StaticResource ProductCard}" Width="210" Height="320">
                             <Border.InputBindings>
                                 <MouseBinding MouseAction="LeftDoubleClick"
@@ -120,20 +120,20 @@
                             </Border.InputBindings>
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <!-- Весь контент растягивается -->
+
                                     <RowDefinition Height="*"/>
-                                    <!-- Кнопки всегда внизу -->
+
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <!-- Верхний контент -->
+
                                 <StackPanel Grid.Row="0" VerticalAlignment="Top">
-                                    <!-- Изображение / плейсхолдер -->
+
                                     <Border CornerRadius="8" ClipToBounds="True"
                                             Height="130" Margin="0,0,0,10"
                                             Background="{DynamicResource AccentLightBrush}">
                                         <Grid>
-                                            <!-- Emoji: shown when no image / file missing -->
+
                                             <TextBlock Text="{Binding Category.Name,
                                                            Converter={StaticResource CategoryEmojiConverter}}"
                                                        FontSize="48"
@@ -142,7 +142,7 @@
                                                        Opacity="0.75"
                                                        Visibility="{Binding ImagePath,
                                                            Converter={StaticResource ImageFileMissingConverter}}"/>
-                                            <!-- Real image: shown only when file exists on disk -->
+
                                             <Image Stretch="UniformToFill"
                                                    Source="{Binding ImagePath, Converter={StaticResource ImagePathConverter}}"
                                                    Visibility="{Binding ImagePath,
@@ -150,7 +150,7 @@
                                         </Grid>
                                     </Border>
 
-                                    <!-- Категория -->
+
                                     <TextBlock Text="{Binding Category.Name,
                                                    Converter={StaticResource CategoryNameConverter}}"
                                                FontSize="10" FontWeight="SemiBold"
@@ -158,7 +158,7 @@
                                                TextTrimming="CharacterEllipsis"
                                                Margin="0,0,0,3"/>
 
-                                    <!-- Название (до 2 строк) -->
+
                                     <TextBlock Text="{Binding Name}"
                                                FontSize="14" FontWeight="Bold"
                                                Foreground="{DynamicResource TextDarkBrush}"
@@ -167,20 +167,20 @@
                                                TextTrimming="CharacterEllipsis"
                                                Margin="0,0,0,4"/>
 
-                                    <!-- Рейтинг и вес -->
+
                                     <TextBlock FontSize="11"
                                                Foreground="{DynamicResource TextMediumBrush}"
                                                Margin="0,0,0,6">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="⭐ {0} · {1} г">
-                                                <Binding Path="Reviews" Converter="{StaticResource RatingToStarsConverter}"/>
+                                                <Binding Converter="{StaticResource RatingToStarsConverter}"/>
                                                 <Binding Path="Weight"/>
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
                                 </StackPanel>
 
-                                <!-- Нижний блок: цена + кнопки (всегда внизу) -->
+
                                 <StackPanel Grid.Row="1">
                                     <TextBlock Text="{Binding Price, Converter={StaticResource PriceFormatConverter}}"
                                                FontSize="17" FontWeight="Bold"

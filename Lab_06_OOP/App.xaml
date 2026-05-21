@@ -1,4 +1,4 @@
-﻿<Application x:Class="Confectionery.App"
+<Application x:Class="Confectionery.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:h="clr-namespace:Confectionery.Helpers"
@@ -6,15 +6,15 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- 1. Цвета темы (меняется при смене темы) -->
+
                 <ResourceDictionary Source="/Lab_06_OOP;component/Resources/Themes/LightTheme.xaml"/>
-                <!-- 2. Языковые строки (меняется при смене языка) -->
+
                 <ResourceDictionary Source="/Lab_06_OOP;component/Resources/Strings.ru.xaml"/>
-                <!-- 3. Стили (используют DynamicResource из темы) -->
+
                 <ResourceDictionary Source="/Lab_06_OOP;component/Resources/AppTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Конвертеры -->
+
             <h:OrderStatusToStringConverter   x:Key="OrderStatusToStringConverter"/>
             <h:OrderStatusToStringConverter   x:Key="OrderStatusConverter"/>
             <h:OrderStatusToColorConverter    x:Key="OrderStatusToColorConverter"/>

@@ -56,7 +56,7 @@ namespace ConfectioneryShop.Data
             }
         }
 
-  
+
         private static List<Product> GetSampleProducts()
         {
             return new List<Product>

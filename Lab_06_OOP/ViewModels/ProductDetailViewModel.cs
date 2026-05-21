@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Input;
 using ConfectioneryShop.Models;
 using Lab_06_OOP;
@@ -41,4 +41,3 @@ namespace Lab_06_OOP.ViewModels
         }
     }
 }
-

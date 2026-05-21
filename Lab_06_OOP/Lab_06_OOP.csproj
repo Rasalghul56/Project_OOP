@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -36,7 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <!-- ─────────── References ─────────── -->
+
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -65,7 +65,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
-  <!-- ─────────── App ─────────── -->
+
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -76,7 +76,7 @@
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
-  <!-- ─────────── Models ─────────── -->
+
   <ItemGroup>
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Category.cs" />
@@ -85,11 +85,11 @@
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Review.cs" />
   </ItemGroup>
-  <!-- ─────────── Data ─────────── -->
+
   <ItemGroup>
     <Compile Include="Data\AppDbContext.cs" />
   </ItemGroup>
-  <!-- ─────────── Repositories ─────────── -->
+
   <ItemGroup>
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -104,12 +104,12 @@
     <Compile Include="Repositories\IReviewRepository.cs" />
     <Compile Include="Repositories\ReviewRepository.cs" />
   </ItemGroup>
-  <!-- ─────────── UnitOfWork ─────────── -->
+
   <ItemGroup>
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
-  <!-- ─────────── Services ─────────── -->
+
   <ItemGroup>
     <Compile Include="Services\SessionService.cs" />
     <Compile Include="Services\IAuthService.cs" />
@@ -119,17 +119,19 @@
     <Compile Include="Services\ThemeService.cs" />
     <Compile Include="Services\LanguageService.cs" />
   </ItemGroup>
-  <!-- ─────────── Helpers ─────────── -->
+
   <ItemGroup>
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
     <Compile Include="Helpers\Converters.cs" />
+    <Compile Include="Helpers\ReviewRatingHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\OrderItemNameConverter.cs" />
     <Compile Include="Helpers\PhoneValidationHelper.cs" />
+    <Compile Include="Helpers\NameValidationHelper.cs" />
   </ItemGroup>
-  <!-- ─────────── ViewModels ─────────── -->
+
   <ItemGroup>
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Auth\LoginViewModel.cs" />
@@ -149,7 +151,7 @@
     <Compile Include="ViewModels\Admin\ReviewManagementViewModel.cs" />
     <Compile Include="ViewModels\Admin\AdminViewModel.cs" />
   </ItemGroup>
-  <!-- ─────────── Views ─────────── -->
+
   <ItemGroup>
     <Page Include="Views\Auth\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -264,11 +266,11 @@
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
-  <!-- ─────────── Migrations ─────────── -->
+
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
   </ItemGroup>
-  <!-- ─────────── Resources ─────────── -->
+
   <ItemGroup>
     <Page Include="Resources\AppTheme.xaml">
       <SubType>Designer</SubType>
@@ -295,13 +297,13 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <!-- ─────────── Static resources ─────────── -->
+
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
     <Resource Include="Resources\app.ico" />
   </ItemGroup>
-  <!-- ─────────── Properties ─────────── -->
+
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

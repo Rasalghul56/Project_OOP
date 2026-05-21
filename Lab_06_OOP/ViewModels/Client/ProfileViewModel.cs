@@ -109,7 +109,7 @@ namespace Confectionery.ViewModels.Client
                 return;
             }
 
-            // Загружаем свежую сущность из текущего UoW-контекста
+
             var user = _uow.Users.GetById(session.Id);
             if (user == null) return;
 
@@ -118,7 +118,7 @@ namespace Confectionery.ViewModels.Client
             _uow.Users.Update(user);
             _uow.Save();
 
-            // Синхронизируем SessionService
+
             session.Name  = user.Name;
             session.Phone = user.Phone;
 

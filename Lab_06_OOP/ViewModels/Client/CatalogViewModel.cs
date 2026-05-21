@@ -59,7 +59,7 @@ namespace Confectionery.ViewModels.Client
         public ICommand RefreshCommand        { get; }
         public ICommand ShowDetailCommand     { get; }
 
-        // Backward compat alias used in XAML
+
         public ICommand ClearCategoryCommand => ClearFiltersCommand;
 
         public CatalogViewModel(IUnitOfWork uow, CartViewModel cart)
@@ -77,7 +77,7 @@ namespace Confectionery.ViewModels.Client
                 OnPropertyChanged(nameof(SearchText));
                 SelectedSort     = SortOptions.FirstOrDefault();
                 SelectedCategory = Categories.FirstOrDefault();
-                // ApplyFilter вызывается цепочкой через SelectedCategory setter
+
             });
             RefreshCommand    = new RelayCommand(p => LoadData());
             ShowDetailCommand = new RelayCommand(p => { if (p is Product pr) OpenDetail(pr); });
@@ -89,20 +89,28 @@ namespace Confectionery.ViewModels.Client
 
         private void OnLanguageChanged()
         {
-            // Пересоздаём сортировки, сохраняя индекс выбранного
+
             int sortIdx = SortOptions.IndexOf(SelectedSort);
             RebuildSortOptions();
             SelectedSort = sortIdx >= 0 && sortIdx < SortOptions.Count
                 ? SortOptions[sortIdx]
                 : SortOptions[0];
 
-            // Пересоздаём список категорий (чтобы обновился ярлык «Все»)
+
             var prevId = SelectedCategory?.Id ?? 0;
             LoadCategories();
             SelectedCategory = Categories.FirstOrDefault(c => c.Id == prevId)
                                ?? Categories.First();
 
             ApplyFilter();
+            RefreshProductBindings();
+        }
+
+        private void RefreshProductBindings()
+        {
+            var snapshot = Products.ToList();
+            Products.Clear();
+            foreach (var p in snapshot) Products.Add(p);
         }
 
         private void LoadCategories()
@@ -125,7 +133,9 @@ namespace Confectionery.ViewModels.Client
             SelectedCategory = Categories.First();
 
             _allProducts.Clear();
-            foreach (var p in _uow.Products.GetAvailable()) _allProducts.Add(p);
+            var products = _uow.Products.GetAvailable().ToList();
+            _uow.Products.AttachReviews(products);
+            foreach (var p in products) _allProducts.Add(p);
 
             ApplyFilter();
         }
@@ -153,7 +163,7 @@ namespace Confectionery.ViewModels.Client
 
         private IEnumerable<Product> ApplySort(IEnumerable<Product> source)
         {
-            // Сравниваем по индексу в текущем SortOptions (независимо от языка)
+
             int idx = SortOptions.IndexOf(SelectedSort);
             switch (idx)
             {
@@ -161,8 +171,7 @@ namespace Confectionery.ViewModels.Client
                 case 2: return source.OrderBy(p => p.Price);
                 case 3: return source.OrderByDescending(p => p.Price);
                 case 4: return source.OrderByDescending(p =>
-                    p.Reviews != null && p.Reviews.Any()
-                        ? p.Reviews.Average(r => r.Rating) : 0);
+                    ReviewRatingHelper.GetAverage(p.Reviews) ?? 0);
                 default: return source.OrderBy(p => p.Name);
             }
         }

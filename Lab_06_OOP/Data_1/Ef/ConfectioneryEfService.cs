@@ -7,9 +7,8 @@ using ConfectioneryShop.Models;
 
 namespace ConfectioneryShop.Data.Ef
 {
-    /// <summary>
-    /// CRUD, LINQ to Entities, сортировка, фильтрация, поиск, async и транзакции (лаб. 9).
-    /// </summary>
+
+
     public static class ConfectioneryEfService
     {
         public static Product MapToUi(ProductEntity p)
@@ -142,7 +141,7 @@ namespace ConfectioneryShop.Data.Ef
             }
         }
 
-        /// <summary>Поиск по одному полю (подстрока в названии или описании).</summary>
+
         public static List<Product> SearchOneField(string term)
         {
             var t = (term ?? "").Trim();
@@ -158,7 +157,7 @@ namespace ConfectioneryShop.Data.Ef
             }
         }
 
-        /// <summary>Фильтрация и поиск по нескольким словам (все слова должны встречаться в ShortName/Description).</summary>
+
         public static List<Product> FilterAndSearchMulti(decimal? minPrice, string categoryPart, string spaceSeparatedWords)
         {
             using (var ctx = new ConfectioneryDbContext())
@@ -211,7 +210,7 @@ namespace ConfectioneryShop.Data.Ef
             }
         }
 
-        /// <summary>Асинхронная выборка с фильтром (LINQ to Entities).</summary>
+
         public static async Task<int> CountInStockInCategoryAsync(string categoryName)
         {
             using (var ctx = new ConfectioneryDbContext())
@@ -224,7 +223,7 @@ namespace ConfectioneryShop.Data.Ef
             }
         }
 
-        /// <summary>Демонстрация транзакции с откатом: запись не остаётся в БД.</summary>
+
         public static string DemoTransactionRollback()
         {
             var marker = "__EF_LAB9_ROLLBACK__" + Guid.NewGuid().ToString("N").Substring(0, 6);
@@ -252,7 +251,7 @@ namespace ConfectioneryShop.Data.Ef
             }
         }
 
-        /// <summary>Демонстрация CRUD для сущности Tag и связи многие-ко-многим.</summary>
+
         public static string DemoCrudTagOnFirstProduct()
         {
             using (var ctx = new ConfectioneryDbContext())

@@ -149,7 +149,7 @@
                              Height="50" TextWrapping="Wrap"
                              VerticalContentAlignment="Top" Padding="10,8" Margin="0,0,0,10"/>
 
-                    <!-- Фото товара -->
+
                     <TextBlock Text="{DynamicResource Prod_Image}" Style="{StaticResource LabelText}"/>
                     <Grid Margin="0,0,0,6">
                         <Grid.ColumnDefinitions>
@@ -170,7 +170,7 @@
                                 IsEnabled="{Binding IsEditing}"
                                 Command="{Binding BrowseImageCommand}"/>
                     </Grid>
-                    <!-- Предпросмотр -->
+
                     <Border CornerRadius="6" Margin="0,0,0,10" Height="100"
                             Background="{DynamicResource SurfaceBrush}"
                             Visibility="{Binding FormImagePath, Converter={StaticResource ImageFileExistsConverter}}">

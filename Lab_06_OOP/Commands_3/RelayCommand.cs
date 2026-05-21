@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Input;
 
 namespace Lab_06_OOP.Commands
@@ -24,4 +24,4 @@ namespace Lab_06_OOP.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
     }
-} 
+}

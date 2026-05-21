@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConfectioneryShop.Data.Ef
 {
-    /// <summary>Метка товара (многие-ко-многим с Product через ProductTag).</summary>
+
     [Table("Tag")]
     public class TagEntity
     {

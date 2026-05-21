@@ -27,7 +27,7 @@ namespace Confectionery.ViewModels.Admin
             }
         }
 
-        // Псевдоним, который ожидает XAML
+
         public string AdminReply
         {
             get => _replyText;

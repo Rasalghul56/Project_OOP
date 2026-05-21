@@ -1,4 +1,4 @@
-﻿using Lab_06_OOP;
+using Lab_06_OOP;
 using Lab_06_OOP.Commands;
 using Lab_06_OOP.UserControls;
 using Lab_06_OOP.ViewModels;
@@ -137,4 +137,3 @@ namespace ConfectioneryShop
         }
     }
 }
-

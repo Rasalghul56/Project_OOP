@@ -10,7 +10,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="28,24">
 
-            <!-- Шапка: название + цена -->
+
             <Grid Margin="0,0,0,16">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -44,7 +44,7 @@
                 </StackPanel>
             </Grid>
 
-            <!-- Изображение: целиком, без обрезки, с ограничением по высоте -->
+
             <Border CornerRadius="12" ClipToBounds="True" Margin="0,0,0,16"
                     Background="{DynamicResource AccentLightBrush}"
                     Padding="16" MinHeight="220">
@@ -70,7 +70,7 @@
                 </Grid>
             </Border>
 
-            <!-- Описание + Состав -->
+
             <Border Style="{StaticResource Card}" Margin="0,0,0,12">
                 <StackPanel>
                     <TextBlock Text="{DynamicResource Detail_Description}" Style="{StaticResource LabelText}" FontSize="13"/>
@@ -86,13 +86,13 @@
                 </StackPanel>
             </Border>
 
-            <!-- Кнопка в корзину -->
+
             <Button Content="{DynamicResource Detail_AddToCart}"
                     Style="{StaticResource PrimaryButton}"
                     Height="44" Margin="0,0,0,24"
                     Command="{Binding AddToCartCommand}"/>
 
-            <!-- Отзывы -->
+
             <TextBlock Text="{DynamicResource Detail_Reviews}"
                        FontSize="18" FontWeight="Bold"
                        Foreground="{DynamicResource TextDarkBrush}"
@@ -117,7 +117,7 @@
                                Converter={StaticResource NullToVisibilityConverter}}"/>
             </StackPanel>
 
-            <!-- Форма отзыва -->
+
             <Border Style="{StaticResource Card}" Margin="0,0,0,16"
                     Visibility="{Binding IsReviewFormVisible,
                         Converter={StaticResource BoolToVisibilityConverter}}">
@@ -126,7 +126,7 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                         <Slider Minimum="1" Maximum="5" TickFrequency="1"
                                 IsSnapToTickEnabled="True"
-                                Value="{Binding NewRating}"
+                                Value="{Binding NewRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 Width="160" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding NewRating}" Margin="10,0,0,0"
                                    FontSize="22" FontWeight="Bold"
@@ -148,7 +148,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- Список отзывов -->
+
             <ItemsControl ItemsSource="{Binding Reviews}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -165,10 +165,8 @@
                                     </StackPanel>
                                     <TextBlock HorizontalAlignment="Right"
                                                FontSize="14" Foreground="#FFC107"
-                                               VerticalAlignment="Top">
-                                        <Run Text="{Binding Rating}"/>
-                                        <Run Text="⭐"/>
-                                    </TextBlock>
+                                               VerticalAlignment="Top"
+                                               Text="{Binding Rating, Converter={StaticResource RatingToStarsConverter}}"/>
                                 </Grid>
                                 <TextBlock Text="{Binding Text}"
                                            TextWrapping="Wrap" FontSize="13"

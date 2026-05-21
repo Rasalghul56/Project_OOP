@@ -1,144 +1,170 @@
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-using Confectionery.Helpers;
-using Confectionery.Models;
-using Confectionery.Services;
-using Confectionery.UnitOfWork;
-using Confectionery.ViewModels.Base;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+using Confectionery.Helpers;
+using Confectionery.Models;
+using Confectionery.Services;
+using Confectionery.UnitOfWork;
+using Confectionery.ViewModels.Base;
 
-namespace Confectionery.ViewModels.Client
-{
-    /// <summary>Главная витрина: популярное, новинки, рекомендации, категории.</summary>
-    public class ShowcaseViewModel : BaseViewModel
-    {
-        private readonly IUnitOfWork  _uow;
-        private readonly CartViewModel _cart;
+namespace Confectionery.ViewModels.Client
+{
 
-        public ObservableCollection<Product>  PopularProducts    { get; } = new ObservableCollection<Product>();
-        public ObservableCollection<Product>  NewProducts        { get; } = new ObservableCollection<Product>();
-        public ObservableCollection<Product>  RecommendedProducts{ get; } = new ObservableCollection<Product>();
-        public ObservableCollection<Category> Categories         { get; } = new ObservableCollection<Category>();
+    public class ShowcaseViewModel : BaseViewModel
+    {
+        private readonly IUnitOfWork  _uow;
+        private readonly CartViewModel _cart;
 
-        public string WelcomeText => $"Добро пожаловать, {SessionService.CurrentUser?.Name ?? "гость"}! 👋";
+        private string _welcomeText;
 
-        public ICommand AddToCartCommand  { get; }
-        public ICommand ShowDetailCommand { get; }
+        public ObservableCollection<Product>  PopularProducts    { get; } = new ObservableCollection<Product>();
+        public ObservableCollection<Product>  NewProducts        { get; } = new ObservableCollection<Product>();
+        public ObservableCollection<Product>  RecommendedProducts{ get; } = new ObservableCollection<Product>();
+        public ObservableCollection<Category> Categories         { get; } = new ObservableCollection<Category>();
 
-        // Навигация — ссылки на команды главного окна (устанавливаются снаружи)
-        public ICommand NavigateToCatalogCommand { get; set; }
-        public ICommand NavigateToCategoryCommand { get; }
+        public string WelcomeText
+        {
+            get => _welcomeText;
+            private set => SetProperty(ref _welcomeText, value);
+        }
 
-        public ShowcaseViewModel(IUnitOfWork uow, CartViewModel cart)
-        {
-            _uow  = uow;
-            _cart = cart;
+        public ICommand AddToCartCommand  { get; }
+        public ICommand ShowDetailCommand { get; }
 
-            AddToCartCommand  = new RelayCommand(p => { if (p is Product pr) _cart.AddProduct(pr); });
-            ShowDetailCommand = new RelayCommand(p =>
-            {
-                if (!(p is Product pr)) return;
-                var full = _uow.Products.GetWithDetails(pr.Id);
-                var vm   = new ProductDetailViewModel(_uow, full, _cart);
-                new Views.Client.ProductDetailWindow { DataContext = vm }.Show();
-            });
-            NavigateToCategoryCommand = new RelayCommand(p =>
-            {
-                // Перейти в каталог с выбранной категорией (NavigateToCatalogCommand задаётся снаружи)
-                NavigateToCatalogCommand?.Execute(p);
-            });
+        public ICommand NavigateToCatalogCommand { get; set; }
+        public ICommand NavigateToCategoryCommand { get; }
 
-            Load();
-        }
+        public ShowcaseViewModel(IUnitOfWork uow, CartViewModel cart)
+        {
+            _uow  = uow;
+            _cart = cart;
 
-        public void Load()
-        {
-            LoadPopular();
-            LoadNew();
-            LoadRecommended();
-            LoadCategories();
-        }
+            AddToCartCommand  = new RelayCommand(p => { if (p is Product pr) _cart.AddProduct(pr); });
+            ShowDetailCommand = new RelayCommand(p =>
+            {
+                if (!(p is Product pr)) return;
+                var full = _uow.Products.GetWithDetails(pr.Id);
+                var vm   = new ProductDetailViewModel(_uow, full, _cart);
+                new Views.Client.ProductDetailWindow { DataContext = vm }.Show();
+            });
+            NavigateToCategoryCommand = new RelayCommand(p =>
+                NavigateToCatalogCommand?.Execute(p));
 
-        private void LoadPopular()
-        {
-            PopularProducts.Clear();
-            var all = _uow.Products.GetAvailable().ToList();
+            LanguageService.LanguageChanged += OnLanguageChanged;
+            UpdateWelcomeText();
+            Load();
+        }
 
-            // Топ-6 по среднему рейтингу (у которых есть отзывы), остальные — по имени
-            var withReviews = all
-                .Where(p => p.Reviews != null && p.Reviews.Any())
-                .OrderByDescending(p => p.Reviews.Average(r => r.Rating))
-                .Take(6)
-                .ToList();
+        private void OnLanguageChanged()
+        {
+            UpdateWelcomeText();
+            Load();
+        }
 
-            // Дополняем без отзывов, если меньше 6
-            if (withReviews.Count < 6)
-            {
-                var rest = all
-                    .Where(p => p.Reviews == null || !p.Reviews.Any())
-                    .OrderBy(p => p.Name)
-                    .Take(6 - withReviews.Count);
-                withReviews.AddRange(rest);
-            }
+        private void UpdateWelcomeText()
+        {
+            var user = SessionService.CurrentUser;
+            if (user == null)
+                WelcomeText = GetResourceString("Showcase_WelcomeGuest");
+            else
+            {
+                var fmt = GetResourceString("Showcase_WelcomeUser");
+                WelcomeText = string.Format(fmt, user.Name);
+            }
+        }
 
-            foreach (var p in withReviews) PopularProducts.Add(p);
-        }
+        private static string GetResourceString(string key)
+            => Application.Current.TryFindResource(key) as string ?? key;
 
-        private void LoadNew()
-        {
-            NewProducts.Clear();
-            // Последние 4 добавленных товара
-            var items = _uow.Products.GetAvailable()
-                .OrderByDescending(p => p.Id)
-                .Take(4);
-            foreach (var p in items) NewProducts.Add(p);
-        }
+        public void Load()
+        {
+            LoadPopular();
+            LoadNew();
+            LoadRecommended();
+            LoadCategories();
+        }
 
-        private void LoadRecommended()
-        {
-            RecommendedProducts.Clear();
-            var user = SessionService.CurrentUser;
-            if (user == null) return;
+        private void LoadPopular()
+        {
+            PopularProducts.Clear();
+            var all = _uow.Products.GetAvailable().ToList();
+            _uow.Products.AttachReviews(all);
 
-            // Товары из прошлых заказов пользователя, которые он ещё не заказывал недавно
-            var orders = _uow.Orders.GetByUser(user.Id);
-            var orderedIds = orders
-                .SelectMany(o => o.OrderItems)
-                .Select(oi => oi.ProductId)
-                .Distinct()
-                .ToHashSet();
+            var withReviews = all
+                .Where(p => ReviewRatingHelper.GetAverage(p.Reviews).HasValue)
+                .OrderByDescending(p => ReviewRatingHelper.GetAverage(p.Reviews).Value)
+                .Take(6)
+                .ToList();
 
-            if (orderedIds.Count > 0)
-            {
-                // Похожие: одна категория, но новые позиции
-                var categories = orders
-                    .SelectMany(o => o.OrderItems.Select(oi => oi.Product?.CategoryId ?? 0))
-                    .Distinct()
-                    .ToList();
+            if (withReviews.Count < 6)
+            {
+                var rest = all
+                    .Where(p => !ReviewRatingHelper.GetAverage(p.Reviews).HasValue)
+                    .OrderBy(p => p.Name)
+                    .Take(6 - withReviews.Count);
+                withReviews.AddRange(rest);
+            }
 
-                var recs = _uow.Products.GetAvailable()
-                    .Where(p => p.CategoryId.HasValue && categories.Contains(p.CategoryId.Value) && !orderedIds.Contains(p.Id))
-                    .OrderByDescending(p => p.Id)
-                    .Take(4)
-                    .ToList();
+            foreach (var p in withReviews) PopularProducts.Add(p);
+        }
 
-                foreach (var p in recs) RecommendedProducts.Add(p);
-            }
+        private void LoadNew()
+        {
+            NewProducts.Clear();
+            var items = _uow.Products.GetAvailable()
+                .OrderByDescending(p => p.Id)
+                .Take(4)
+                .ToList();
+            _uow.Products.AttachReviews(items);
+            foreach (var p in items) NewProducts.Add(p);
+        }
 
-            // Если рекомендаций мало — добавляем популярные
-            if (RecommendedProducts.Count < 4)
-            {
-                var more = _uow.Products.GetAvailable()
-                    .Where(p => !orderedIds.Contains(p.Id) && !RecommendedProducts.Contains(p))
-                    .Take(4 - RecommendedProducts.Count);
-                foreach (var p in more) RecommendedProducts.Add(p);
-            }
-        }
+        private void LoadRecommended()
+        {
+            RecommendedProducts.Clear();
+            var user = SessionService.CurrentUser;
+            if (user == null) return;
 
-        private void LoadCategories()
-        {
-            Categories.Clear();
-            foreach (var c in _uow.Categories.GetAll()) Categories.Add(c);
-        }
-    }
+            var orders = _uow.Orders.GetByUser(user.Id);
+            var orderedIds = orders
+                .SelectMany(o => o.OrderItems)
+                .Select(oi => oi.ProductId)
+                .Distinct()
+                .ToHashSet();
+
+            if (orderedIds.Count > 0)
+            {
+                var categories = orders
+                    .SelectMany(o => o.OrderItems.Select(oi => oi.Product?.CategoryId ?? 0))
+                    .Distinct()
+                    .ToList();
+
+                var recs = _uow.Products.GetAvailable()
+                    .Where(p => p.CategoryId.HasValue && categories.Contains(p.CategoryId.Value) && !orderedIds.Contains(p.Id))
+                    .OrderByDescending(p => p.Id)
+                    .Take(4)
+                    .ToList();
+                _uow.Products.AttachReviews(recs);
+
+                foreach (var p in recs) RecommendedProducts.Add(p);
+            }
+
+            if (RecommendedProducts.Count < 4)
+            {
+                var more = _uow.Products.GetAvailable()
+                    .Where(p => !orderedIds.Contains(p.Id) && !RecommendedProducts.Contains(p))
+                    .Take(4 - RecommendedProducts.Count)
+                    .ToList();
+                _uow.Products.AttachReviews(more);
+                foreach (var p in more) RecommendedProducts.Add(p);
+            }
+        }
+
+        private void LoadCategories()
+        {
+            Categories.Clear();
+            foreach (var c in _uow.Categories.GetAll()) Categories.Add(c);
+        }
+    }
 }

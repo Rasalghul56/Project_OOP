@@ -16,7 +16,7 @@ namespace Confectionery.Services
 
         public static event Action ThemeChanged;
 
-        /// <summary>Циклично: Light → Warm → Dark → Light → ...</summary>
+
         public static void Toggle()
         {
             Current = Current == AppTheme.Light  ? AppTheme.Warm

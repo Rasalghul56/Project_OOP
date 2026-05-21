@@ -24,15 +24,7 @@ namespace Confectionery.ViewModels.Client
 
         public ObservableCollection<Review> Reviews { get; } = new ObservableCollection<Review>();
 
-        public string AverageRating
-        {
-            get
-            {
-                if (!Reviews.Any()) return "Нет оценок";
-                var avg = Reviews.Average(r => r.Rating);
-                return $"★ {avg:F1} ({Reviews.Count} отз.)";
-            }
-        }
+        public string AverageRating => ReviewRatingHelper.FormatDetailed(Reviews);
 
         public int NewRating
         {
@@ -93,6 +85,7 @@ namespace Confectionery.ViewModels.Client
             foreach (var r in _uow.Reviews.GetByProduct(Product.Id))
                 Reviews.Add(r);
 
+            SyncProductReviews();
             OnPropertyChanged(nameof(AverageRating));
 
             var user = SessionService.CurrentUser;
@@ -130,12 +123,16 @@ namespace Confectionery.ViewModels.Client
             var user = SessionService.CurrentUser;
             if (user == null) return;
 
+            var rating = NewRating;
+            if (rating < 1) rating = 1;
+            if (rating > 5) rating = 5;
+
             var review = new Review
             {
                 UserId = user.Id,
                 ProductId = Product.Id,
-                Rating = NewRating,
-                Text = NewText
+                Rating = rating,
+                Text = NewText.Trim()
             };
 
             _uow.Reviews.Add(review);
@@ -146,6 +143,16 @@ namespace Confectionery.ViewModels.Client
             IsReviewFormVisible = false;
             StatusMessage = "Спасибо за ваш отзыв!";
             LoadReviews();
+        }
+
+        private void SyncProductReviews()
+        {
+            if (Product.Reviews == null)
+                Product.Reviews = new System.Collections.Generic.List<Review>();
+            else
+                Product.Reviews.Clear();
+            foreach (var r in Reviews)
+                Product.Reviews.Add(r);
         }
     }
 }

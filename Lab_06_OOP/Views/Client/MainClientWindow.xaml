@@ -35,10 +35,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ════════════════ Sidebar ════════════════ -->
+
         <Border Grid.Column="0" Background="{StaticResource SidebarBrush}">
             <DockPanel>
-                <!-- Лого -->
+
                 <StackPanel DockPanel.Dock="Top" Margin="0,24,0,20"
                             HorizontalAlignment="Center">
                     <TextBlock Text="🍰" FontSize="38" HorizontalAlignment="Center"/>
@@ -52,7 +52,7 @@
 
                 <Separator DockPanel.Dock="Top" Background="#40FFFFFF" Margin="16,0"/>
 
-                <!-- Навигация -->
+
                 <StackPanel DockPanel.Dock="Top" Margin="0,12,0,0">
                     <Button Style="{StaticResource SidebarButton}"
                             Command="{Binding ShowShowcaseCommand}">
@@ -63,7 +63,7 @@
                         <TextBlock Text="{DynamicResource Nav_Catalog}"/>
                     </Button>
 
-                    <!-- Корзина + бейдж -->
+
                     <Button Style="{StaticResource SidebarButton}"
                             Command="{Binding ShowCartCommand}"
                             HorizontalContentAlignment="Stretch">
@@ -110,7 +110,7 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Нижняя часть: тема / язык / выход -->
+
                 <StackPanel DockPanel.Dock="Bottom" Margin="12,0,12,20">
                     <Separator Background="#40FFFFFF" Margin="4,0,4,10"/>
                     <Grid Margin="0,0,0,6">
@@ -141,11 +141,11 @@
                     </Button>
                 </StackPanel>
 
-                <Grid/><!-- spacer -->
+                <Grid/>
             </DockPanel>
         </Border>
 
-        <!-- ════════════════ Content ════════════════ -->
+
         <Border Grid.Column="1" Background="{DynamicResource BackgroundBrush}"
                 Margin="0">
             <ContentControl Content="{Binding CurrentView}" Margin="24"

@@ -13,7 +13,7 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <!-- Статы -->
+
                 <WrapPanel Margin="0,0,0,24">
                     <Border Style="{StaticResource StatCard}">
                         <StackPanel>
@@ -65,7 +65,7 @@
                     </Border>
                 </WrapPanel>
 
-                <!-- Статусы -->
+
                 <Border Style="{StaticResource Card}" Margin="0,0,0,16">
                     <StackPanel>
                         <TextBlock Text="{DynamicResource Dash_StatusTitle}"
@@ -132,7 +132,7 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Топ товаров -->
+
                 <Border Style="{StaticResource Card}">
                     <StackPanel>
                         <TextBlock Text="{DynamicResource Dash_TopProducts}"

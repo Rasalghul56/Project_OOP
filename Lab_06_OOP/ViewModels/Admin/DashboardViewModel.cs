@@ -64,7 +64,7 @@ namespace Confectionery.ViewModels.Admin
             TotalProducts   = products.Count;
             TotalClients    = clients.Count;
 
-            // Топ 5 товаров по количеству заказов
+
             var topRaw = orders
                 .SelectMany(o => o.OrderItems)
                 .GroupBy(oi => oi.ProductId)

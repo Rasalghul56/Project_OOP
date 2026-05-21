@@ -2,9 +2,8 @@ using Confectionery.Models;
 
 namespace Confectionery.Services
 {
-    /// <summary>
-    /// Хранит данные текущего авторизованного пользователя на время сессии.
-    /// </summary>
+
+
     public static class SessionService
     {
         public static User CurrentUser { get; private set; }

@@ -7,9 +7,8 @@ using ConfectioneryShop.Models;
 
 namespace Lab_06_OOP
 {
-    /// <summary>
-    /// Фото товара: из поля БД (PhotoData) или из URI/пути ImagePath (привязка к ЭУ).
-    /// </summary>
+
+
     public class ProductImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -30,7 +29,7 @@ namespace Lab_06_OOP
                     }
                     catch
                     {
-                        // ignored
+
                     }
                 }
 
@@ -63,7 +62,7 @@ namespace Lab_06_OOP
                         }
                         catch
                         {
-                            // ignored
+
                         }
 
                         var disk = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, s);
@@ -80,7 +79,7 @@ namespace Lab_06_OOP
                     }
                     catch
                     {
-                        // ignored
+
                     }
                 }
             }

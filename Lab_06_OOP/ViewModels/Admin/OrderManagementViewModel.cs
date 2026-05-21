@@ -16,8 +16,8 @@ namespace Confectionery.ViewModels.Admin
         private readonly IUnitOfWork _uow;
 
         private Order _selectedOrder;
-        private int _filterIndex;   // 0=All, 1=Accepted, 2=Preparing, 3=Ready, 4=Completed
-        private int _statusIndex;   // index inside AvailableStatuses
+        private int _filterIndex;   
+        private int _statusIndex;   
         private DateTime? _dateFrom;
         private DateTime? _dateTo;
 
@@ -31,7 +31,7 @@ namespace Confectionery.ViewModels.Admin
             set
             {
                 SetProperty(ref _selectedOrder, value);
-                if (value != null) _statusIndex = (int)value.Status; // Accepted=0…
+                if (value != null) _statusIndex = (int)value.Status; 
                 OnPropertyChanged(nameof(SelectedStatusInDropdown));
             }
         }
@@ -139,7 +139,7 @@ namespace Confectionery.ViewModels.Admin
 
             foreach (var o in result)
             {
-                // filterIndex 0 = All; 1-4 map to OrderStatus 0-3
+
                 if (_filterIndex == 0 || (int)o.Status == _filterIndex - 1)
                     Orders.Add(o);
             }
@@ -148,7 +148,7 @@ namespace Confectionery.ViewModels.Admin
         private void ExecuteUpdateStatus(object p)
         {
             if (SelectedOrder == null) return;
-            // _statusIndex maps directly to OrderStatus enum (0=Accepted … 3=Completed)
+
             SelectedOrder.Status = (OrderStatus)_statusIndex;
             SelectedOrder.HasStatusNotification = true;
             _uow.Orders.Update(SelectedOrder);

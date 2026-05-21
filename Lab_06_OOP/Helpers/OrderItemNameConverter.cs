@@ -6,7 +6,7 @@ using Confectionery.Models;
 
 namespace Confectionery.Helpers
 {
-    /// <summary>Отображаемое название позиции заказа (сохранённое имя или «товар удалён»).</summary>
+
     public class OrderItemNameConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -18,7 +18,7 @@ namespace Confectionery.Models
         public string PasswordHash { get; set; }
 
         [Required]
-        public string Role { get; set; } // "Admin" or "Client"
+        public string Role { get; set; } 
 
         [MaxLength(20)]
         public string Phone { get; set; }

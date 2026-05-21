@@ -83,12 +83,16 @@ namespace Confectionery.ViewModels.Client
             var user = SessionService.CurrentUser;
             if (user == null) return;
 
+            var rating = NewRating;
+            if (rating < 1) rating = 1;
+            if (rating > 5) rating = 5;
+
             var review = new Review
             {
                 UserId = user.Id,
                 ProductId = _productId,
-                Rating = NewRating,
-                Text = NewText
+                Rating = rating,
+                Text = NewText?.Trim()
             };
 
             _uow.Reviews.Add(review);

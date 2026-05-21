@@ -9,9 +9,8 @@ using ConfectioneryShop.Models;
 
 namespace ConfectioneryShop.Data
 {
-    /// <summary>
-    /// Доступ к БД через ADO.NET: CRUD, транзакции, параметризованные запросы и хранимые процедуры.
-    /// </summary>
+
+
     public static class ConfectioneryRepository
     {
         private static SqlConnection OpenConnection()
@@ -137,7 +136,7 @@ ORDER BY p.ShortName", conn))
             }
         }
 
-        /// <summary>Добавление товара в транзакции (п. 5 ТЗ).</summary>
+
         public static int InsertProduct(Product p)
         {
             using (var conn = OpenConnection())
@@ -193,7 +192,7 @@ VALUES (@cid,@mid,@sn,@fn,@desc,@img,@photo,@price,@qty,@rating,@discount,@color
             }
         }
 
-        /// <summary>Изменение товара в транзакции (п. 5 ТЗ).</summary>
+
         public static void UpdateProduct(Product p)
         {
             using (var conn = OpenConnection())
@@ -272,7 +271,7 @@ WHERE ProductId=@id", conn, tran))
             }
         }
 
-        /// <summary>Синхронизация списка товаров с БД после Undo/Redo (транзакция).</summary>
+
         public static void SyncProductsWithList(List<Product> products)
         {
             using (var conn = OpenConnection())
@@ -423,7 +422,7 @@ WHERE ProductId=@id", conn, tran))
             p.ManufacturerId = mid;
         }
 
-        /// <summary>Параметризованный запрос (п. 4c ТЗ).</summary>
+
         public static DataTable SearchProductsByMinPrice(decimal minPrice, string categoryPart)
         {
             var dt = new DataTable();
@@ -445,7 +444,7 @@ ORDER BY p.Price", conn))
             return dt;
         }
 
-        /// <summary>Хранимая процедура с параметрами.</summary>
+
         public static DataTable ExecUspProductsFilter(string categoryPart, decimal minPrice)
         {
             var dt = new DataTable();
@@ -462,7 +461,7 @@ ORDER BY p.Price", conn))
             return dt;
         }
 
-        /// <summary>Хранимая процедура без параметров, асинхронно (п. 4c ТЗ).</summary>
+
         public static async Task<DataTable> ExecUspCategoryStatsAsync()
         {
             var dt = new DataTable();

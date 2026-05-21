@@ -22,7 +22,7 @@ namespace Confectionery.ViewModels.Admin
         private bool _isEditing;
         private string _statusMessage;
 
-        // Форма
+
         private string _formName;
         private string _formDescription;
         private string _formComposition;
@@ -289,7 +289,7 @@ namespace Confectionery.ViewModels.Admin
             };
             if (dlg.ShowDialog() != true) return;
 
-            // Copy image to AppData — persists across rebuilds and reinstalls
+
             Directory.CreateDirectory(ImageHelper.ImagesDirectory);
 
             var ext      = Path.GetExtension(dlg.FileName);
@@ -298,7 +298,7 @@ namespace Confectionery.ViewModels.Admin
 
             File.Copy(dlg.FileName, dest, overwrite: true);
 
-            // Store only the filename — path is resolved at runtime via ImageHelper
+
             FormImagePath = fileName;
         }
     }

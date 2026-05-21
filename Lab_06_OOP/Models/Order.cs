@@ -30,7 +30,7 @@ namespace Confectionery.Models
     {
         public int Id { get; set; }
 
-        /// <summary>Случайный 6-значный номер для отображения клиенту.</summary>
+
         public int OrderNumber { get; set; }
 
         public int UserId { get; set; }
@@ -42,11 +42,11 @@ namespace Confectionery.Models
 
         public DeliveryType DeliveryType { get; set; }
 
-        // Для самовывоза
+
         [MaxLength(300)]
         public string PickupLocation { get; set; }
 
-        // Для доставки
+
         [MaxLength(500)]
         public string DeliveryAddress { get; set; }
 
@@ -62,16 +62,9 @@ namespace Confectionery.Models
 
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
-        /// <summary>
-        /// Persisted in DB. Set to true by admin when changing the order status.
-        /// Cleared to false when client reads the notification.
-        /// </summary>
+
         public bool HasStatusNotification { get; set; }
 
-        // ── Transient notification support ───────────────────────────────────────
-        // INotifyPropertyChanged is implemented only for this [NotMapped] field
-        // so the DataTrigger in OrdersView can react instantly when the user
-        // clicks on a highlighted order (without reloading the whole list).
 
         public event PropertyChangedEventHandler PropertyChanged;
 

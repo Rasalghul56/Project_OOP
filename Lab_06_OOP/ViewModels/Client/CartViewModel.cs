@@ -16,7 +16,7 @@ namespace Confectionery.ViewModels.Client
 
         private readonly IUnitOfWork _uow;
 
-        // Доставка/самовывоз
+
         private DeliveryType _deliveryType = DeliveryType.Pickup;
         private string _selectedPickupLocation;
         private string _deliveryAddress;
@@ -25,7 +25,7 @@ namespace Confectionery.ViewModels.Client
         private string _comment;
         private string _statusMessage;
 
-        // --- Точки самовывоза ---
+
         public string[] PickupLocations { get; } = { "г. Минск, ул. Бобруйская, 25" };
 
         public ObservableCollection<CartItemViewModel> Items { get; }
@@ -113,7 +113,7 @@ namespace Confectionery.ViewModels.Client
         public int    ItemCount  => Items.Count;
         public bool   IsEmpty    => !Items.Any();
 
-        // Псевдонимы для XAML-биндинга RadioButton
+
         public bool IsCashPayment
         {
             get => _paymentMethod == PaymentMethod.Cash;
@@ -126,7 +126,7 @@ namespace Confectionery.ViewModels.Client
             set { if (value) PaymentMethod = PaymentMethod.Card; }
         }
 
-        /// <summary>Вызывается при изменении числа позиций в корзине.</summary>
+
         public event Action<int> ItemsChanged;
 
         public ICommand IncreaseCommand  { get; }
@@ -222,7 +222,7 @@ namespace Confectionery.ViewModels.Client
             var user = SessionService.CurrentUser;
             if (user == null) return;
 
-            // Генерируем случайный 6-значный номер заказа
+
             int orderNumber = Rng.Next(100000, 999999);
 
             var order = new Order

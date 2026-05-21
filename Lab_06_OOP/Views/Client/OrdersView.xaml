@@ -4,7 +4,7 @@
              xmlns:models="clr-namespace:Confectionery.Models"
              FontFamily="{StaticResource PrimaryFont}">
     <DockPanel>
-        <!-- Title row with unread-notification counter -->
+
         <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
             <TextBlock Text="{DynamicResource Orders_Title}"
                        Style="{StaticResource SectionHeader}"
@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Список заказов -->
+
             <ListBox Grid.Column="0"
                      ItemsSource="{Binding Orders}"
                      SelectedItem="{Binding SelectedOrder}"
@@ -51,7 +51,7 @@
                             <Border.Style>
                                 <Style TargetType="Border" BasedOn="{StaticResource Card}">
                                     <Style.Triggers>
-                                        <!-- Highlight orders whose status has just changed -->
+
                                         <DataTrigger Binding="{Binding IsStatusChanged}" Value="True">
                                             <Setter Property="BorderBrush"
                                                     Value="{DynamicResource AccentBrush}"/>
@@ -84,7 +84,7 @@
                                                    Visibility="{Binding IsStatusChanged,
                                                        Converter={StaticResource BoolToVisibilityConverter}}"/>
                                     </StackPanel>
-                                    <!-- Краткий состав -->
+
                                     <ItemsControl ItemsSource="{Binding OrderItems}" Margin="0,6,0,0">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
@@ -135,7 +135,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <!-- Детали выбранного заказа -->
+
             <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Top"
                     Visibility="{Binding SelectedOrder, Converter={StaticResource NullToVisibilityConverter}}">
                 <StackPanel>

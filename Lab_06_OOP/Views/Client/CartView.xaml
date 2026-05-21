@@ -6,7 +6,7 @@
         <TextBlock DockPanel.Dock="Top" Text="{DynamicResource Cart_Title}"
                    Style="{StaticResource SectionHeader}"/>
 
-        <!-- Пустая корзина -->
+
         <StackPanel DockPanel.Dock="Top"
                     Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibilityConverter}}"
                     HorizontalAlignment="Center" Margin="0,60,0,0">
@@ -16,7 +16,7 @@
                        HorizontalAlignment="Center" Margin="0,10,0,0"/>
         </StackPanel>
 
-        <!-- Содержимое -->
+
         <Grid Visibility="{Binding IsEmpty, Converter={StaticResource InverseBoolToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="320"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Список -->
+
             <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding Items}">
                     <ItemsControl.ItemTemplate>
@@ -82,7 +82,7 @@
                 </ItemsControl>
             </ScrollViewer>
 
-            <!-- Форма оформления -->
+
             <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Top">
                 <StackPanel>
                     <TextBlock Text="{DynamicResource Cart_OrderForm}" FontSize="16" FontWeight="Bold"
@@ -100,7 +100,7 @@
                                      Foreground="{DynamicResource TextDarkBrush}"/>
                     </StackPanel>
 
-                    <!-- Самовывоз -->
+
                     <StackPanel Visibility="{Binding IsPickup, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock Text="{DynamicResource Cart_PickupPoint}" Style="{StaticResource LabelText}"/>
                         <ComboBox ItemsSource="{Binding PickupLocations}"
@@ -108,7 +108,7 @@
                                   Margin="0,0,0,12"/>
                     </StackPanel>
 
-                    <!-- Доставка -->
+
                     <StackPanel Visibility="{Binding IsDelivery, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock Text="{DynamicResource Cart_DeliveryAddr}" Style="{StaticResource LabelText}"/>
                         <TextBox Style="{StaticResource ModernTextBox}"

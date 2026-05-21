@@ -8,10 +8,8 @@ using Confectionery.Views.Admin;
 
 namespace Confectionery.Services
 {
-    /// <summary>
-    /// Управляет переключением между главными окнами приложения.
-    /// Выступает фабрикой ViewModel — обеспечивает ручной DI.
-    /// </summary>
+
+
     public class NavigationService : INavigationService
     {
         private readonly IAuthService _authService;

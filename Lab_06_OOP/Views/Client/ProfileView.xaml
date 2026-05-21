@@ -14,7 +14,7 @@
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
 
-            <!-- Email (read-only) -->
+
             <TextBlock Text="{DynamicResource Profile_Email}" Style="{StaticResource LabelText}"/>
             <Border Background="{DynamicResource InputBackgroundBrush}"
                     BorderBrush="{DynamicResource BorderBrush}"
@@ -24,13 +24,18 @@
                            FontSize="14" Foreground="{DynamicResource TextMediumBrush}"/>
             </Border>
 
-            <!-- Имя -->
+
             <TextBlock Text="{DynamicResource Profile_Name}" Style="{StaticResource LabelText}"/>
             <TextBox Style="{StaticResource ModernTextBox}"
                      Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                     Margin="0,0,0,12"/>
+                     MaxLength="100"
+                     Margin="0,0,0,4"/>
+            <TextBlock Text="{Binding NameError}"
+                       Style="{StaticResource ErrorText}"
+                       Margin="0,0,0,12"
+                       Visibility="{Binding NameError, Converter={StaticResource NullToVisibilityConverter}}"/>
 
-            <!-- Телефон -->
+
             <TextBlock Text="{DynamicResource Profile_Phone}" Style="{StaticResource LabelText}"/>
             <TextBox Style="{StaticResource ModernTextBox}"
                      Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
@@ -47,7 +52,7 @@
                     Height="42" Margin="0,4,0,28"
                     Command="{Binding SaveProfileCommand}"/>
 
-            <!-- Смена пароля -->
+
             <Border Style="{StaticResource Card}">
                 <StackPanel>
                     <TextBlock Text="{DynamicResource Profile_ChangePass}"

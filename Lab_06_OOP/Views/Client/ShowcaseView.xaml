@@ -5,7 +5,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="0,0,4,24">
 
-            <!-- ── Hero-приветствие ─────────────────────────────────────────── -->
+
             <Border CornerRadius="16" Margin="0,0,0,24" Padding="28,22" ClipToBounds="True">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -56,7 +56,7 @@
                 </Grid>
             </Border>
 
-            <!-- ── Популярные ────────────────────────────────────────────────── -->
+
             <Grid Margin="0,0,0,6">
                 <TextBlock Text="{DynamicResource Showcase_Popular}" FontSize="17" FontWeight="Bold"
                            Foreground="{DynamicResource TextDarkBrush}"/>
@@ -84,7 +84,7 @@
                                             ClipToBounds="True"
                                             Background="{DynamicResource AccentLightBrush}">
                                         <Grid>
-                                            <!-- Emoji: shown when no image / file missing -->
+
                                             <TextBlock Text="{Binding Category.Name,
                                                            Converter={StaticResource CategoryEmojiConverter}}"
                                                        FontSize="40"
@@ -93,7 +93,7 @@
                                                        Opacity="0.75"
                                                        Visibility="{Binding ImagePath,
                                                            Converter={StaticResource ImageFileMissingConverter}}"/>
-                                            <!-- Real image: shown only when file exists on disk -->
+
                                             <Image Stretch="UniformToFill"
                                                    Source="{Binding ImagePath, Converter={StaticResource ImagePathConverter}}"
                                                    Visibility="{Binding ImagePath,
@@ -112,7 +112,7 @@
                                     <TextBlock FontSize="10" Foreground="{DynamicResource TextMediumBrush}">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="⭐ {0}">
-                                                <Binding Path="Reviews" Converter="{StaticResource RatingToStarsConverter}"/>
+                                                <Binding Converter="{StaticResource RatingToStarsConverter}"/>
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
@@ -147,7 +147,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <!-- ── Новинки ────────────────────────────────────────────────────── -->
+
             <TextBlock Text="{DynamicResource Showcase_New}" FontSize="17" FontWeight="Bold"
                        Foreground="{DynamicResource TextDarkBrush}" Margin="0,0,0,10"/>
             <ItemsControl ItemsSource="{Binding NewProducts}" Margin="0,0,0,24">
@@ -211,7 +211,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <!-- ── Персональные рекомендации ─────────────────────────────────── -->
+
             <StackPanel Visibility="{Binding RecommendedProducts.Count,
                             Converter={StaticResource NullToVisibilityConverter}}">
                 <TextBlock Text="{DynamicResource Showcase_Recommend}" FontSize="17" FontWeight="Bold"

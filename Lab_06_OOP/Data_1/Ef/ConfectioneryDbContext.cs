@@ -2,7 +2,7 @@ using System.Data.Entity;
 
 namespace ConfectioneryShop.Data.Ef
 {
-    /// <summary>Контекст EF Code First для той же БД, что и ADO.NET (лаб. 9).</summary>
+
     public class ConfectioneryDbContext : DbContext
     {
         public ConfectioneryDbContext()

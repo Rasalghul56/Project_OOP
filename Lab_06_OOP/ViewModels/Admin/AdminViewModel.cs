@@ -4,7 +4,6 @@ using Confectionery.Services;
 using Confectionery.UnitOfWork;
 using Confectionery.ViewModels.Base;
 
-// INavigationService injected for logout
 
 namespace Confectionery.ViewModels.Admin
 {

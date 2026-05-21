@@ -20,10 +20,10 @@ namespace Confectionery.ViewModels.Client
 
         public ObservableCollection<Order> Orders { get; } = new ObservableCollection<Order>();
 
-        /// <summary>Fired when the user reads a notification (sidebar badge must be refreshed).</summary>
+
         public event Action NotificationCountChanged;
 
-        // ── Count of highlighted (unread) orders ─────────────────────────────
+
         public int  UnreadCount => Orders.Count(o => o.IsStatusChanged);
         public bool HasUnread   => UnreadCount > 0;
 
@@ -34,15 +34,15 @@ namespace Confectionery.ViewModels.Client
             {
                 SetProperty(ref _selectedOrder, value);
 
-                // When the user clicks on a highlighted order → mark it as read immediately
+
                 if (value != null && value.IsStatusChanged)
                 {
-                    value.IsStatusChanged = false;          // triggers DataTrigger in the View
-                    _uow.ClearSingleOrderNotification(value.Id);  // SQL UPDATE in DB
+                    value.IsStatusChanged = false;          
+                    _uow.ClearSingleOrderNotification(value.Id);  
 
                     OnPropertyChanged(nameof(UnreadCount));
                     OnPropertyChanged(nameof(HasUnread));
-                    NotificationCountChanged?.Invoke();     // tell sidebar to refresh badge
+                    NotificationCountChanged?.Invoke();     
                 }
             }
         }
@@ -95,11 +95,10 @@ namespace Confectionery.ViewModels.Client
             var user = SessionService.CurrentUser;
             if (user == null) return;
 
-            // GetByUser uses AsNoTracking — always fresh data from DB.
+
             var freshOrders = _uow.Orders.GetByUser(user.Id).ToList();
 
-            // Copy the DB notification flag into the transient, notifiable IsStatusChanged.
-            // Notifications are cleared one by one as the user clicks each order.
+
             foreach (var o in freshOrders)
                 o.IsStatusChanged = o.HasStatusNotification;
 

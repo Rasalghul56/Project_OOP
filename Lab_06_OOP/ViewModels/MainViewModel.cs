@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -149,7 +149,7 @@ namespace Lab_06_OOP.ViewModels
 
         public bool IsAdmin => RoleIndex == 0;
 
-        /// <summary>Сортировка списка: Name | Price | Rating (из конфигурации и UI).</summary>
+
         public string ProductSortKey
         {
             get => _productSortKey;
@@ -597,4 +597,3 @@ namespace Lab_06_OOP.ViewModels
         }
     }
 }
-

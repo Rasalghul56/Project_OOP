@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <!-- ══════════════════════ Typography ══════════════════════ -->
+
     <FontFamily x:Key="PrimaryFont">Segoe UI</FontFamily>
 
-    <!-- ══════════════════════ Shared Sizes ══════════════════════ -->
+
     <sys:Double x:Key="FontSizeXS">11</sys:Double>
     <sys:Double x:Key="FontSizeSM">13</sys:Double>
     <sys:Double x:Key="FontSizeMD">15</sys:Double>
@@ -17,8 +17,7 @@
     <CornerRadius x:Key="RadiusLG">14</CornerRadius>
     <CornerRadius x:Key="RadiusXL">20</CornerRadius>
 
-    <!-- ══════════════════════ Accent (переопределяется темой) ══════════════════════ -->
-    <!-- Значения по умолчанию — светлая/тёмная тема (розовый) -->
+
     <SolidColorBrush x:Key="AccentBrush"      Color="#C05080"/>
     <SolidColorBrush x:Key="AccentHoverBrush" Color="#A03060"/>
     <SolidColorBrush x:Key="AccentLightBrush" Color="#F8EFF4"/>
@@ -26,18 +25,18 @@
     <SolidColorBrush x:Key="SuccessBrush"     Color="#43A047"/>
     <SolidColorBrush x:Key="WarningBrush"     Color="#FB8C00"/>
 
-    <!-- ══════════════════════ Sidebar Gradient (переопределяется темой) ══════════════════════ -->
+
     <LinearGradientBrush x:Key="SidebarBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#3D1230" Offset="0"/>
         <GradientStop Color="#7A2450" Offset="1"/>
     </LinearGradientBrush>
 
-    <!-- ══════════════════════ Effects (default — переопределяются Warm-темой) ══════════════════════ -->
+
     <DropShadowEffect x:Key="CardShadow"      Color="#22000000" BlurRadius="16" ShadowDepth="2" Opacity="0.18"/>
     <DropShadowEffect x:Key="CardShadowHover" Color="#44C05080" BlurRadius="20" ShadowDepth="4" Opacity="0.30"/>
     <DropShadowEffect x:Key="ButtonGlow"      Color="#80C05080" BlurRadius="12" ShadowDepth="0"/>
 
-    <!-- ══════════════════════ Explicit Text Styles ══════════════════════ -->
+
     <Style x:Key="LabelText" TargetType="TextBlock">
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
@@ -66,7 +65,7 @@
         <Setter Property="Margin" Value="0,0,0,16"/>
     </Style>
 
-    <!-- ══════════════════════ TextBox ══════════════════════ -->
+
     <Style x:Key="ModernTextBox" TargetType="TextBox">
         <Setter Property="Height" Value="40"/>
         <Setter Property="Padding" Value="12,0"/>
@@ -105,7 +104,7 @@
         </Setter>
     </Style>
 
-    <!-- ══════════════════════ PasswordBox ══════════════════════ -->
+
     <Style x:Key="ModernPasswordBox" TargetType="PasswordBox">
         <Setter Property="Height" Value="40"/>
         <Setter Property="Padding" Value="12,0"/>
@@ -144,7 +143,7 @@
         </Setter>
     </Style>
 
-    <!-- ══════════════════════ ComboBox ══════════════════════ -->
+
     <Style TargetType="ComboBox">
         <Setter Property="Height" Value="36"/>
         <Setter Property="Padding" Value="10,0"/>
@@ -155,7 +154,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
-    <!-- ══════════════════════ Buttons ══════════════════════ -->
+
     <Style x:Key="PrimaryButton" TargetType="Button">
         <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
         <Setter Property="Foreground" Value="White"/>
@@ -256,7 +255,7 @@
         </Setter>
     </Style>
 
-    <!-- Кнопка боковой панели -->
+
     <Style x:Key="SidebarButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#DDDDDD"/>
@@ -288,7 +287,7 @@
         </Setter>
     </Style>
 
-    <!-- ══════════════════════ Card ══════════════════════ -->
+
     <Style x:Key="Card" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="CornerRadius" Value="12"/>
@@ -296,7 +295,7 @@
         <Setter Property="Effect" Value="{StaticResource CardShadow}"/>
     </Style>
 
-    <!-- Карточка товара с hover -->
+
     <Style x:Key="ProductCard" TargetType="Border" BasedOn="{StaticResource Card}">
         <Setter Property="Margin" Value="8"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -307,7 +306,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- ══════════════════════ DataGrid ══════════════════════ -->
+
     <Style TargetType="DataGrid">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -355,7 +354,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- ══════════════════════ ListBox ══════════════════════ -->
+
     <Style TargetType="ListBoxItem">
         <Setter Property="Padding" Value="10,8"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -380,18 +379,18 @@
         </Setter>
     </Style>
 
-    <!-- ══════════════════════ Slider (рейтинг) ══════════════════════ -->
+
     <Style TargetType="Slider">
         <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
     </Style>
 
-    <!-- ══════════════════════ ScrollBar тонкий ══════════════════════ -->
+
     <Style TargetType="ScrollBar">
         <Setter Property="Width" Value="6"/>
         <Setter Property="Background" Value="Transparent"/>
     </Style>
 
-    <!-- ══════════════════════ Badge (счётчик корзины) ══════════════════════ -->
+
     <Style x:Key="CartBadge" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource DangerBrush}"/>
         <Setter Property="CornerRadius" Value="10"/>
@@ -400,7 +399,7 @@
         <Setter Property="Padding" Value="4,0"/>
     </Style>
 
-    <!-- ══════════════════════ Badge (уведомления заказов) ══════════════════════ -->
+
     <Style x:Key="OrdersBadge" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
         <Setter Property="CornerRadius" Value="10"/>
@@ -414,20 +413,20 @@
         </Setter>
     </Style>
 
-    <!-- ══════════════════════ StatusBadge ══════════════════════ -->
+
     <Style x:Key="StatusBadge" TargetType="Border">
         <Setter Property="CornerRadius" Value="6"/>
         <Setter Property="Padding" Value="8,3"/>
     </Style>
 
-    <!-- ══════════════════════ Separator ══════════════════════ -->
+
     <Style TargetType="Separator">
         <Setter Property="Background" Value="{DynamicResource BorderBrush}"/>
         <Setter Property="Height" Value="1"/>
         <Setter Property="Margin" Value="0,8"/>
     </Style>
 
-    <!-- ══════════════════════ FadeIn Storyboard ══════════════════════ -->
+
     <Storyboard x:Key="FadeIn">
         <DoubleAnimation Storyboard.TargetProperty="Opacity"
                          From="0" To="1" Duration="0:0:0.25">
@@ -443,7 +442,7 @@
         </DoubleAnimation>
     </Storyboard>
 
-    <!-- ══════════════════════ Animated Content Control ══════════════════════ -->
+
     <Style x:Key="FadeContentControl" TargetType="ContentControl">
         <Setter Property="RenderTransform">
             <Setter.Value>
@@ -457,7 +456,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- ══════════════════════ Stat-карточки дашборда ══════════════════════ -->
+
     <Style x:Key="StatCard" TargetType="Border" BasedOn="{StaticResource Card}">
         <Setter Property="Margin" Value="6"/>
         <Setter Property="Padding" Value="20,14"/>

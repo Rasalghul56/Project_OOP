@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <!-- ─── Навигация клиента ─── -->
+
     <sys:String x:Key="Nav_Showcase">🏠 Витрина</sys:String>
     <sys:String x:Key="Nav_Catalog">🛍 Каталог</sys:String>
     <sys:String x:Key="Nav_Cart">🛒 Корзина</sys:String>
@@ -10,13 +10,13 @@
     <sys:String x:Key="Nav_Profile">👤 Профиль</sys:String>
     <sys:String x:Key="Nav_Logout">🚪 Выйти</sys:String>
 
-    <!-- ─── Навигация админа ─── -->
+
     <sys:String x:Key="Admin_Dashboard">📊 Дашборд</sys:String>
     <sys:String x:Key="Admin_Products">🍰 Товары</sys:String>
     <sys:String x:Key="Admin_Orders">📦 Заказы</sys:String>
     <sys:String x:Key="Admin_Reviews">💬 Отзывы</sys:String>
 
-    <!-- ─── Каталог ─── -->
+
     <sys:String x:Key="Sort_NameAZ">По названию А–Я</sys:String>
     <sys:String x:Key="Sort_NameZA">По названию Я–А</sys:String>
     <sys:String x:Key="Sort_PriceAsc">Цена ↑</sys:String>
@@ -25,13 +25,13 @@
     <sys:String x:Key="Cat_All">Все категории</sys:String>
     <sys:String x:Key="Catalog_Search">🔍 Поиск товаров...</sys:String>
 
-    <!-- ─── Кнопки каталога ─── -->
+
     <sys:String x:Key="Btn_Theme">🌙 Тема</sys:String>
     <sys:String x:Key="Btn_Lang">🌐 EN</sys:String>
     <sys:String x:Key="Btn_AddToCart">В корзину</sys:String>
     <sys:String x:Key="Btn_Detail">Подробнее</sys:String>
 
-    <!-- ─── Корзина ─── -->
+
     <sys:String x:Key="Cart_Title">🛒 Корзина</sys:String>
     <sys:String x:Key="Cart_Empty">Корзина пуста</sys:String>
     <sys:String x:Key="Cart_OrderForm">Оформление</sys:String>
@@ -49,7 +49,7 @@
     <sys:String x:Key="Pay_Card">Картой</sys:String>
     <sys:String x:Key="Btn_PlaceOrder">Оформить заказ</sys:String>
 
-    <!-- ─── Мои заказы ─── -->
+
     <sys:String x:Key="Orders_Title">📦 Мои заказы</sys:String>
     <sys:String x:Key="Orders_Composition">Состав заказа</sys:String>
     <sys:String x:Key="Orders_Total">Итого:</sys:String>
@@ -57,7 +57,7 @@
     <sys:String x:Key="Orders_NewSuffix"> новых</sys:String>
     <sys:String x:Key="OrderItem_Deleted">(товар удалён)</sys:String>
 
-    <!-- ─── Профиль ─── -->
+
     <sys:String x:Key="Profile_Title">👤 Профиль</sys:String>
     <sys:String x:Key="Profile_Email">Email</sys:String>
     <sys:String x:Key="Profile_Name">Имя</sys:String>
@@ -65,6 +65,7 @@
     <sys:String x:Key="Validation_Phone">Телефон например +375298677777</sys:String>
     <sys:String x:Key="Validation_PhoneRequired">Укажите номер телефона.</sys:String>
     <sys:String x:Key="Validation_NameRequired">Укажите имя.</sys:String>
+    <sys:String x:Key="Validation_NameFormat">Имя: от 2 до 100 символов, только буквы, пробел, дефис и апостроф.</sys:String>
     <sys:String x:Key="Profile_Save">Сохранить профиль</sys:String>
     <sys:String x:Key="Profile_ChangePass">Смена пароля</sys:String>
     <sys:String x:Key="Profile_OldPass">Текущий пароль</sys:String>
@@ -72,7 +73,7 @@
     <sys:String x:Key="Profile_ConfirmPass">Повторите новый пароль</sys:String>
     <sys:String x:Key="Profile_ChangePassBtn">Изменить пароль</sys:String>
 
-    <!-- ─── Дашборд ─── -->
+
     <sys:String x:Key="Dash_TotalOrders">Всего заказов</sys:String>
     <sys:String x:Key="Dash_Revenue">Выручка</sys:String>
     <sys:String x:Key="Dash_Products">Товаров</sys:String>
@@ -88,7 +89,7 @@
     <sys:String x:Key="Status_Ready">Готов</sys:String>
     <sys:String x:Key="Status_Completed">Выполнен</sys:String>
 
-    <!-- ─── Товары (admin) ─── -->
+
     <sys:String x:Key="Prod_Search">🔍 Поиск товара...</sys:String>
     <sys:String x:Key="Prod_AddBtn">＋ Добавить товар</sys:String>
     <sys:String x:Key="Prod_FormTitle">Форма товара</sys:String>
@@ -105,7 +106,10 @@
     <sys:String x:Key="Prod_Edit">✏️ Редактировать</sys:String>
     <sys:String x:Key="Prod_Delete">🗑 Удалить</sys:String>
 
-    <!-- ─── Витрина ─── -->
+
+    <sys:String x:Key="Showcase_WelcomeUser">Добро пожаловать, {0}! 👋</sys:String>
+    <sys:String x:Key="Showcase_WelcomeGuest">Добро пожаловать, гость! 👋</sys:String>
+    <sys:String x:Key="Showcase_RatingNone">—</sys:String>
     <sys:String x:Key="Showcase_HeroSubtitle">Свежие авторские десерты с доставкой по Минску</sys:String>
     <sys:String x:Key="Showcase_HeroBtn">🛍 Перейти в каталог</sys:String>
     <sys:String x:Key="Showcase_Popular">⭐ Популярные десерты</sys:String>
@@ -113,7 +117,7 @@
     <sys:String x:Key="Showcase_New">🆕 Новинки и сезонные позиции</sys:String>
     <sys:String x:Key="Showcase_Recommend">💡 Рекомендуем для вас</sys:String>
 
-    <!-- ─── Карточка товара (детали) ─── -->
+
     <sys:String x:Key="Detail_Description">Описание</sys:String>
     <sys:String x:Key="Detail_Composition">Состав</sys:String>
     <sys:String x:Key="Detail_AddToCart">🛒  В корзину</sys:String>
@@ -125,7 +129,7 @@
     <sys:String x:Key="Detail_NoReviews">Отзывов пока нет. Будьте первым!</sys:String>
     <sys:String x:Key="Detail_AdminReply">Ответ администратора:</sys:String>
 
-    <!-- ─── Заказы (admin) ─── -->
+
     <sys:String x:Key="AdminOrder_Title">📦 Заказы</sys:String>
     <sys:String x:Key="AdminOrder_Status">Статус:</sys:String>
     <sys:String x:Key="AdminOrder_DateFrom">Дата от:</sys:String>
@@ -143,7 +147,7 @@
     <sys:String x:Key="AdminOrder_Amount">Сумма</sys:String>
     <sys:String x:Key="AdminOrder_Pcs">шт.</sys:String>
 
-    <!-- ─── Отзывы (admin) ─── -->
+
     <sys:String x:Key="Reviews_Title">💬 Отзывы</sys:String>
     <sys:String x:Key="Reviews_ReplyTitle">Ответить на отзыв</sys:String>
     <sys:String x:Key="Reviews_ReviewText">Отзыв</sys:String>

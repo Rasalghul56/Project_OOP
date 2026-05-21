@@ -31,10 +31,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ════════════════ Sidebar ════════════════ -->
+
         <Border Grid.Column="0" Background="{StaticResource SidebarBrush}">
             <DockPanel>
-                <!-- Лого -->
+
                 <StackPanel DockPanel.Dock="Top" Margin="0,24,0,20"
                             HorizontalAlignment="Center">
                     <TextBlock Text="🍰" FontSize="38" HorizontalAlignment="Center"/>
@@ -50,7 +50,7 @@
 
                 <Separator DockPanel.Dock="Top" Background="#40FFFFFF" Margin="16,0"/>
 
-                <!-- Навигация -->
+
                 <StackPanel DockPanel.Dock="Top" Margin="0,12,0,0">
                     <Button Style="{StaticResource SidebarButton}"
                             Command="{Binding ShowDashboardCommand}">
@@ -70,7 +70,7 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Нижняя часть: тема / язык / выход -->
+
                 <StackPanel DockPanel.Dock="Bottom" Margin="12,0,12,20">
                     <Separator Background="#40FFFFFF" Margin="4,0,4,10"/>
                     <Grid Margin="0,0,0,6">
@@ -105,7 +105,7 @@
             </DockPanel>
         </Border>
 
-        <!-- ════════════════ Content ════════════════ -->
+
         <Border Grid.Column="1" Background="{DynamicResource BackgroundBrush}">
             <ContentControl Content="{Binding CurrentView}" Margin="24"
                             Style="{StaticResource FadeContentControl}"/>

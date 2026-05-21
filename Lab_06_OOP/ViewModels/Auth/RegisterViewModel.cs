@@ -108,7 +108,7 @@ namespace Confectionery.ViewModels.Auth
                 return;
             }
 
-            // Авто-вход после успешной регистрации
+
             var user = _authService.Login(Email, Password);
             if (user != null)
             {

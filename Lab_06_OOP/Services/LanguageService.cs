@@ -11,7 +11,7 @@ namespace Confectionery.Services
 
         public static bool IsEnglish { get; private set; }
 
-        /// <summary>Вызывается после смены языка — ViewModels могут подписаться.</summary>
+
         public static event Action LanguageChanged;
 
         public static void Toggle()

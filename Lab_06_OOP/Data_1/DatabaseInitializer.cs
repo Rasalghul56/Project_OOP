@@ -5,9 +5,8 @@ using System.IO;
 
 namespace ConfectioneryShop.Data
 {
-    /// <summary>
-    /// Создание БД LocalDB и схемы при первом запуске (п. 8 ТЗ).
-    /// </summary>
+
+
     public static class DatabaseInitializer
     {
         private const string MasterConnectionString =
@@ -66,7 +65,7 @@ CREATE DATABASE [{dbName}] ON PRIMARY
             }
         }
 
-        /// <summary>Таблицы для связи многие-ко-многим Product–Tag (лаб. 9, EF).</summary>
+
         private static void EnsureTagTables(SqlConnection conn)
         {
             Exec(conn, @"

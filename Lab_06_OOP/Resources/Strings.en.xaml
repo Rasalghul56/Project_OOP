@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <!-- ─── Client nav ─── -->
+
     <sys:String x:Key="Nav_Showcase">🏠 Showcase</sys:String>
     <sys:String x:Key="Nav_Catalog">🛍 Catalog</sys:String>
     <sys:String x:Key="Nav_Cart">🛒 Cart</sys:String>
@@ -10,13 +10,13 @@
     <sys:String x:Key="Nav_Profile">👤 Profile</sys:String>
     <sys:String x:Key="Nav_Logout">🚪 Log out</sys:String>
 
-    <!-- ─── Admin nav ─── -->
+
     <sys:String x:Key="Admin_Dashboard">📊 Dashboard</sys:String>
     <sys:String x:Key="Admin_Products">🍰 Products</sys:String>
     <sys:String x:Key="Admin_Orders">📦 Orders</sys:String>
     <sys:String x:Key="Admin_Reviews">💬 Reviews</sys:String>
 
-    <!-- ─── Catalog ─── -->
+
     <sys:String x:Key="Sort_NameAZ">Name A–Z</sys:String>
     <sys:String x:Key="Sort_NameZA">Name Z–A</sys:String>
     <sys:String x:Key="Sort_PriceAsc">Price ↑</sys:String>
@@ -25,13 +25,13 @@
     <sys:String x:Key="Cat_All">All categories</sys:String>
     <sys:String x:Key="Catalog_Search">🔍 Search products...</sys:String>
 
-    <!-- ─── Catalog buttons ─── -->
+
     <sys:String x:Key="Btn_Theme">☀️ Theme</sys:String>
     <sys:String x:Key="Btn_Lang">🌐 RU</sys:String>
     <sys:String x:Key="Btn_AddToCart">Add to cart</sys:String>
     <sys:String x:Key="Btn_Detail">Details</sys:String>
 
-    <!-- ─── Cart ─── -->
+
     <sys:String x:Key="Cart_Title">🛒 Cart</sys:String>
     <sys:String x:Key="Cart_Empty">Cart is empty</sys:String>
     <sys:String x:Key="Cart_OrderForm">Checkout</sys:String>
@@ -49,7 +49,7 @@
     <sys:String x:Key="Pay_Card">Card</sys:String>
     <sys:String x:Key="Btn_PlaceOrder">Place order</sys:String>
 
-    <!-- ─── My orders ─── -->
+
     <sys:String x:Key="Orders_Title">📦 My Orders</sys:String>
     <sys:String x:Key="Orders_Composition">Order contents</sys:String>
     <sys:String x:Key="Orders_Total">Total:</sys:String>
@@ -57,7 +57,7 @@
     <sys:String x:Key="Orders_NewSuffix"> new</sys:String>
     <sys:String x:Key="OrderItem_Deleted">(product removed)</sys:String>
 
-    <!-- ─── Profile ─── -->
+
     <sys:String x:Key="Profile_Title">👤 Profile</sys:String>
     <sys:String x:Key="Profile_Email">Email</sys:String>
     <sys:String x:Key="Profile_Name">Name</sys:String>
@@ -65,6 +65,7 @@
     <sys:String x:Key="Validation_Phone">+375298677777</sys:String>
     <sys:String x:Key="Validation_PhoneRequired">Please enter your phone number.</sys:String>
     <sys:String x:Key="Validation_NameRequired">Please enter your name.</sys:String>
+    <sys:String x:Key="Validation_NameFormat">Name: 2–100 characters, letters, spaces, hyphen and apostrophe only.</sys:String>
     <sys:String x:Key="Profile_Save">Save profile</sys:String>
     <sys:String x:Key="Profile_ChangePass">Change password</sys:String>
     <sys:String x:Key="Profile_OldPass">Current password</sys:String>
@@ -72,7 +73,7 @@
     <sys:String x:Key="Profile_ConfirmPass">Confirm new password</sys:String>
     <sys:String x:Key="Profile_ChangePassBtn">Update password</sys:String>
 
-    <!-- ─── Dashboard ─── -->
+
     <sys:String x:Key="Dash_TotalOrders">Total orders</sys:String>
     <sys:String x:Key="Dash_Revenue">Revenue</sys:String>
     <sys:String x:Key="Dash_Products">Products</sys:String>
@@ -88,7 +89,7 @@
     <sys:String x:Key="Status_Ready">Ready</sys:String>
     <sys:String x:Key="Status_Completed">Completed</sys:String>
 
-    <!-- ─── Products (admin) ─── -->
+
     <sys:String x:Key="Prod_Search">🔍 Search product...</sys:String>
     <sys:String x:Key="Prod_AddBtn">＋ Add product</sys:String>
     <sys:String x:Key="Prod_FormTitle">Product form</sys:String>
@@ -105,7 +106,10 @@
     <sys:String x:Key="Prod_Edit">✏️ Edit</sys:String>
     <sys:String x:Key="Prod_Delete">🗑 Delete</sys:String>
 
-    <!-- ─── Showcase ─── -->
+
+    <sys:String x:Key="Showcase_WelcomeUser">Welcome, {0}! 👋</sys:String>
+    <sys:String x:Key="Showcase_WelcomeGuest">Welcome, guest! 👋</sys:String>
+    <sys:String x:Key="Showcase_RatingNone">n/a</sys:String>
     <sys:String x:Key="Showcase_HeroSubtitle">Fresh artisan desserts delivered in Minsk</sys:String>
     <sys:String x:Key="Showcase_HeroBtn">🛍 Go to catalog</sys:String>
     <sys:String x:Key="Showcase_Popular">⭐ Popular desserts</sys:String>
@@ -113,7 +117,7 @@
     <sys:String x:Key="Showcase_New">🆕 New &amp; seasonal</sys:String>
     <sys:String x:Key="Showcase_Recommend">💡 Recommended for you</sys:String>
 
-    <!-- ─── Product detail ─── -->
+
     <sys:String x:Key="Detail_Description">Description</sys:String>
     <sys:String x:Key="Detail_Composition">Composition</sys:String>
     <sys:String x:Key="Detail_AddToCart">🛒  Add to cart</sys:String>
@@ -125,7 +129,7 @@
     <sys:String x:Key="Detail_NoReviews">No reviews yet. Be the first!</sys:String>
     <sys:String x:Key="Detail_AdminReply">Admin reply:</sys:String>
 
-    <!-- ─── Orders (admin) ─── -->
+
     <sys:String x:Key="AdminOrder_Title">📦 Orders</sys:String>
     <sys:String x:Key="AdminOrder_Status">Status:</sys:String>
     <sys:String x:Key="AdminOrder_DateFrom">From:</sys:String>
@@ -143,7 +147,7 @@
     <sys:String x:Key="AdminOrder_Amount">Amount</sys:String>
     <sys:String x:Key="AdminOrder_Pcs">pcs.</sys:String>
 
-    <!-- ─── Reviews (admin) ─── -->
+
     <sys:String x:Key="Reviews_Title">💬 Reviews</sys:String>
     <sys:String x:Key="Reviews_ReplyTitle">Reply to review</sys:String>
     <sys:String x:Key="Reviews_ReviewText">Review</sys:String>

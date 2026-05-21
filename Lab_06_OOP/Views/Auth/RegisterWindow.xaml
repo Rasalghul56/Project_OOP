@@ -3,276 +3,92 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:h="clr-namespace:Confectionery.Helpers"
         Title="Кондитерская — Регистрация"
-        Width="900" Height="620"
+        Width="400" SizeToContent="Height"
+        MaxHeight="700"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        Background="Transparent"
+        Background="{DynamicResource BackgroundBrush}"
         FontFamily="{StaticResource PrimaryFont}">
 
-    <Border CornerRadius="20" ClipToBounds="True">
-        <Border.Effect>
-            <DropShadowEffect Color="#80000000" BlurRadius="40" ShadowDepth="10" Opacity="0.35"/>
-        </Border.Effect>
-        <Grid>
-            <!-- Тёплый фон -->
-            <Border CornerRadius="20">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#F2E8DE" Offset="0"/>
-                        <GradientStop Color="#E8D5C0" Offset="0.5"/>
-                        <GradientStop Color="#D6B896" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
+    <Border Background="{DynamicResource SurfaceBrush}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="8"
+            Margin="24"
+            Padding="28,24">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="Регистрация"
+                           FontSize="22" FontWeight="Bold"
+                           Foreground="{DynamicResource TextDarkBrush}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="Заполните поля ниже"
+                           FontSize="13"
+                           Foreground="{DynamicResource TextLightBrush}"
+                           Margin="0,0,0,18"/>
 
-            <!-- Декоративные фигуры -->
-            <Ellipse Width="280" Height="280" Opacity="0.11"
-                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-70,-90,0,0">
-                <Ellipse.Fill><SolidColorBrush Color="#D6953D"/></Ellipse.Fill>
-            </Ellipse>
-            <Ellipse Width="180" Height="180" Opacity="0.09"
-                     HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100,0,0,-50">
-                <Ellipse.Fill><SolidColorBrush Color="#5A3426"/></Ellipse.Fill>
-            </Ellipse>
-            <Ellipse Width="140" Height="140" Opacity="0.08"
-                     HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-30,-30">
-                <Ellipse.Fill><SolidColorBrush Color="#F5C6C0"/></Ellipse.Fill>
-            </Ellipse>
+                <TextBlock Text="Имя *" Style="{StaticResource LabelText}"/>
+                <TextBox Style="{StaticResource ModernTextBox}"
+                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0,0,0,10"/>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="360"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <TextBlock Text="Email *" Style="{StaticResource LabelText}"/>
+                <TextBox Style="{StaticResource ModernTextBox}"
+                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0,0,0,10"/>
 
-                <!-- ── Левая панель ── -->
-                <StackPanel Grid.Column="0" VerticalAlignment="Center"
-                            HorizontalAlignment="Center" Margin="36">
-                    <Border Width="84" Height="84" CornerRadius="42"
-                            HorizontalAlignment="Center" Margin="0,0,0,18">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#D6953D" Offset="0"/>
-                                <GradientStop Color="#B87A2E" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                        <Border.Effect>
-                            <DropShadowEffect Color="#80D6953D" BlurRadius="18" ShadowDepth="0"/>
-                        </Border.Effect>
-                        <TextBlock Text="🧁" FontSize="38"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                <TextBlock Text="Телефон" Style="{StaticResource LabelText}"/>
+                <TextBox Style="{StaticResource ModernTextBox}"
+                         Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0,0,0,10"/>
 
-                    <TextBlock Text="Кондитерская" FontSize="26" FontWeight="Bold"
-                               Foreground="#5A3426" HorizontalAlignment="Center"/>
-                    <TextBlock Text="Sweet Moments" FontSize="12"
-                               Foreground="#C4906B" HorizontalAlignment="Center" Margin="0,3,0,20"/>
+                <TextBlock Text="Пароль *" Style="{StaticResource LabelText}"/>
+                <PasswordBox Style="{StaticResource ModernPasswordBox}"
+                             h:PasswordBoxHelper.BindPassword="True"
+                             h:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}"
+                             Margin="0,0,0,10"/>
 
-                    <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,20">
-                        <TextBlock Text="🍰" FontSize="20" Margin="5,0" Opacity="0.8"/>
-                        <TextBlock Text="🍩" FontSize="20" Margin="5,0" Opacity="0.8"/>
-                        <TextBlock Text="🍫" FontSize="20" Margin="5,0" Opacity="0.8"/>
-                        <TextBlock Text="🍪" FontSize="20" Margin="5,0" Opacity="0.8"/>
-                    </WrapPanel>
+                <TextBlock Text="Повторите пароль *" Style="{StaticResource LabelText}"/>
+                <PasswordBox Style="{StaticResource ModernPasswordBox}"
+                             h:PasswordBoxHelper.BindPassword="True"
+                             h:PasswordBoxHelper.BoundPassword="{Binding ConfirmPassword, Mode=TwoWay}"
+                             Margin="0,0,0,8"/>
 
-                    <!-- Список преимуществ -->
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <Border Width="24" Height="24" CornerRadius="12"
-                                    Background="#D6953D" Margin="0,0,10,0">
-                                <TextBlock Text="✓" Foreground="White" FontSize="12" FontWeight="Bold"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <TextBlock Text="Каталог авторских десертов" FontSize="12"
-                                       Foreground="#5A3426" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                            <Border Width="24" Height="24" CornerRadius="12"
-                                    Background="#D6953D" Margin="0,0,10,0">
-                                <TextBlock Text="✓" Foreground="White" FontSize="12" FontWeight="Bold"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <TextBlock Text="Корзина и история заказов" FontSize="12"
-                                       Foreground="#5A3426" VerticalAlignment="Center"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="24" Height="24" CornerRadius="12"
-                                    Background="#D6953D" Margin="0,0,10,0">
-                                <TextBlock Text="✓" Foreground="White" FontSize="12" FontWeight="Bold"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <TextBlock Text="Отзывы и оценка товаров" FontSize="12"
-                                       Foreground="#5A3426" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </StackPanel>
+                <TextBlock Text="{Binding ErrorMessage}"
+                           Style="{StaticResource ErrorText}"
+                           Visibility="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}"/>
+                <TextBlock Text="{Binding SuccessMessage}"
+                           Style="{StaticResource SuccessText}"
+                           Visibility="{Binding SuccessMessage, Converter={StaticResource NullToVisibilityConverter}}"/>
+
+                <Button Content="Зарегистрироваться"
+                        Command="{Binding RegisterCommand}"
+                        Style="{StaticResource PrimaryButton}"
+                        Height="42"
+                        Margin="0,12,0,14"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Уже есть аккаунт? "
+                               FontSize="13"
+                               Foreground="{DynamicResource TextMediumBrush}"
+                               VerticalAlignment="Center"/>
+                    <Button Content="Войти"
+                            Command="{Binding GoToLoginCommand}"
+                            Cursor="Hand"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Foreground="{DynamicResource AccentBrush}"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Padding="4,0"/>
                 </StackPanel>
 
-                <!-- ── Правая: форма ── -->
-                <Border Grid.Column="1" CornerRadius="18" Margin="0,24,24,24">
-                    <Border.Effect>
-                        <DropShadowEffect Color="#60000000" BlurRadius="24" ShadowDepth="6" Opacity="0.15"/>
-                    </Border.Effect>
-                    <Border CornerRadius="18" Background="#F7F0E8" ClipToBounds="True">
-                        <DockPanel>
-                            <Border DockPanel.Dock="Top" Height="4" CornerRadius="18,18,0,0">
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="#D6953D" Offset="0"/>
-                                        <GradientStop Color="#F5C6C0" Offset="0.5"/>
-                                        <GradientStop Color="#D6953D" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                            </Border>
-
-                            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                <StackPanel Margin="36,26,36,30">
-
-                                    <TextBlock Text="Создать аккаунт" FontSize="22" FontWeight="Bold"
-                                               Foreground="#5A3426" Margin="0,0,0,4"/>
-                                    <TextBlock Text="Заполните форму для регистрации" FontSize="13"
-                                               Foreground="#9A7060" Margin="0,0,0,22"/>
-
-                                    <!-- Имя -->
-                                    <TextBlock Text="Имя *" FontSize="11" FontWeight="SemiBold"
-                                               Foreground="#9A7060" Margin="0,0,0,4"/>
-                                    <Border Height="42" CornerRadius="10"
-                                            BorderBrush="#E8D0B8" BorderThickness="1.5"
-                                            Background="#FFF3EA" Margin="0,0,0,12">
-                                        <TextBox Background="Transparent"
-                                                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                                                 FontSize="14" Padding="14,0"
-                                                 Foreground="#5A3426" BorderThickness="0"
-                                                 VerticalContentAlignment="Center"/>
-                                    </Border>
-
-                                    <!-- Email -->
-                                    <TextBlock Text="Email *" FontSize="11" FontWeight="SemiBold"
-                                               Foreground="#9A7060" Margin="0,0,0,4"/>
-                                    <Border Height="42" CornerRadius="10"
-                                            BorderBrush="#E8D0B8" BorderThickness="1.5"
-                                            Background="#FFF3EA" Margin="0,0,0,12">
-                                        <TextBox Background="Transparent"
-                                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-                                                 FontSize="14" Padding="14,0"
-                                                 Foreground="#5A3426" BorderThickness="0"
-                                                 VerticalContentAlignment="Center"/>
-                                    </Border>
-
-                                    <!-- Телефон -->
-                                    <TextBlock Text="Телефон" FontSize="11" FontWeight="SemiBold"
-                                               Foreground="#9A7060" Margin="0,0,0,4"/>
-                                    <Border Height="42" CornerRadius="10"
-                                            BorderBrush="#E8D0B8" BorderThickness="1.5"
-                                            Background="#FFF3EA" Margin="0,0,0,12">
-                                        <TextBox Background="Transparent"
-                                                 Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
-                                                 FontSize="14" Padding="14,0"
-                                                 Foreground="#5A3426" BorderThickness="0"
-                                                 VerticalContentAlignment="Center"/>
-                                    </Border>
-
-                                    <!-- Пароли -->
-                                    <Grid Margin="0,0,0,12">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="12"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel>
-                                            <TextBlock Text="Пароль *" FontSize="11" FontWeight="SemiBold"
-                                                       Foreground="#9A7060" Margin="0,0,0,4"/>
-                                            <Border Height="42" CornerRadius="10"
-                                                    BorderBrush="#E8D0B8" BorderThickness="1.5"
-                                                    Background="#FFF3EA">
-                                                <PasswordBox Background="Transparent"
-                                                             h:PasswordBoxHelper.BindPassword="True"
-                                                             h:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}"
-                                                             FontSize="14" Padding="14,0"
-                                                             Foreground="#5A3426" BorderThickness="0"
-                                                             VerticalContentAlignment="Center"/>
-                                            </Border>
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="2">
-                                            <TextBlock Text="Повторите *" FontSize="11" FontWeight="SemiBold"
-                                                       Foreground="#9A7060" Margin="0,0,0,4"/>
-                                            <Border Height="42" CornerRadius="10"
-                                                    BorderBrush="#E8D0B8" BorderThickness="1.5"
-                                                    Background="#FFF3EA">
-                                                <PasswordBox Background="Transparent"
-                                                             h:PasswordBoxHelper.BindPassword="True"
-                                                             h:PasswordBoxHelper.BoundPassword="{Binding ConfirmPassword, Mode=TwoWay}"
-                                                             FontSize="14" Padding="14,0"
-                                                             Foreground="#5A3426" BorderThickness="0"
-                                                             VerticalContentAlignment="Center"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
-
-                                    <TextBlock Text="{Binding ErrorMessage}"
-                                               Foreground="#C0392B" FontSize="12"
-                                               TextWrapping="Wrap" Margin="0,0,0,6"
-                                               Visibility="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}"/>
-                                    <TextBlock Text="{Binding SuccessMessage}"
-                                               Foreground="#27AE60" FontSize="12"
-                                               TextWrapping="Wrap" Margin="0,0,0,6"
-                                               Visibility="{Binding SuccessMessage, Converter={StaticResource NullToVisibilityConverter}}"/>
-
-                                    <Button Command="{Binding RegisterCommand}"
-                                            Height="46" Margin="0,4,0,16"
-                                            Cursor="Hand" BorderThickness="0">
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border x:Name="Bd" CornerRadius="12">
-                                                    <Border.Background>
-                                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                            <GradientStop Color="#D6953D" Offset="0"/>
-                                                            <GradientStop Color="#B87A2E" Offset="1"/>
-                                                        </LinearGradientBrush>
-                                                    </Border.Background>
-                                                    <Border.Effect>
-                                                        <DropShadowEffect Color="#80D6953D" BlurRadius="12" ShadowDepth="0"/>
-                                                    </Border.Effect>
-                                                    <TextBlock Text="Зарегистрироваться"
-                                                               FontSize="15" FontWeight="Bold" Foreground="White"
-                                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter TargetName="Bd" Property="Opacity" Value="0.9"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Setter TargetName="Bd" Property="Opacity" Value="0.8"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                    </Button>
-
-                                    <Separator Background="#E8D0B8" Margin="0,0,0,14"/>
-
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="Уже есть аккаунт? " FontSize="13"
-                                                   Foreground="#9A7060" VerticalAlignment="Center"/>
-                                        <Button Content="Войти"
-                                                Command="{Binding GoToLoginCommand}"
-                                                Cursor="Hand" BorderThickness="0"
-                                                Background="Transparent"
-                                                FontSize="13" FontWeight="SemiBold"
-                                                Foreground="#D6953D" Padding="4,0"/>
-                                    </StackPanel>
-
-                                    <TextBlock Text="* — обязательные поля" FontSize="10"
-                                               Foreground="#C4906B"
-                                               HorizontalAlignment="Center" Margin="0,10,0,0"/>
-
-                                </StackPanel>
-                            </ScrollViewer>
-                        </DockPanel>
-                    </Border>
-                </Border>
-            </Grid>
-        </Grid>
+                <TextBlock Text="* — обязательные поля"
+                           FontSize="11"
+                           Foreground="{DynamicResource TextLightBrush}"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
     </Border>
 </Window>

@@ -16,13 +16,13 @@ namespace Confectionery.Migrations
 
         protected override void Seed(Confectionery.Data.AppDbContext ctx)
         {
-            // ── Пользователи ──────────────────────────────────────────────────
+
             ctx.Users.AddOrUpdate(u => u.Email,
                 new User { Name = "Администратор", Email = "admin@mail.ru", PasswordHash = PasswordHelper.Hash("admin"), Role = "Admin", Phone = "+375291234567" }
             );
             ctx.SaveChanges();
 
-            // ── Категории ─────────────────────────────────────────────────────
+
             ctx.Categories.AddOrUpdate(c => c.Name,
                 new Category { Name = "Торты"    },
                 new Category { Name = "Пирожные" },
@@ -33,18 +33,15 @@ namespace Confectionery.Migrations
             );
             ctx.SaveChanges();
 
-            // Получаем ID категорий по имени
+
             var cats = ctx.Categories.ToDictionary(c => c.Name, c => c.Id);
 
-            // ── Товары ────────────────────────────────────────────────────────
-            // ВАЖНО: добавляем товары только при первом запуске (если БД пуста).
-            // Это гарантирует что ImagePath и другие поля, изменённые администратором,
-            // никогда не перезаписываются при повторных запусках приложения.
+
             if (ctx.Products.Any()) return;
 
             ctx.Products.AddRange(new[]
             {
-                // Торты
+
                 new Product {
                     Name = "Торт «Наполеон»",
                     Description = "Классический многослойный торт с нежным заварным кремом. Тонкие хрустящие коржи пропитываются кремом в течение ночи — результат всегда безупречен.",
@@ -87,8 +84,6 @@ namespace Confectionery.Migrations
                     Composition = "Морковь свежая, мука, масло растительное, яйца, сахар, орехи грецкие, маскарпоне, цедра апельсина",
                     Weight = 1.2, Price = 47.00m, CategoryId = cats["Торты"], IsAvailable = true
                 },
-
-                // Пирожные
                 new Product {
                     Name = "Эклер классический",
                     Description = "Французское заварное пирожное с ванильным кремом «Дипломат» и зеркальной шоколадной глазурью. Изготавливается в день продажи.",
@@ -126,7 +121,7 @@ namespace Confectionery.Migrations
                     Weight = 0.12, Price = 4.50m, CategoryId = cats["Пирожные"], IsAvailable = true
                 },
 
-                // Печенье
+
                 new Product {
                     Name = "Печенье «Домашнее»",
                     Description = "Рассыпчатое сливочное печенье по старинному рецепту. Каждое изделие лепится вручную. Упаковка 500 г.",
@@ -152,7 +147,7 @@ namespace Confectionery.Migrations
                     Weight = 0.18, Price = 8.00m, CategoryId = cats["Печенье"], IsAvailable = true
                 },
 
-                // Конфеты
+
                 new Product {
                     Name = "Трюфели из бельгийского шоколада (12 шт.)",
                     Description = "Ручные трюфели из шоколада Callebaut: ганаш тёмный, молочный, белый — по 4 штуки каждого. В элегантной коробке.",
@@ -172,7 +167,7 @@ namespace Confectionery.Migrations
                     Weight = 0.20, Price = 9.50m, CategoryId = cats["Конфеты"], IsAvailable = true
                 },
 
-                // Зефир
+
                 new Product {
                     Name = "Зефир ванильный (6 шт.)",
                     Description = "Воздушный домашний зефир из яблочного пюре. Нежная текстура, натуральный аромат ванили. Без искусственных красителей.",
@@ -192,7 +187,7 @@ namespace Confectionery.Migrations
                     Weight = 0.28, Price = 11.00m, CategoryId = cats["Зефир"], IsAvailable = true
                 },
 
-                // Шоколад
+
                 new Product {
                     Name = "Плитка «Горький шоколад 72%»",
                     Description = "Авторская плитка из какао-бобов Tanzania с нотами сухофруктов и терпкостью. Для истинных ценителей тёмного шоколада.",
@@ -208,7 +203,7 @@ namespace Confectionery.Migrations
             });
             ctx.SaveChanges();
 
-            // Заполнить сохранённое название у старых позиций заказов (если ещё не задано)
+
             foreach (var oi in ctx.OrderItems.Where(oi => oi.ProductName == null || oi.ProductName == "").ToList())
             {
                 if (!oi.ProductId.HasValue) continue;

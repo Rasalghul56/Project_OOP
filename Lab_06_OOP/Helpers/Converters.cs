@@ -85,7 +85,7 @@ namespace Confectionery.Helpers
             => throw new NotImplementedException();
     }
 
-    /// <summary>Shows element when value IS null/empty; hides it when a value is present.</summary>
+
     public class InverseNullToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -97,7 +97,7 @@ namespace Confectionery.Helpers
             => throw new NotImplementedException();
     }
 
-    /// <summary>Visible when the stored value resolves to an existing file on disk.</summary>
+
     public class ImageFileExistsConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -110,7 +110,7 @@ namespace Confectionery.Helpers
             => throw new NotImplementedException();
     }
 
-    /// <summary>Visible when value is empty OR the resolved file does not exist (shows emoji placeholder).</summary>
+
     public class ImageFileMissingConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -127,37 +127,27 @@ namespace Confectionery.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // Может прийти int или ICollection<Review>
             if (value is int rating)
-                return $"{rating:F1}";
-            if (value is IEnumerable<Review> reviews)
-            {
-                var list = reviews.ToList();
-                return list.Any() ? $"{list.Average(r => r.Rating):F1}" : "—";
-            }
-            return "—";
+                return ReviewRatingHelper.FormatSingleReview(rating);
+            return ReviewRatingHelper.FormatCompact(value);
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => throw new NotImplementedException();
     }
 
-    /// <summary>Конвертирует коллекцию Reviews в среднее значение рейтинга (double).</summary>
+
     public class ReviewsAverageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IEnumerable<Review> reviews)
-            {
-                var list = reviews.ToList();
-                return list.Any() ? list.Average(r => r.Rating) : 0.0;
-            }
-            return 0.0;
+            var list = ReviewRatingHelper.AsReviewList(value);
+            return ReviewRatingHelper.GetAverage(list) ?? 0.0;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => throw new NotImplementedException();
     }
 
-    /// <summary>Переводит название категории при активном английском языке.</summary>
+
     public class CategoryNameConverter : IValueConverter
     {
         private static readonly Dictionary<string, string> RuToEn = new Dictionary<string, string>(
@@ -220,7 +210,7 @@ namespace Confectionery.Helpers
             => throw new NotImplementedException();
     }
 
-    /// <summary>Используется для привязки IsChecked RadioButton к целочисленному рейтингу.</summary>
+
     public class RatingEqualConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -251,7 +241,7 @@ namespace Confectionery.Helpers
             => throw new NotImplementedException();
     }
 
-    /// <summary>Returns a per-category emoji for product placeholder images.</summary>
+
     public class CategoryEmojiConverter : IValueConverter
     {
         private static readonly Dictionary<string, string> CatEmoji =
@@ -275,7 +265,7 @@ namespace Confectionery.Helpers
             => throw new NotImplementedException();
     }
 
-    /// <summary>MultiValueConverter: returns true when two objects are equal (used for pill-button selected state).</summary>
+
     public class ObjectEqualityConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

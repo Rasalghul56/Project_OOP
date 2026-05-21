@@ -56,7 +56,7 @@
                 </DataGrid>
             </Border>
 
-            <!-- Детали и управление -->
+
             <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Top"
                     Visibility="{Binding SelectedOrder, Converter={StaticResource NullToVisibilityConverter}}">
                 <StackPanel>
@@ -77,7 +77,7 @@
                                FontSize="13" Foreground="{DynamicResource TextDarkBrush}"
                                Margin="0,0,0,8"/>
 
-                    <!-- Адрес доставки (только если доставка) -->
+
                     <StackPanel Visibility="{Binding SelectedOrder.DeliveryAddress,
                                     Converter={StaticResource NullToVisibilityConverter}}">
                         <TextBlock Style="{StaticResource LabelText}"
@@ -92,7 +92,7 @@
                                    Margin="0,0,0,8"/>
                     </StackPanel>
 
-                    <!-- Точка самовывоза -->
+
                     <StackPanel Visibility="{Binding SelectedOrder.PickupLocation,
                                     Converter={StaticResource NullToVisibilityConverter}}">
                         <TextBlock Style="{StaticResource LabelText}" Text="{DynamicResource AdminOrder_PickupPoint}"/>
